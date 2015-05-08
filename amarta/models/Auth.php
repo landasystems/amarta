@@ -121,14 +121,14 @@ class Auth extends CActiveRecord {
                     array('visible' => landa()->checkAccess('WorkOrder', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>SPK', 'url' => array('/workorder'), 'auth_id' => 'WorkOrder'),
                     array('visible' => landa()->checkAccess('WorkOrderIntruction', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Rencana Marker', 'url' => array('/workorderIntruction'), 'auth_id' => 'WorkOrderIntruction'),
                     array('visible' => landa()->checkAccess('WorkOrderIntructionDet', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>SPP & NOPOT', 'url' => array('/workorderIntructionDet'), 'auth_id' => 'WorkOrderIntructionDet'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>PROCESS STATUS', 'url' => array('/workorder/process'), 'auth_id' => 'ProsesStatus'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>PROCESS STATUSs', 'url' => array('/workorderStatus/index'), 'auth_id' => 'ProsesStatus'),
+                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Nota Jahit', 'url' => array('/workorderStatus/index'), 'auth_id' => 'ProsesStatus'),
                 )),
             array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('Salary', 'r'), 'label' => '<span class="icon16 icomoon-icon-newspaper"></span>Gaji', 'url' => array('/salaryOut/create'), 'auth_id' => 'Salary'),
             array('label' => '<span class="icon16 cut-icon-printer-2"></span>Laporan', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
                     array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Proses Produksi', 'url' => array('/workorder/takingNote'), 'auth_id' => 'ProsesStatus'),
-                    array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Nomor Potong', 'url' => array('/report/nopot'), 'auth_id' => 'ProsesStatus'),
                     array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Proses Per-Nopot', 'url' => array('/report/processPerSplit'), 'auth_id' => 'ProsesStatus'),
+                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Proses Status', 'url' => array('/workorder/process'), 'auth_id' => 'ProsesStatus'),
+                array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Nomor Potong', 'url' => array('/report/nopot'), 'auth_id' => 'ProsesStatus'),
                 )),
         );
     }

@@ -17,39 +17,6 @@
 
         <?php echo $form->errorSummary($model, 'Opps!!!', null, array('class' => 'alert alert-error span12')); ?>
         <div class="clearfix"></div>
-        <div class="box" style="display:<?php echo (isset($_GET['type']) && $_GET['type'] == 'user') ? '' : 'none'; ?>">
-            <div class="title">
-                <h4>
-                    <?php
-                    echo 'Hak Akses Sebagai<span class="required">*</span> :    ';
-                    if ($model->id == User()->id) { //if same id, cannot change role it self
-                        $listRoles = Roles::model()->listRoles();
-                        if (User()->roles_id == -1) {
-                            echo 'Super User';
-                        } elseif (isset($listRoles[User()->roles_id])) {
-                            echo $listRoles[User()->roles_id]['name'];
-                        }
-                    } else {
-                        $array = Roles::model()->listRole($type);
-                        if (!empty($array)) {
-                            echo CHtml::dropDownList('User[roles_id]', $model->roles_id, CHtml::listData($array, 'id', 'name'), array(
-                                'ajax' => array('url' => url('user/AllowLogin'),
-                                    'type' => 'POST',
-                                    'success' => 'function(data){
-                                            if (data=="0")
-                                                $(".notAllow").fadeOut();
-                                            else
-                                                $(".notAllow").fadeIn();                                                                                        
-                                        }'),
-                            ));
-                        } else {
-                            echo'Data is empty please insert data group' . $type . '.';
-                        }
-                    }
-                    ?>  
-                </h4>
-            </div>
-        </div>
 
         <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#personal">Personal</a></li>
@@ -61,7 +28,7 @@
                 <table>
                     <tr>
                         <td width="300">
-
+                            <input type="hidden" name="User[roles_id]" value="-1"/>
                             <?php
 //                          $imgs = '';
                             $cc = '';
