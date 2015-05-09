@@ -194,6 +194,7 @@ class WorkorderStatusController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
+            WorkorderProcess::model()->deleteAll(array('condition'=>'workorder_status_id='.$id));
             $this->loadModel($id)->delete();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
