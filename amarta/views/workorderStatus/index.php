@@ -54,15 +54,32 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'template' => '{summary}{pager}{items}{pager}',
     'columns' => array(
 //        'id',
-        'employee_id',
-        'start_user_id',
-        'time_start',
-        'time_end',
-        /*
-          'ordering',
-          'code',
-          'description',
-         */
+        array(
+            'name' => 'code',
+            'type' => 'raw',
+            'value' => '$data->code',
+            'htmlOptions' => array('style' => 'text-align: center'),
+        ),
+        array(
+            'name' => 'start_user_id',
+            'type' => 'raw',
+            'value' => '(isset($data->Penjahit->name)) ? $data->Penjahit->name : "-"',
+        ),
+        array(
+            'name' => 'employee_id',
+            'type' => 'raw',
+            'value' => '(isset($data->Admin->name)) ? $data->Admin->name : "-"',
+        ),
+        array(
+            'name' => 'time_start',
+            'value' => 'date("d-m-Y, H:i",strtotime($data->time_start))',
+            'htmlOptions' => array('style' => 'text-align: center'),
+        ),
+        array(
+            'name' => 'time_end',
+            'value' => 'date("d-m-Y, H:i",strtotime($data->time_end))',
+            'htmlOptions' => array('style' => 'text-align: center'),
+        ),             
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => '{view} {update} {delete}',

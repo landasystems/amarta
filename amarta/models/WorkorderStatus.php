@@ -48,7 +48,8 @@ class WorkorderStatus extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            
+            'Admin' => array(self::BELONGS_TO, 'User', 'employee_id'),
+            'Penjahit' => array(self::BELONGS_TO, 'User', 'start_user_id'),
         );
     }
 
