@@ -59,7 +59,7 @@ class WorkorderStatusController extends Controller {
      */
     public function actionCreate() {
         $model = new WorkorderStatus;
-
+        $this->layout = 'mainWide';
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         $lastNumber = WorkorderStatus::model()->find(array(
@@ -88,6 +88,7 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->workorder_status_id = $model->id;
                         $workorderProcess->work_process_id = $_POST['process_id'][$i];
                         $workorderProcess->workorder_split_id = $_POST['split_id'][$i];
+                        $workorderProcess->charge = $_POST['charge'][$i];
 //                        $workorderProcess->workorder_id = $workorderProcess->Process->workorder_id;
                         $workorderProcess->time_start = $model->time_start;
                         $workorderProcess->time_end = $model->time_end;
@@ -96,9 +97,9 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->start_user_id = $model->start_user_id;
                         $workorderProcess->end_user_id = $model->end_user_id;
                         $workorderProcess->start_qty = $workorderProcess->NOPOT->qty;
-                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['lost_qty'][$i];
-                        $workorderProcess->loss_qty = $_POST['lost_qty'][$i];
-                        $workorderProcess->loss_charge = $_POST['lost_charge'][$i];
+                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['loss_qty'][$i];
+                        $workorderProcess->loss_qty = $_POST['loss_qty'][$i];
+                        $workorderProcess->loss_charge = $_POST['loss_charge'][$i];
 
                         $workorderProcess->save();
                     }
@@ -121,6 +122,7 @@ class WorkorderStatusController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $this->layout = 'mainWide';
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
@@ -159,7 +161,8 @@ class WorkorderStatusController extends Controller {
                         }
                         $workorderProcess->workorder_status_id = $model->id;
                         $workorderProcess->work_process_id = $_POST['process_id'][$i];
-                        $workorderProcess->workorder_split_id = $_POST['split_id'][$i];
+                        $workorderProcess->work_process_id = $_POST['charge'][$i];
+                        $workorderProcess->charge = $_POST['split_id'][$i];
 //                        $workorderProcess->workorder_id = $workorderProcess->Process->workorder_id;
                         $workorderProcess->time_start = $model->time_start;
                         $workorderProcess->time_end = $model->time_end;
@@ -168,9 +171,9 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->start_user_id = $model->start_user_id;
                         $workorderProcess->end_user_id = $model->end_user_id;
                         $workorderProcess->start_qty = $workorderProcess->NOPOT->qty;
-                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['lost_qty'][$i];
-                        $workorderProcess->loss_qty = $_POST['lost_qty'][$i];
-                        $workorderProcess->loss_charge = $_POST['lost_charge'][$i];
+                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['loss_qty'][$i];
+                        $workorderProcess->loss_qty = $_POST['loss_qty'][$i];
+                        $workorderProcess->loss_charge = $_POST['loss_charge'][$i];
 
                         $workorderProcess->save();
                     }

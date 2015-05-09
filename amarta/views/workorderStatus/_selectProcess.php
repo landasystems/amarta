@@ -26,14 +26,14 @@
                     //do nothing
                     $terambil++;
                 } else {
-                    echo '<tr>';
+                    echo '<tr id="'.$val->id.'">';
                     echo '<td style="text-align:center">' . $ab->name . '</td>';
                     echo '<td style="text-align:center">' . $val->code . '</td>';
                     echo '<td style="text-align:center">' . $ab->description . '</td>';
                     echo '<td style="text-align:center">' . $ab->charge . '</td>';
                     echo '<td style="text-align:center">' . $val->qty. '</td>';
                     echo '<td style="text-align:center">'
-                    . '<a class="btn ambil" split_id="' . $val->id . '" workprocess_id="' . $ab->id . '" process_name="' . $ab->name . '" nopot="' . $val->code . '" desc="' . $val->SPP->size . '" charge="' . $ab->charge . '" start_qty="'.$val->qty.'" >'
+                    . '<a class="btn ambil" split_id="' . $val->id . '" workprocess_id="' . $ab->id . '" process_name="' . $ab->name . '" nopot="' . $val->code . '" desc="' . $val->description . '" charge="' . $ab->charge . '" start_qty="'.$val->qty.'" >'
                     . '<i class="cut-icon-plus-2">'
                     . '</i>Ambil</a>'
                     . '</td>';
