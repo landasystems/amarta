@@ -58,13 +58,13 @@ class WorkorderStatus extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'employee_id' => 'Employee',
-            'start_user_id' => 'Start User',
-            'time_start' => 'Time Start',
-            'time_end' => 'Time End',
+            'employee_id' => 'Admin',
+            'start_user_id' => 'Penjahit',
+            'time_start' => 'Mulai',
+            'time_end' => 'Selesai',
             'ordering' => 'Ordering',
-            'code' => 'Code',
-            'description' => 'Description',
+            'code' => 'Nota Jahit',
+            'description' => 'Keterangan',
         );
     }
 
