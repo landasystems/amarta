@@ -141,7 +141,7 @@
                     <tr>
                         <th>Proses</th>
                         <th>Nopot</th>
-                        <th>Ket</th> 
+                        <th>Size</th> 
                         <th>Jml</th>
                         <th>Rp.</th>
                         <th>Sub. Total</th>
@@ -149,19 +149,6 @@
                         <th>Denda</th>
                     </tr>
                 </thead>
-                <!--<thead>
-                    <tr>
-                        <th >Nama Proses</th>
-                        <th>NOPOT</th>
-                        <th>Keterangan</th>
-                        <th>Harga</th>
-                        <th>Jml Awal</th>
-                        <th>Jml Akhir</th>
-                        <th>Hilang</th>
-                        <th>Denda</th>
-                        <th style="width:2%">#</th>
-                    </tr>
-                </thead> -->
                 <tbody>
                     <?php
                     if ($model->isNewRecord == true) {
@@ -171,15 +158,17 @@
                             'condition' => 'workorder_status_id=' . $model->id
                         ));
                         foreach ($prosesTerambil as $value) {
+                            $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
                             if(isset($_GET['v'])){
                                 $hps = '#';
                             }else{
                                 $hps = '<a class="btn btnRemove" href="#"><i class="cut-icon-minus-2"></i></a>';
                             }
+                                                                    
                             echo '<tr id="'.$value->workorder_split_id.'">
                                         <td>' . $value->Process->name . '</td>
                                         <td>' . $value->NOPOT->code . '</td>
-                                        <td><input type="text" name="desc[]" class="desc span4" value="' . $value->description . '"></td>
+                                        <td><input type="text" name="desc[]" class="desc span1" value="' . $size . '" readonly="true"></td>
                                         <td><input type="text" class="angka" name="start_amount[]" value="' . $value->start_qty . '" id="start_amount'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $value->charge . '" id="charge'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $value->charge * $value->start_qty . '" id="subTotal'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
@@ -295,7 +284,7 @@
         data += '<tr id="' + split_id + '">';
         data += '<td style="text-align: center">' + process_name + '</td>';
         data += '<td style="text-align: center">' + nopot + '</td>';
-        data += '<td><input type="text" name="desc[]" value="' + desc + '" class="desc span4"></td>';
+        data += '<td><input readonly="true" type="text" name="desc[]" value="' + desc + '" class="desc span1"></td>';
         data += '<td><input type="text" class="angka" name="start_amount[]" value="' + start_qty + '" onkeyup="total()" id="start_amount' + split_id + '" ></td>';
         data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + charge + '" maxlength="60" prepend="Rp" type="text" name="charge[]" id="charge' + split_id + '" onkeyup="total()"></div></td>';
         data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + parseInt(charge) * parseInt(start_qty) + '" maxlength="60" prepend="Rp" type="text" id="subtotal' + split_id + '" name="subTotal[]" onkeyup="total()"></div></td>';
