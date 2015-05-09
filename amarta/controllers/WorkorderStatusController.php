@@ -254,11 +254,13 @@ class WorkorderStatusController extends Controller {
     public function actionSelectProcess() {
         $id = $_POST['id'];
         $workProcess = WorkProcess::model()->findAll(array(
-            'condition' => 'workorder_id=' . $id
+            'condition' => 'workorder_id=' . $id,
+            'order' => 'ordering'
         ));
         $workSplit = WorkorderSplit::model()->findAll(array(
             'with' => 'SPP.RM.SPK',
-            'condition' => 'SPK.id =' . $id
+            'condition' => 'SPK.id =' . $id,
+            'order' => 't.code'
         ));
         $values = $this->renderPartial('_selectProcess', array(
             'workProcess' => $workProcess,

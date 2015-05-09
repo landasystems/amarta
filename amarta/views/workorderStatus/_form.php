@@ -1,3 +1,11 @@
+<style>
+    body .modal {
+    /* new custom width */
+    width: 900px;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    margin-left: -420px;
+}
+</style>
 <div class="form">
     <?php
     $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
@@ -16,7 +24,7 @@
                 <p class="note">Fields dengan <span class="required">*</span> harus di isi.</p>
             </legend>
         <?php } ?>
-        <div class="well">
+        <div class="well well-small">
             <?php echo $form->errorSummary($model, 'Opps!!!', null, array('class' => 'alert alert-error span12')); ?>
             <table>
                 <tr>
@@ -119,7 +127,7 @@
                 </tr>
             </table>
         </div>
-        <div class="well">
+        <div class="well well-small">
             <h3 style="text-align:center" class="blue">Proses Kerja Yang Terambil</h3>
             <hr>
             <table class="responsive table table-bordered">
@@ -169,20 +177,20 @@
                                 $hps = '<a class="btn btnRemove" href="#"><i class="cut-icon-minus-2"></i></a>';
                             }
                             echo '<tr id="'.$value->workorder_split_id.'">
-                                        <td style="text-align: center">' . $value->Process->name . '</td>
-                                        <td style="text-align: center">' . $value->NOPOT->code . '</td>
+                                        <td>' . $value->Process->name . '</td>
+                                        <td>' . $value->NOPOT->code . '</td>
                                         <td><input type="text" name="desc[]" class="desc span4" value="' . $value->description . '"></td>
                                         <td><input type="text" class="angka" name="start_amount[]" value="' . $value->start_qty . '" id="start_amount'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $value->charge . '" id="charge'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subtotal[]" value="' . $value->charge * $value->start_qty . '" id="subtotal'.$value->workorder_split_id.'" onkeyup="total()" readonly="true"></div></td>
-                                        <td><input type="text" class="angka" name="loss_qty[]" value="' . $value->loss_qty . '" id="loss_qty'.$value->workorder_split_id.'" onkeyup="total()"></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $value->charge * $value->start_qty . '" id="subTotal'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
+                                        <td><input type="text" class="angka" name="lost_qty[]" value="' . $value->loss_qty . '" id="loss_qty'.$value->workorder_split_id.'" onkeyup="total()"></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $value->loss_charge . '" id="loss_charge'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total'.$value->workorder_split_id.'" name="total[]" value="' . (($value->charge * $value->start_qty) - $value->loss_charge) . '" onkeyup="total()" readonly="true"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total'.$value->workorder_split_id.'" name="total[]" value="' . (($value->charge * $value->start_qty) - $value->loss_charge) . '" onkeyup="total()"></div></td>
                                         <td>
                                             '.$hps.'
                                             <input type="hidden" name="id[]" class="work_id" value="' . $value->id . '">
                                             <input type="hidden" name="process_id[]" class="process_id" value="' . $value->work_process_id . '">
-                                            <input type="hidden" name="split_id[]" class="split_id" id="split_id" value="' . $value->workorder_split_id . '">
+                                            <input type="hidden" name="split_id[]" class="split_id" value="' . $value->workorder_split_id . '">
                                         </td>    
                                   </tr>';
                            
@@ -232,13 +240,10 @@
         <h3 id="myModalLabel">Pengambilan Proses Kerja</h3>
     </div>
     <div class="modal-body">
-        <div class="well">
-            <div class="control-group ">
-                <label class="control-label">Pilih SPK </label>
-                <div class="controls">
+                
                     <?php
                     $spk = Workorder::model()->findAll();
-                    $data2 = array(0 => t('choose', 'global')) + CHtml::listData($spk, 'id', 'fullSpk');
+                    $data2 = array(0 => "Pilih SPK") + CHtml::listData($spk, 'id', 'fullSpk');
                     $this->widget('bootstrap.widgets.TbSelect2', array(
                         'asDropDownList' => TRUE,
                         'data' => $data2,
@@ -253,13 +258,11 @@
                         ),
                     ));
                     ?>
-                </div>
-            </div>
-        </div>
-        <div class="well resultss"></div>
+                
+        <div class="well well-small resultss"></div>
     </div>
     <div class="modal-footer">
-        <div>Jumlah Proses Terambil Untuk SPK ini = <input type="text" readonly="readonly" value="0" class="terambil angka"></div>&nbsp;<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <div>Jumlah Proses Terambil : <input type="text" readonly="readonly" value="0" class="terambil angka" style="width:40px !important"></div>&nbsp;
     </div>
 </div>
 <script type="text/javascript">
@@ -295,10 +298,10 @@
         data += '<td><input type="text" name="desc[]" value="' + desc + '" class="desc span4"></td>';
         data += '<td><input type="text" class="angka" name="start_amount[]" value="' + start_qty + '" onkeyup="total()" id="start_amount' + split_id + '" ></td>';
         data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + charge + '" maxlength="60" prepend="Rp" type="text" name="charge[]" id="charge' + split_id + '" onkeyup="total()"></div></td>';
-        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + parseInt(charge) * parseInt(start_qty) + '" maxlength="60" prepend="Rp" type="text" id="subtotal' + split_id + '" name="subTotal[]" onkeyup="total()" readonly="true"></div></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + parseInt(charge) * parseInt(start_qty) + '" maxlength="60" prepend="Rp" type="text" id="subtotal' + split_id + '" name="subTotal[]" onkeyup="total()"></div></td>';
         data += '<td><input type="text" class="angka" name="loss_qty[]" value="0" id="loss_qty" onkeyup="total()"></td>';
         data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" id="loss_charge' + split_id + '" class="angka" name="loss_charge[]" value="0" onkeyup="total()"></div></td>';
-        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="total[]" value="" id="total' + split_id + '" readonly="true"></div></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="total[]" value="" id="total' + split_id + '"></div></td>';
         data += '<td><a class="btnRemove btn" href="#"><i class="cut-icon-minus-2"></i></a>';
         data += '<input type="hidden" name="id[]" class="work_id" value="">';
         data += '<input type="hidden" name="process_id[]" class="process_id" value="' + workprocess_id + '">';
@@ -320,8 +323,6 @@
     function total() {
         $(".work_id").each(function () {
             var id = $(this).parent().parent().find("#split_id").val();
-            var subTotal = parseInt($("#charge"+id).val()) * parseInt($("#start_amount"+id).val());
-            $("#subtotal"+id).val(subTotal);
             var totalPerPekerjaan = parseInt($("#subtotal"+id).val()) - parseInt($("#loss_charge"+id).val());
             $("#total"+id).val(totalPerPekerjaan);
         });
