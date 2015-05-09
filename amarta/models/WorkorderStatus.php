@@ -34,6 +34,7 @@ class WorkorderStatus extends CActiveRecord {
             array('code', 'length', 'max' => 11),
             array('description', 'length', 'max' => 255),
             array('time_start, time_end', 'safe'),
+            array('time_start, employee_id', 'required'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, employee_id, start_user_id, time_start, time_end, ordering, code, description', 'safe', 'on' => 'search'),
@@ -47,7 +48,7 @@ class WorkorderStatus extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'SPK' => array(self::BELONGS_TO, 'Workorder', 'workorder_id'),
+            
         );
     }
 

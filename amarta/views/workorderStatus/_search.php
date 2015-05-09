@@ -15,7 +15,7 @@
 
         <?php echo $form->textFieldRow($model,'time_end',array('class'=>'span5')); ?>
 
-        <?php echo $form->textFieldRow($model,'workorder_id',array('class'=>'span5')); ?>
+        <?php // echo $form->textFieldRow($model,'workorder_id',array('class'=>'span5')); ?>
 
         <?php echo $form->textFieldRow($model,'ordering',array('class'=>'span5')); ?>
 
