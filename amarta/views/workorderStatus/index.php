@@ -1,7 +1,7 @@
 <?php
-$this->setPageTitle('Workorder Statuses');
+$this->setPageTitle('Nota Jahit');
 $this->breadcrumbs = array(
-    'Workorder Statuses',
+    'Nota Jahit',
 );
 
 Yii::app()->clientScript->registerScript('search', "

@@ -2,7 +2,7 @@
 $this->setPageTitle('Form Pengambilan Pekerjaan Baru');
 $this->breadcrumbs=array(
 	'Workorder Statuses'=>array('index'),
-	'Create',
+	'Tambah',
 );
 
 ?>
