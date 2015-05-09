@@ -96,8 +96,8 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->start_user_id = $model->start_user_id;
                         $workorderProcess->end_user_id = $model->end_user_id;
                         $workorderProcess->start_qty = $workorderProcess->NOPOT->qty;
-                        $workorderProcess->end_qty = $_POST['end_amount'][$i];
-                        $workorderProcess->loss_qty = $_POST['lost'][$i];
+                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['lost_qty'][$i];
+                        $workorderProcess->loss_qty = $_POST['lost_qty'][$i];
                         $workorderProcess->loss_charge = $_POST['lost_charge'][$i];
 
                         $workorderProcess->save();
@@ -168,8 +168,8 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->start_user_id = $model->start_user_id;
                         $workorderProcess->end_user_id = $model->end_user_id;
                         $workorderProcess->start_qty = $workorderProcess->NOPOT->qty;
-                        $workorderProcess->end_qty = $_POST['end_amount'][$i];
-                        $workorderProcess->loss_qty = $_POST['lost'][$i];
+                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['lost_qty'][$i];
+                        $workorderProcess->loss_qty = $_POST['lost_qty'][$i];
                         $workorderProcess->loss_charge = $_POST['lost_charge'][$i];
 
                         $workorderProcess->save();

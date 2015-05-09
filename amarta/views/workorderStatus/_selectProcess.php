@@ -33,7 +33,7 @@
                     echo '<td style="text-align:center">' . $ab->charge . '</td>';
                     echo '<td style="text-align:center">' . $val->qty. '</td>';
                     echo '<td style="text-align:center">'
-                    . '<a class="btn ambil" split_id="' . $val->id . '" workprocess_id="' . $ab->id . '" process_name="' . $ab->name . '" nopot="' . $val->code . '" desc="' . $ab->description . '" charge="' . $ab->charge . '" start_qty="'.$val->qty.'">'
+                    . '<a class="btn ambil" split_id="' . $val->id . '" workprocess_id="' . $ab->id . '" process_name="' . $ab->name . '" nopot="' . $val->code . '" desc="' . $val->SPP->size . '" charge="' . $ab->charge . '" start_qty="'.$val->qty.'" >'
                     . '<i class="cut-icon-plus-2">'
                     . '</i>Ambil</a>'
                     . '</td>';

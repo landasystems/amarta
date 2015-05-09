@@ -110,6 +110,7 @@
                         <th colspan="6">Potongan</th>
                         <th colspan="2">Selesai</th>
                         <th rowspan="2">Total Perpekerjaan</th>
+                        <th rowspan="2">#</th>
                     </tr>
                     <tr>
                         <th>Proses</th>
@@ -273,11 +274,12 @@
         data += '<td style="text-align: center">' + process_name + '</td>';
         data += '<td style="text-align: center">' + nopot + '</td>';
         data += '<td><input type="text" name="desc[]" value="' + desc + '" class="desc span4"></td>';
-        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + charge + '" maxlength="60" prepend="Rp" type="text" name="charge[]"></div></td>';
         data += '<td><input type="text" class="angka" name="start_amount[]" value="' + start_qty + '"></td>';
-        data += '<td><input type="text" class="angka" name="end_amount[]" value=""></td>';
-        data += '<td><input type="text" class="angka" name="lost[]" value=""></td>';
-        data += '<td><input type="text" class="angka" name="lost_charge[]" value=""></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + charge + '" maxlength="60" prepend="Rp" type="text" name="charge[]"></div></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + parseInt(charge)*parseInt(start_qty) + '" maxlength="60" prepend="Rp" type="text" name="subTotal[]"></div></td>';
+        data += '<td><input type="text" class="angka" name="lost_qty[]" value=""></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="lost_charge[]" value=""></div></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="total[]" value=""></div></td>';
         data += '<td><a class="btnRemove btn" href="#"><i class="cut-icon-minus-2"></i></a>';
         data += '<input type="hidden" name="id[]" class="work_id" value="">';
         data += '<input type="hidden" name="process_id[]" class="process_id" value="' + workprocess_id + '">';
