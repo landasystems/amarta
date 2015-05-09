@@ -11,9 +11,11 @@
     ));
     ?>
     <fieldset>
-        <legend>
-            <p class="note">Fields dengan <span class="required">*</span> harus di isi.</p>
-        </legend>
+        <?php if (!isset($_GET['v'])) { ?>
+            <legend>
+                <p class="note">Fields dengan <span class="required">*</span> harus di isi.</p>
+            </legend>
+        <?php } ?>
         <div class="well">
             <?php echo $form->errorSummary($model, 'Opps!!!', null, array('class' => 'alert alert-error span12')); ?>
             <table>
@@ -21,35 +23,19 @@
                     <td>
                         <?php
                         echo $form->textFieldRow($model, 'code', array(
-                            'class' => 'span2',
-                            'maxlength' => 11,
+                            'class' => 'span2 angka',
+                            'maxlength' => 7,
                         ));
                         ?>
                     </td>
                     <td>
-                        <div class="control-group ">
-                            <label class="control-label">Waktu Mulai</label>
-                            <div class="controls">
-                                <?php
-                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                                    'name' => 'time_start',
-                                    'value' => ($model->isNewRecord == false) ? date('Y/m/d', strtotime($model->time_start)) : '',
-                                    'htmlOptions' => array(
-                                        'size' => '7', // textField size
-                                        'maxlength' => '10', // textField maxlength
-                                        'id' => 'date_starts',
-                                        'placeHolder' => 'Kosongkan Untuk Generate Otomatis'
-                                    ),
-                                ));
-                                ?>
-                            </div>
-                        </div>
+
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="control-group ">
-                            <label class="control-label">Pegawai</label>
+                            <label class="control-label">Pegawai <span class="required">*</span></label>
                             <div class="controls">
                                 <?php
                                 $data = array(0 => t('choose', 'global')) + CHtml::listData((User::model()->listPegawai()), 'id', 'name');
@@ -70,10 +56,31 @@
                                 ?>
                             </div>
                         </div>
+                        <?php echo $form->textAreaRow($model, 'description', array('class' => 'span3', 'maxlength' => 255)); ?>
                     </td>
                     <td>
                         <div class="control-group ">
-                            <label class="control-label">Waktu Selesai</label>
+                            <label class="control-label"> Mulai <span class="required">*</span></label>
+                            <div class="controls">
+                                <?php
+                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                                    'name' => 'time_start',
+                                    'value' => ($model->isNewRecord == false) ? date('d-m-Y', strtotime($model->time_start)) : date('d-m-Y'),
+                                    'htmlOptions' => array(
+                                        'size' => '7', // textField size
+                                        'maxlength' => '10', // textField maxlength
+                                        'id' => 'date_starts',
+                                        'style' => 'width:80px',
+                                    ),
+                                    'options' => array(
+                                        'dateFormat' => 'dd-mm-yy',
+                                    )
+                                ));
+                                ?> , <input type="text" name="mulai_jam" style="width:15px !important" class="angka" maxlength="2"/>:<input type="text" name="mulai_menit" style="width:15px !important" class="angka" maxlength="2"/>
+                            </div>
+                        </div>
+                        <div class="control-group ">
+                            <label class="control-label">Selesai</label>
                             <div class="controls">
                                 <?php
                                 $this->widget('zii.widgets.jui.CJuiDatePicker', array(
@@ -82,21 +89,32 @@
                                         'size' => '7', // textField size
                                         'maxlength' => '10', // textField maxlength
                                         'id' => 'date_ends',
-                                        'placeHolder' => 'Kosongkan Untuk Generate secara otomatis Apabila Proses Selesai',
+                                        'placeHolder' => '',
+                                        'format' => 'dd-mm-yyyy',
+                                        'style' => 'width:80px',
 //                                        'readOnly' => ($model->isNewRecord == true) ? true : false,
                                     ),
+                                    'options' => array(
+                                        'dateFormat' => 'dd-mm-yy',
+                                    )
                                 ));
-                                ?>
+                                ?> , <input type="text" name="selesai_jam" style="width:15px !important" class="angka" maxlength="2"/>:<input type="text" name="selesai_menit" style="width:15px !important" class="angka" maxlength="2"/>
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <?php echo $form->textAreaRow($model, 'description', array('class' => 'span3', 'maxlength' => 255)); ?>
+                        <span aria-hidden="true" class="entypo-icon-info-circle"></span> Kosongkan tanggal selesai, jika belum selesai <br/>
+                        <span aria-hidden="true" class="entypo-icon-info-circle"></span> Kosongkan Nota Jahit, maka akan mengenerate otomatis mengikuti Nota Jahit terakhir
                     </td>
                     <td rowspan="2" style="text-align: right">
-                        <input id="btnFindProcess" class="btn btn-primary" style="height:90px;width:250px" type="submit" name="yt0" value="AMBIL PROSES">
+                        <?php if (!isset($_GET['v'])) { ?>
+                            <input id="btnFindProcess" class="btn btn-primary btn-large" type="submit" name="yt0" value="AMBIL PROSES">
+                        <?php } else { ?>
+                            <a class="btn btn-primary btn-large"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
+                            <a class="btn btn-primary btn-large"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
+                        <?php } ?>
                     </td>
                 </tr>
             </table>
@@ -128,24 +146,24 @@
                         ));
                         foreach ($prosesTerambil as $value) {
                             echo '<tr>
-                                        <td style="text-align: center">'.$value->Process->name.'</td>
-                                        <td>'.$value->NOPOT->code.'</td>
-                                        <td><input type="text" name="desc[]" class="desc span4" value="'.$value->description.'"></td>
+                                        <td style="text-align: center">' . $value->Process->name . '</td>
+                                        <td>' . $value->NOPOT->code . '</td>
+                                        <td><input type="text" name="desc[]" class="desc span4" value="' . $value->description . '"></td>
                                         <td>
                                             <div class="input-prepend">
                                                 <span class="add-on">Rp.</span>
-                                                <input class="angka" value="'.$value->Process->name.'" maxlength="60" prepend="Rp" type="text" id="charge" name="charge">
+                                                <input class="angka" value="' . $value->Process->name . '" maxlength="60" prepend="Rp" type="text" id="charge" name="charge">
                                             </div>
                                         </td>
-                                        <td><input type="text" class="angka" name="start_amount[]" value="'.$value->start_qty.'"></td>
-                                        <td><input type="text" class="angka" name="end_amount[]" value="'.$value->end_qty.'"></td>
-                                        <td><input type="text" class="angka" name="lost[]" value="'.$value->loss_qty.'"></td>
-                                        <td><input type="text" class="angka" name="lost_charge[]" value="'.$value->loss_charge.'"></td>
+                                        <td><input type="text" class="angka" name="start_amount[]" value="' . $value->start_qty . '"></td>
+                                        <td><input type="text" class="angka" name="end_amount[]" value="' . $value->end_qty . '"></td>
+                                        <td><input type="text" class="angka" name="lost[]" value="' . $value->loss_qty . '"></td>
+                                        <td><input type="text" class="angka" name="lost_charge[]" value="' . $value->loss_charge . '"></td>
                                         <td>
                                             <a class="btn btnRemove" href="#"><i class="cut-icon-minus-2"></i></a>
-                                            <input type="hidden" name="id[]" class="work_id" value="'.$value->id.'">
-                                            <input type="hidden" name="process_id[]" class="process_id" value="'.$value->work_process_id.'">
-                                            <input type="hidden" name="split_id[]" class="split_id" value="'.$value->workorder_split_id.'">
+                                            <input type="hidden" name="id[]" class="work_id" value="' . $value->id . '">
+                                            <input type="hidden" name="process_id[]" class="process_id" value="' . $value->work_process_id . '">
+                                            <input type="hidden" name="split_id[]" class="split_id" value="' . $value->workorder_split_id . '">
                                         </td>
                                     </tr>
                                 ';
@@ -174,7 +192,7 @@
                     'buttonType' => 'submit',
                     'type' => 'primary',
                     'icon' => 'ok white',
-                    'label' => $model->isNewRecord ? 'Tambah' : 'Simpan',
+                    'label' => 'Simpan',
                 ));
                 ?>
                 <?php
@@ -273,7 +291,7 @@
     });
     $("body").on("click", ".btnRemove", function () {
         var r = confirm('Anda yakin ingin menghapus proses ini?');
-        if(r == true){
+        if (r == true) {
             $(this).parent().parent().remove();
         }
     });
