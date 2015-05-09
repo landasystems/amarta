@@ -159,7 +159,7 @@
                                         <td><input type="text" class="angka" name="lost[]" value="'.$value->loss_qty.'"></td>
                                         <td><input type="text" class="angka" name="lost_charge[]" value="'.$value->loss_charge.'"></td>
                                         <td>
-                                            <a id="btnRemove" class="btn" href="#"><i class="cut-icon-minus-2"></i></a>
+                                            <a class="btn btnRemove" href="#"><i class="cut-icon-minus-2"></i></a>
                                             <input type="hidden" name="id[]" class="work_id" value="'.$value->id.'">
                                             <input type="hidden" name="process_id[]" class="process_id" value="'.$value->work_process_id.'">
                                             <input type="hidden" name="split_id[]" class="split_id" value="'.$value->workorder_split_id.'">
