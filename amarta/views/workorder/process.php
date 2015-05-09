@@ -44,7 +44,6 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#laporan" aria-controls="laporan" role="tab" data-toggle="tab">Status Proses Produksi</a></li>
-            <li role="presentation"><a href="#search" aria-controls="search" role="tab" data-toggle="tab">Pencarian Nota</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -59,7 +58,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                     <h4>
                                         <?php
                                         $spk = Workorder::model()->findAll();
-                                        echo "Select SPK      : " . CHtml::dropDownList('spk', '', CHtml::listData($spk, 'id', 'fullSpk'), array(
+                                        echo "Pilih SPK      : " . CHtml::dropDownList('spk', '', CHtml::listData($spk, 'id', 'fullSpk'), array(
                                             'empty' => t('choose', 'global'),
                                             'class' => 'span3',
                                             'onChange' => 'load();',
@@ -68,7 +67,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                     </h4>
                                 </td>
                                 <td style="text-align:right">
-                                    <a class="btn btn-submit" id="subb" name="subb">Urutkan Nota Produksi</a>
+<!--                                    <a class="btn btn-submit" id="subb" name="subb">Urutkan Nota Produksi</a>-->
                                 </td>
                             </tr>
                         </table>
@@ -87,7 +86,6 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                 </div>
 
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="search"><?php $this->renderPartial('searchEmployee', array()); ?></div>
         </div>
     </div>
 

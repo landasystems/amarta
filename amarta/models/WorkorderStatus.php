@@ -34,6 +34,7 @@ class WorkorderStatus extends CActiveRecord {
             array('code', 'length', 'max' => 11),
             array('description', 'length', 'max' => 255),
             array('time_start, time_end', 'safe'),
+            array('time_start, employee_id', 'required'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, employee_id, start_user_id, time_start, time_end, ordering, code, description', 'safe', 'on' => 'search'),
@@ -47,7 +48,8 @@ class WorkorderStatus extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'SPK' => array(self::BELONGS_TO, 'Workorder', 'workorder_id'),
+            'Admin' => array(self::BELONGS_TO, 'User', 'employee_id'),
+            'Penjahit' => array(self::BELONGS_TO, 'User', 'start_user_id'),
         );
     }
 
@@ -57,13 +59,13 @@ class WorkorderStatus extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'employee_id' => 'Employee',
-            'start_user_id' => 'Start User',
-            'time_start' => 'Time Start',
-            'time_end' => 'Time End',
+            'employee_id' => 'Admin',
+            'start_user_id' => 'Penjahit',
+            'time_start' => 'Mulai',
+            'time_end' => 'Selesai',
             'ordering' => 'Ordering',
-            'code' => 'Code',
-            'description' => 'Description',
+            'code' => 'Nota Jahit',
+            'description' => 'Keterangan',
         );
     }
 

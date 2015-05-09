@@ -88,7 +88,7 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->workorder_status_id = $model->id;
                         $workorderProcess->work_process_id = $_POST['process_id'][$i];
                         $workorderProcess->workorder_split_id = $_POST['split_id'][$i];
-                        $workorderProcess->workorder_id = $workorderProcess->Process->workorder_id;
+//                        $workorderProcess->workorder_id = $workorderProcess->Process->workorder_id;
                         $workorderProcess->time_start = $model->time_start;
                         $workorderProcess->time_end = $model->time_end;
                         $workorderProcess->code = $model->code;
@@ -96,6 +96,9 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->start_user_id = $model->start_user_id;
                         $workorderProcess->end_user_id = $model->end_user_id;
                         $workorderProcess->start_qty = $workorderProcess->NOPOT->qty;
+                        $workorderProcess->end_qty = $_POST['end_amount'][$i];
+                        $workorderProcess->loss_qty = $_POST['lost'][$i];
+                        $workorderProcess->loss_charge = $_POST['lost_charge'][$i];
 
                         $workorderProcess->save();
                     }
@@ -122,10 +125,60 @@ class WorkorderStatusController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
+        $lastNumber = WorkorderStatus::model()->find(array(
+            'order' => 'ordering DESC',
+        ));
         if (isset($_POST['WorkorderStatus'])) {
-            $model->attributes = $_POST['WorkorderStatus'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+            if (isset($_POST['process_id'])) {
+                WorkorderProcess::model()->deleteAll(array(
+                    'condition' => 'workorder_status_id='.$id.' AND id NOT IN('.  implode(',', $_POST['id']).')'
+                ));
+                $model->attributes = $_POST['WorkorderStatus'];
+
+                if (empty($_POST['WorkorderStatus']['code'])) {
+                    $model->ordering = (empty($lastNumber)) ? 1 : $lastNumber->ordering + 1;
+                    $model->code = date('m') . substr("0000000" . $model->ordering, -7);
+                }else{
+                    $model->code = $_POST['WorkorderStatus']['code'];
+                }
+                if (empty($_POST['time_start'])) {
+                    $model->time_start = date('Y-m-d h:i:s');
+                } else {
+                    $model->time_start = date('Y-m-d h:i:s', strtotime($_POST['time_start'] . date('h:i:s')));
+                }
+                if (!empty($_POST['time_end'])) {
+                    $model->time_end = date('Y-m-d h:i:s', strtotime($_POST['time_end'] . date('h:i:s')));
+                }
+                $model->start_user_id = user()->id;
+                if ($model->save()) {
+                    for ($i = 0; $i < count($_POST['process_id']); $i++) {
+                        if (empty($_POST['id'][$i])) {
+                            $workorderProcess = new WorkorderProcess();
+                        } else {
+                            $workorderProcess = WorkorderProcess::model()->findByPk($_POST['id'][$i]);
+                        }
+                        $workorderProcess->workorder_status_id = $model->id;
+                        $workorderProcess->work_process_id = $_POST['process_id'][$i];
+                        $workorderProcess->workorder_split_id = $_POST['split_id'][$i];
+//                        $workorderProcess->workorder_id = $workorderProcess->Process->workorder_id;
+                        $workorderProcess->time_start = $model->time_start;
+                        $workorderProcess->time_end = $model->time_end;
+                        $workorderProcess->code = $model->code;
+                        $workorderProcess->start_from_user_id = $model->employee_id;
+                        $workorderProcess->start_user_id = $model->start_user_id;
+                        $workorderProcess->end_user_id = $model->end_user_id;
+                        $workorderProcess->start_qty = $workorderProcess->NOPOT->qty;
+                        $workorderProcess->end_qty = $_POST['end_amount'][$i];
+                        $workorderProcess->loss_qty = $_POST['lost'][$i];
+                        $workorderProcess->loss_charge = $_POST['lost_charge'][$i];
+
+                        $workorderProcess->save();
+                    }
+                    $this->redirect(array('view', 'id' => $model->id));
+                }
+            } else {
+                throw new CHttpException(400, 'WARNING!! Minimal mengambil satu Proses Produksi!');
+            }
         }
 
         $this->render('update', array(

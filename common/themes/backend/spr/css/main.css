@@ -3,6 +3,9 @@
 /*.contentwrapper form {
     overflow-x: auto !important;
 }*/
+.control-group {
+  margin-bottom: 5px !important;
+}
 table .row-fluid [class*="span"] {
     min-height: 10px !important;
 }
