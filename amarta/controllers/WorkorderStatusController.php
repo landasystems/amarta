@@ -96,8 +96,10 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->start_from_user_id = $model->employee_id;
                         $workorderProcess->start_user_id = $model->start_user_id;
                         $workorderProcess->end_user_id = $model->end_user_id;
-                        $workorderProcess->start_qty = $workorderProcess->NOPOT->qty;
-                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['loss_qty'][$i];
+//                        $workorderProcess->start_qty = $workorderProcess->NOPOT->qty;
+                        $workorderProcess->start_qty = $_POST['start_amount'][$i];
+//                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['loss_qty'][$i];
+                        $workorderProcess->end_qty = $_POST['start_amount'][$i] - $_POST['loss_qty'][$i];
                         $workorderProcess->loss_qty = $_POST['loss_qty'][$i];
                         $workorderProcess->loss_charge = $_POST['loss_charge'][$i];
 
@@ -132,15 +134,15 @@ class WorkorderStatusController extends Controller {
         ));
         if (isset($_POST['WorkorderStatus'])) {
             if (isset($_POST['process_id'])) {
-                WorkorderProcess::model()->deleteAll(array(
-                    'condition' => 'workorder_status_id='.$id.' AND id NOT IN('.  implode(',', $_POST['id']).')'
-                ));
+//                WorkorderProcess::model()->deleteAll(array(
+//                    'condition' => 'workorder_status_id='.$id.' AND id NOT IN('.  implode(',', $_POST['id']).')'
+//                ));
                 $model->attributes = $_POST['WorkorderStatus'];
 
                 if (empty($_POST['WorkorderStatus']['code'])) {
                     $model->ordering = (empty($lastNumber)) ? 1 : $lastNumber->ordering + 1;
                     $model->code = date('m') . substr("0000000" . $model->ordering, -7);
-                }else{
+                } else {
                     $model->code = $_POST['WorkorderStatus']['code'];
                 }
                 if (empty($_POST['time_start'])) {
@@ -161,8 +163,8 @@ class WorkorderStatusController extends Controller {
                         }
                         $workorderProcess->workorder_status_id = $model->id;
                         $workorderProcess->work_process_id = $_POST['process_id'][$i];
-                        $workorderProcess->work_process_id = $_POST['charge'][$i];
-                        $workorderProcess->charge = $_POST['split_id'][$i];
+                        $workorderProcess->workorder_split_id = $_POST['split_id'][$i];
+                        $workorderProcess->charge = $_POST['charge'][$i];
 //                        $workorderProcess->workorder_id = $workorderProcess->Process->workorder_id;
                         $workorderProcess->time_start = $model->time_start;
                         $workorderProcess->time_end = $model->time_end;
@@ -171,7 +173,9 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->start_user_id = $model->start_user_id;
                         $workorderProcess->end_user_id = $model->end_user_id;
                         $workorderProcess->start_qty = $workorderProcess->NOPOT->qty;
-                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['loss_qty'][$i];
+                        $workorderProcess->start_qty = $_POST['start_amount'][$i];
+//                        $workorderProcess->end_qty = $workorderProcess->start_qty - $_POST['loss_qty'][$i];
+                        $workorderProcess->end_qty = $_POST['start_amount'][$i] - $_POST['loss_qty'][$i];
                         $workorderProcess->loss_qty = $_POST['loss_qty'][$i];
                         $workorderProcess->loss_charge = $_POST['loss_charge'][$i];
 
@@ -197,7 +201,7 @@ class WorkorderStatusController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            WorkorderProcess::model()->deleteAll(array('condition'=>'workorder_status_id='.$id));
+            WorkorderProcess::model()->deleteAll(array('condition' => 'workorder_status_id=' . $id));
             $this->loadModel($id)->delete();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
