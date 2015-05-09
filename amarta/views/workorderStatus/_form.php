@@ -107,6 +107,23 @@
             <table class="responsive table table-bordered">
                 <thead>
                     <tr>
+                        <th colspan="6">Potongan</th>
+                        <th colspan="2">Selesai</th>
+                        <th rowspan="2">Total Perpekerjaan</th>
+                    </tr>
+                    <tr>
+                        <th>Proses</th>
+                        <th>Nopot</th>
+                        <th>Ket</th> 
+                        <th>Jml</th>
+                        <th>Rp.</th>
+                        <th>Sub. Total</th>
+                        <th>Hilang</th>
+                        <th>Denda</th>
+                    </tr>
+                </thead>
+                <!--<thead>
+                    <tr>
                         <th >Nama Proses</th>
                         <th>NOPOT</th>
                         <th>Keterangan</th>
@@ -117,7 +134,7 @@
                         <th>Denda</th>
                         <th style="width:2%">#</th>
                     </tr>
-                </thead>
+                </thead> -->
                 <tbody>
                     <?php
                     if ($model->isNewRecord == true) {
