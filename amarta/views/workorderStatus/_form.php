@@ -1,3 +1,11 @@
+<style>
+    body .modal {
+    /* new custom width */
+    width: 900px;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    margin-left: -420px;
+}
+</style>
 <div class="form">
     <?php
     $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
@@ -16,7 +24,7 @@
                 <p class="note">Fields dengan <span class="required">*</span> harus di isi.</p>
             </legend>
         <?php } ?>
-        <div class="well">
+        <div class="well well-small">
             <?php echo $form->errorSummary($model, 'Opps!!!', null, array('class' => 'alert alert-error span12')); ?>
             <table>
                 <tr>
@@ -119,13 +127,13 @@
                 </tr>
             </table>
         </div>
-        <div class="well">
+        <div class="well well-small">
             <h3 style="text-align:center" class="blue">Proses Kerja Yang Terambil</h3>
             <hr>
             <table class="responsive table table-bordered">
                 <thead>
                     <tr>
-                        <th >Nama Proses</th>
+                        <th>Nama Proses</th>
                         <th>NOPOT</th>
                         <th>Keterangan</th>
                         <th>Harga</th>
@@ -213,13 +221,10 @@
         <h3 id="myModalLabel">Pengambilan Proses Kerja</h3>
     </div>
     <div class="modal-body">
-        <div class="well">
-            <div class="control-group ">
-                <label class="control-label">Pilih SPK </label>
-                <div class="controls">
+                
                     <?php
                     $spk = Workorder::model()->findAll();
-                    $data2 = array(0 => t('choose', 'global')) + CHtml::listData($spk, 'id', 'fullSpk');
+                    $data2 = array(0 => "Pilih SPK") + CHtml::listData($spk, 'id', 'fullSpk');
                     $this->widget('bootstrap.widgets.TbSelect2', array(
                         'asDropDownList' => TRUE,
                         'data' => $data2,
@@ -234,13 +239,11 @@
                         ),
                     ));
                     ?>
-                </div>
-            </div>
-        </div>
-        <div class="well resultss"></div>
+                
+        <div class="well well-small resultss"></div>
     </div>
     <div class="modal-footer">
-        <div>Jumlah Proses Terambil Untuk SPK ini = <input type="text" readonly="readonly" value="0" class="terambil angka"></div>&nbsp;<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <div>Jumlah Proses Terambil : <input type="text" readonly="readonly" value="0" class="terambil angka" style="width:40px !important"></div>&nbsp;
     </div>
 </div>
 <script type="text/javascript">

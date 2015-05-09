@@ -131,14 +131,14 @@ class WorkorderStatusController extends Controller {
         if (isset($_POST['WorkorderStatus'])) {
             if (isset($_POST['process_id'])) {
                 WorkorderProcess::model()->deleteAll(array(
-                    'condition' => 'workorder_status_id='.$id.' AND id NOT IN('.  implode(',', $_POST['id']).')'
+                    'condition' => 'workorder_status_id=' . $id . ' AND id NOT IN(' . implode(',', $_POST['id']) . ')'
                 ));
                 $model->attributes = $_POST['WorkorderStatus'];
 
                 if (empty($_POST['WorkorderStatus']['code'])) {
                     $model->ordering = (empty($lastNumber)) ? 1 : $lastNumber->ordering + 1;
                     $model->code = date('m') . substr("0000000" . $model->ordering, -7);
-                }else{
+                } else {
                     $model->code = $_POST['WorkorderStatus']['code'];
                 }
                 if (empty($_POST['time_start'])) {
@@ -194,7 +194,7 @@ class WorkorderStatusController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            WorkorderProcess::model()->deleteAll(array('condition'=>'workorder_status_id='.$id));
+            WorkorderProcess::model()->deleteAll(array('condition' => 'workorder_status_id=' . $id));
             $this->loadModel($id)->delete();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -247,11 +247,13 @@ class WorkorderStatusController extends Controller {
     public function actionSelectProcess() {
         $id = $_POST['id'];
         $workProcess = WorkProcess::model()->findAll(array(
-            'condition' => 'workorder_id=' . $id
+            'condition' => 'workorder_id=' . $id,
+            'order' => 'ordering'
         ));
         $workSplit = WorkorderSplit::model()->findAll(array(
             'with' => 'SPP.RM.SPK',
-            'condition' => 'SPK.id =' . $id
+            'condition' => 'SPK.id =' . $id,
+            'order' => 't.code'
         ));
         $values = $this->renderPartial('_selectProcess', array(
             'workProcess' => $workProcess,
