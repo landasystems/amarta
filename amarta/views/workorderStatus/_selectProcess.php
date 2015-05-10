@@ -32,7 +32,7 @@
                     //do nothing
                     $terambil++;
                 } else {
-                    echo '<tr id="'.$val->id.'">';
+                    echo '<tr id="'.$ab->id.'">';
                     echo '<td style="text-align:center">' . $ab->name . '</td>';
                     echo '<td style="text-align:center">' . $val->code . '</td>';
                     echo '<td style="text-align:center">' . $sSize . '</td>';
