@@ -157,7 +157,7 @@
                         $prosesTerambil = WorkorderProcess::model()->findAll(array(
                             'condition' => 'workorder_status_id=' . $model->id
                         ));
-                        $total=0;
+                        $total = 0;
                         foreach ($prosesTerambil as $value) {
                             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
                             if (isset($_GET['v'])) {
@@ -173,7 +173,7 @@
                                         <td><input type="text" class="angka" name="start_amount[]" value="' . $value->start_qty . '" id="start_amount' . $value->work_process_id . '" onkeyup="total()"></div></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $value->charge . '" id="charge' . $value->work_process_id . '" onkeyup="total()"></div></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $value->charge * $value->start_qty . '" id="subtotal' . $value->work_process_id . '" onkeyup="total()" readonly></div></td>
-                                        <td><input type="text" class="angka" name="lost_qty[]" value="' . $value->loss_qty . '" id="loss_qty' . $value->work_process_id . '" onkeyup="total()"></td>
+                                        <td><input type="text" class="angka" name="loss_qty[]" value="' . $value->loss_qty . '" id="loss_qty' . $value->work_process_id . '" onkeyup="total()"></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $value->loss_charge . '" id="loss_charge' . $value->work_process_id . '" onkeyup="total()" ></div></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $value->work_process_id . '" name="total[]" value="' . (($value->charge * $value->start_qty) - $value->loss_charge) . '" readonly onkeyup="total()"></div></td>
                                         <td>
@@ -196,7 +196,7 @@
                     </tr>
                     <tr>
                         <td colspan="8" style="text-align: right;"><b>Total (Rp) :</b></td>
-                        <td colspan="2"><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="totalAll" id="totalAll" readonly value="<?php echo $total?>"></div></td>
+                        <td colspan="2"><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="totalAll" id="totalAll" readonly value="<?php echo $total ?>"></div></td>
                     </tr>
                 </tbody>
             </table>
@@ -223,6 +223,7 @@
     </fieldset>
     <?php $this->endWidget(); ?>
 </div>
+
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -254,6 +255,56 @@
         <div>Jumlah Proses Terambil : <input type="text" readonly="readonly" value="0" class="terambil angka" style="width:40px !important"></div>&nbsp;
     </div>
 </div>
+<table>
+    <tr>
+        <td>
+            <div class="printNotaAmbil" id="printNotaAmbil" style="width:310px;">
+                <center><strong>CV Amarta Wisesa</strong></center>
+                <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
+                <center>Telp. (0341) 551678</center>
+                <hr>
+                <table class="printTable" style="margin : 0 auto;">
+                    <thead><tr><th colspan="3" style="text-align: center;">NOTA AMBIL : <?php echo $model->code ?></th></tr></thead>
+                    <tbody>
+                        <tr><td style="min-width:50% !important;"><b>PEKERJA</b></td><td style="max-width:2% !important">:</td><td> <?php echo isset($model->Admin->name) ? $model->Penjahit->name : "-"; ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">NOPOT | Size</td><td>:</td><td style="width:47%"> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Jml. Awal | Akhir</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Proses</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Mulai</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Selesai</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Hilang | Denda</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                    </tbody>
+                </table>
+                <hr>
+                <strong>Perhatian :</strong>
+                Harap simpan nota ini sebagai bukti pengambilan pekerjaan.
+            </div>
+        </td>
+        <td>
+            <div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;">
+                <center><strong>CV Amarta Wisesa</strong></center>
+                <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
+                <center>Telp. (0341) 551678</center>
+                <hr>
+                <table class="printTable" style="margin : 0 auto;">
+                    <thead><tr><th colspan="3" style="text-align: center;">NOTA SELESAI : <?php echo $model->code ?></th></tr></thead>
+                    <tbody>
+                        <tr><td style="min-width:50% !important;"><b>PEKERJA</b></td><td style="max-width:2% !important">:</td><td> <?php echo isset($model->Admin->name) ? $model->Penjahit->name : "-"; ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">NOPOT | Size</td><td>:</td><td style="width:47%"> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Jml. Awal | Akhir</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Proses</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Mulai</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Selesai</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                        <tr><td style="max-width:50% !important;">Hilang | Denda</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
+                    </tbody>
+                </table>
+                <hr>
+                <strong>Perhatian :</strong>
+                Harap simpan nota ini sebagai bukti pengambilan pekerjaan.
+            </div>
+        </td>
+    </tr>
+</table>
 <script type="text/javascript">
     $("body").on("click", "#btnFindProcess", function() {
         $("#myModal").modal('show');
@@ -279,7 +330,6 @@
         var desc = $(this).attr('desc');
         var charge = $(this).attr('charge');
         var start_qty = $(this).attr('start_qty');
-
         var data = '';
         data += '<tr id="' + workprocess_id + '">';
         data += '<td style="text-align: center">' + process_name + '</td>';
@@ -315,20 +365,11 @@
         $(".work_id").each(function() {
             var id = $(this).parent().parent().find(".process_id").val();
             var subtotal = parseInt($("#start_amount" + id).val()) * parseInt($("#charge" + id).val());
-             $("#subtotal" + id).val(subtotal);
+            $("#subtotal" + id).val(subtotal);
             var totalPerPekerjaan = parseInt(subtotal) - parseInt($("#loss_charge" + id).val());
             $("#total" + id).val(totalPerPekerjaan);
             total = parseInt(total) + parseInt(totalPerPekerjaan);
         });
         $("#totalAll").val(total);
     }
-    function rp(angka) {
-        var rupiah = "";
-        var angkarev = angka.toString().split("").reverse().join("");
-        for (var i = 0; i < angkarev.length; i++)
-            if (i % 3 == 0)
-                rupiah += angkarev.substr(i, 3) + ".";
-        return rupiah.split("", rupiah.length - 1).reverse().join("");
-    }
-
 </script>
