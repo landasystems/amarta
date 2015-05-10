@@ -84,7 +84,7 @@
                                         'dateFormat' => 'dd-mm-yy',
                                     )
                                 ));
-                                ?> , <input type="text" name="mulai_jam" style="width:15px !important" class="angka" maxlength="2"/>:<input type="text" name="mulai_menit" style="width:15px !important" class="angka" maxlength="2"/>
+                                ?> , <input type="text" name="mulai_jam" style="width:15px !important" class="angka" maxlength="2" value="<?php ($model->isNewRecord == false) ? date('H', strtotime($model->time_start)) : date('H') ?>"/>:<input type="text" name="mulai_menit" style="width:15px !important" class="angka" maxlength="2" value="<?php ($model->isNewRecord == false) ? date('i', strtotime($model->time_start)) : date('i') ?>"/>
                             </div>
                         </div>
                         <div class="control-group ">
@@ -93,6 +93,7 @@
                                 <?php
                                 $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                                     'name' => 'date_ends',
+                                    'value' => (!empty($model->time_end)) ? date('d-m-Y', strtotime($model->time_end)) : "" ,
                                     'htmlOptions' => array(
                                         'size' => '7', // textField size
                                         'maxlength' => '10', // textField maxlength
@@ -106,7 +107,7 @@
                                         'dateFormat' => 'dd-mm-yy',
                                     )
                                 ));
-                                ?> , <input type="text" name="selesai_jam" style="width:15px !important" class="angka" maxlength="2"/>:<input type="text" name="selesai_menit" style="width:15px !important" class="angka" maxlength="2"/>
+                                ?> , <input type="text" name="selesai_jam" style="width:15px !important" class="angka" maxlength="2" value="<?php (!empty($model->time_end)) ? date('H', strtotime($model->time_end)) : "" ?>"/>:<input type="text" name="selesai_menit" style="width:15px !important" class="angka" maxlength="2" value="<?php (!empty($model->time_end)) ? date('i', strtotime($model->time_end)) : "" ?>"/>
                             </div>
                         </div>
                     </td>
@@ -151,6 +152,7 @@
                 </thead>
                 <tbody>
                     <?php
+                    $total=0;
                     if ($model->isNewRecord == true) {
                         //nothing
                     } else {
