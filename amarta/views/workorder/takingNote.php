@@ -109,7 +109,7 @@ $this->breadcrumbs = array(
                         'label' => 'Report',
                         'icon' => 'print',
                         'items' => array(
-                            array('label' => 'Export Ke Excel', 'url' => url('workorder/excelProductNote', array('spk' => $_POST['spk'], 'date' => $_POST['Workorder']['created']))),
+                            array('label' => 'Export Ke Excel', 'url' => url('workorder/excelProductNote', array('user_id' => (isset($_POST['user_id'])) ? $_POST['user_id'] : array(),'spk' => $_POST['spk'], 'date' => $_POST['Workorder']['created']))),
                             array('label' => 'Print', 'icon' => 'icon-print', 'url' => 'javascript:void(0);return false', 'linkOptions' => array('onclick' => 'printDiv("printArea");return false;')),
                         )
                     ),

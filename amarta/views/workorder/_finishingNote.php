@@ -6,7 +6,7 @@
     <table class="table table-bordered" border="1">
         <thead>
             <tr>
-                <th colspan="2" style="height: 30px;width: 30px;text-align: center;vertical-align: middle">Data Pekerja</th>
+                <th colspan="2" style="text-align: center;vertical-align: middle">Data Pekerja</th>
                 <th style="text-align:center" colspan="2">SPK</th> 
                 <th style="text-align:center" colspan="6">Potongan</th> 
                 <th rowspan="2" style="text-align:center;vertical-align: middle">Tgl. Ambil</th> 
@@ -32,11 +32,14 @@
         <tbody>
             <?php
             $ProcessId = array();
-            $ends = date('Y-m-d',  strtotime('+1 day',  strtotime($end)));
-//            print_r($_POST);
-            $sPenjahit = (isset($_POST['user_id'])) ? ' AND start_from_user_id IN ('.  implode(',', $_POST['user_id']).')' : "";
+            $ends = date('Y-m-d', strtotime('+1 day', strtotime($end)));
+            if (isset($_GET['user_id'])) {
+                $sPenjahit = (isset($_GET['user_id'])) ? ' AND start_from_user_id IN (' . implode(',', $_GET['user_id']) . ')' : "";
+            } else {
+                $sPenjahit = (isset($_POST['user_id'])) ? ' AND start_from_user_id IN (' . implode(',', $_POST['user_id']) . ')' : "";
+            }
             $workOrderProcess = WorkorderProcess::model()->findAll(array(
-                'condition' => 'workorder_id=' . $spk . ' AND work_process_id <> "" AND workorder_split_id <> "" AND(time_start > "'.date('Y-m-d',  strtotime($start)).'" AND time_start < "'.$ends.'" '.$sPenjahit.')',
+                'condition' => 'workorder_id=' . $spk . ' AND work_process_id <> "" AND workorder_split_id <> "" AND(time_start > "' . date('Y-m-d', strtotime($start)) . '" AND time_start < "' . $ends . '" ' . $sPenjahit . ')',
                 'order' => 'code ASC'
             ));
             foreach ($workOrderProcess as $value) {
@@ -82,10 +85,10 @@
     </table>
 </div>
 <script type="text/javascript">
-    function printDiv(divName) {
+        function printDiv(divName) {
         var ori = document.body.innerHTML;
         var print = document.getElementById(divName);
-        $("body").html(print);
+    $("body").html(print);
         window.print();
         $("body").html(ori);
         
