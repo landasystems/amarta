@@ -59,7 +59,7 @@ class WorkorderStatusController extends Controller {
      */
     public function actionCreate() {
         $model = new WorkorderStatus;
-        $this->layout = 'mainWide';
+//        $this->layout = 'mainWide';
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         $lastNumber = WorkorderStatus::model()->find(array(
@@ -71,15 +71,12 @@ class WorkorderStatusController extends Controller {
 
                 if (empty($_POST['WorkorderStatus']['code'])) {
                     $model->ordering = (empty($lastNumber)) ? 1 : $lastNumber->ordering + 1;
-                    $model->code = date('m') . substr("0000000" . $model->ordering, -7);
+                    $model->code = substr("0000000" . $model->ordering, -7);
                 }
-                if (empty($_POST['time_start'])) {
-                    $model->time_start = date('Y-m-d h:i:s');
-                } else {
-                    $model->time_start = date('Y-m-d h:i:s', strtotime($_POST['time_start'] . date('h:i:s')));
-                }
+
+                $model->time_start = date('Y-m-d h:i', strtotime($_POST['time_start'] . date('h:i:s')));
                 if (!empty($_POST['time_end'])) {
-                    $model->time_end = date('Y-m-d h:i:s', strtotime($_POST['time_end'] . date('h:i:s')));
+                    $model->time_end = date('Y-m-d h:i', strtotime($_POST['time_end'] . date('h:i:s')));
                 }
                 $model->start_user_id = user()->id;
                 if ($model->save()) {
@@ -124,8 +121,7 @@ class WorkorderStatusController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-        $this->layout = 'mainWide';
-
+//        $this->layout = 'mainWide';
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
