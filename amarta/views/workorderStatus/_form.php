@@ -1,10 +1,10 @@
 <style>
     body .modal {
-    /* new custom width */
-    width: 900px;
-    /* must be half of the width, minus scrollbar on the left (30px) */
-    margin-left: -420px;
-}
+        /* new custom width */
+        width: 900px;
+        /* must be half of the width, minus scrollbar on the left (30px) */
+        margin-left: -420px;
+    }
 </style>
 <div class="form">
     <?php
@@ -157,32 +157,33 @@
                         $prosesTerambil = WorkorderProcess::model()->findAll(array(
                             'condition' => 'workorder_status_id=' . $model->id
                         ));
+                        $total=0;
                         foreach ($prosesTerambil as $value) {
                             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
-                            if(isset($_GET['v'])){
+                            if (isset($_GET['v'])) {
                                 $hps = '#';
-                            }else{
+                            } else {
                                 $hps = '<a class="btn btnRemove" href="#"><i class="cut-icon-minus-2"></i></a>';
                             }
-                                                                    
-                            echo '<tr id="'.$value->workorder_split_id.'">
+
+                            echo '<tr id="' . $value->work_process_id . '">
                                         <td>' . $value->Process->name . '</td>
                                         <td>' . $value->NOPOT->code . '</td>
                                         <td><input type="text" name="desc[]" class="desc span1" value="' . $size . '" readonly="true"></td>
-                                        <td><input type="text" class="angka" name="start_amount[]" value="' . $value->start_qty . '" id="start_amount'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $value->charge . '" id="charge'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $value->charge * $value->start_qty . '" id="subTotal'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
-                                        <td><input type="text" class="angka" name="lost_qty[]" value="' . $value->loss_qty . '" id="loss_qty'.$value->workorder_split_id.'" onkeyup="total()"></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $value->loss_charge . '" id="loss_charge'.$value->workorder_split_id.'" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total'.$value->workorder_split_id.'" name="total[]" value="' . (($value->charge * $value->start_qty) - $value->loss_charge) . '" onkeyup="total()"></div></td>
+                                        <td><input type="text" class="angka" name="start_amount[]" value="' . $value->start_qty . '" id="start_amount' . $value->work_process_id . '" onkeyup="total()"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $value->charge . '" id="charge' . $value->work_process_id . '" onkeyup="total()"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $value->charge * $value->start_qty . '" id="subtotal' . $value->work_process_id . '" onkeyup="total()" readonly></div></td>
+                                        <td><input type="text" class="angka" name="lost_qty[]" value="' . $value->loss_qty . '" id="loss_qty' . $value->work_process_id . '" onkeyup="total()"></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $value->loss_charge . '" id="loss_charge' . $value->work_process_id . '" onkeyup="total()" ></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $value->work_process_id . '" name="total[]" value="' . (($value->charge * $value->start_qty) - $value->loss_charge) . '" readonly onkeyup="total()"></div></td>
                                         <td>
-                                            '.$hps.'
+                                            ' . $hps . '
                                             <input type="hidden" name="id[]" class="work_id" value="' . $value->id . '">
                                             <input type="hidden" name="process_id[]" class="process_id" value="' . $value->work_process_id . '">
                                             <input type="hidden" name="split_id[]" class="split_id" value="' . $value->workorder_split_id . '">
                                         </td>    
                                   </tr>';
-                           
+                            $total+= ($value->charge * $value->start_qty) - $value->loss_charge;
                         }
                     }
                     ?>
@@ -193,12 +194,11 @@
                         <td></td>
                         <td></td>
                     </tr>
-                </tbody>
-                <tfoot>
                     <tr>
-                        <th colspan="9">Jumlah Proses Terambil</th>
+                        <td colspan="8" style="text-align: right;"><b>Total (Rp) :</b></td>
+                        <td colspan="2"><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="totalAll" id="totalAll" readonly value="<?php echo $total?>"></div></td>
                     </tr>
-                </tfoot>
+                </tbody>
             </table>
         </div>
         <?php if (!isset($_GET['v'])) { ?>
@@ -229,25 +229,25 @@
         <h3 id="myModalLabel">Pengambilan Proses Kerja</h3>
     </div>
     <div class="modal-body">
-                
-                    <?php
-                    $spk = Workorder::model()->findAll();
-                    $data2 = array(0 => "Pilih SPK") + CHtml::listData($spk, 'id', 'fullSpk');
-                    $this->widget('bootstrap.widgets.TbSelect2', array(
-                        'asDropDownList' => TRUE,
-                        'data' => $data2,
-                        'name' => 'select_spk',
-                        'options' => array(
-                            "placeholder" => t('choose', 'global'),
-                            "allowClear" => true,
-                        ),
-                        'htmlOptions' => array(
-                            'id' => 'select_spk',
-                            'style' => 'width:450px;',
-                        ),
-                    ));
-                    ?>
-                
+
+        <?php
+        $spk = Workorder::model()->findAll();
+        $data2 = array(0 => "Pilih SPK") + CHtml::listData($spk, 'id', 'fullSpk');
+        $this->widget('bootstrap.widgets.TbSelect2', array(
+            'asDropDownList' => TRUE,
+            'data' => $data2,
+            'name' => 'select_spk',
+            'options' => array(
+                "placeholder" => t('choose', 'global'),
+                "allowClear" => true,
+            ),
+            'htmlOptions' => array(
+                'id' => 'select_spk',
+                'style' => 'width:450px;',
+            ),
+        ));
+        ?>
+
         <div class="well well-small resultss"></div>
     </div>
     <div class="modal-footer">
@@ -255,23 +255,23 @@
     </div>
 </div>
 <script type="text/javascript">
-    $("body").on("click", "#btnFindProcess", function () {
+    $("body").on("click", "#btnFindProcess", function() {
         $("#myModal").modal('show');
         return false;
     });
-    $("body").on("change", "#select_spk", function () {
+    $("body").on("change", "#select_spk", function() {
         var id_spk = $(this).val();
         $.ajax({
             type: 'POST',
             data: {id: id_spk},
             url: "<?php echo url('workorderStatus/selectProcess') ?>",
-            success: function (data) {
+            success: function(data) {
                 $(".resultss").html(data);
                 $(".terambil").val($("#proses_terambil").val());
             }
         });
     });
-    $("body").on("click", ".ambil", function () {
+    $("body").on("click", ".ambil", function() {
         var split_id = $(this).attr('split_id');
         var workprocess_id = $(this).attr('workprocess_id');
         var process_name = $(this).attr('process_name');
@@ -281,16 +281,16 @@
         var start_qty = $(this).attr('start_qty');
 
         var data = '';
-        data += '<tr id="' + split_id + '">';
+        data += '<tr id="' + workprocess_id + '">';
         data += '<td style="text-align: center">' + process_name + '</td>';
         data += '<td style="text-align: center">' + nopot + '</td>';
         data += '<td><input readonly="true" type="text" name="desc[]" value="' + desc + '" class="desc span1"></td>';
-        data += '<td><input type="text" class="angka" name="start_amount[]" value="' + start_qty + '" onkeyup="total()" id="start_amount' + split_id + '" ></td>';
-        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + charge + '" maxlength="60" prepend="Rp" type="text" name="charge[]" id="charge' + split_id + '" onkeyup="total()"></div></td>';
-        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + parseInt(charge) * parseInt(start_qty) + '" maxlength="60" prepend="Rp" type="text" id="subtotal' + split_id + '" name="subTotal[]" onkeyup="total()"></div></td>';
+        data += '<td><input type="text" class="angka" name="start_amount[]" value="' + start_qty + '" onkeyup="total()" id="start_amount' + workprocess_id + '" ></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + charge + '" maxlength="60" prepend="Rp" type="text" name="charge[]" id="charge' + workprocess_id + '" onkeyup="total()"></div></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input class="angka charge" value="' + parseInt(charge) * parseInt(start_qty) + '" maxlength="60" prepend="Rp" type="text" id="subtotal' + workprocess_id + '" name="subTotal[]" onkeyup="total()" readonly></div></td>';
         data += '<td><input type="text" class="angka" name="loss_qty[]" value="0" id="loss_qty" onkeyup="total()"></td>';
-        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" id="loss_charge' + split_id + '" class="angka" name="loss_charge[]" value="0" onkeyup="total()"></div></td>';
-        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="total[]" value="" id="total' + split_id + '"></div></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" id="loss_charge' + workprocess_id + '" class="angka" name="loss_charge[]" value="0" onkeyup="total()"></div></td>';
+        data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="total[]" value="" id="total' + workprocess_id + '" readonly></div></td>';
         data += '<td><a class="btnRemove btn" href="#"><i class="cut-icon-minus-2"></i></a>';
         data += '<input type="hidden" name="id[]" class="work_id" value="">';
         data += '<input type="hidden" name="process_id[]" class="process_id" value="' + workprocess_id + '">';
@@ -302,7 +302,7 @@
         $(this).parent().parent().remove();
         total()
     });
-    $("body").on("click", ".btnRemove", function () {
+    $("body").on("click", ".btnRemove", function() {
         var r = confirm('Anda yakin ingin menghapus proses ini?');
         if (r == true) {
             $(this).parent().parent().remove();
@@ -310,11 +310,25 @@
         }
     });
     function total() {
-        $(".work_id").each(function () {
-            var id = $(this).parent().parent().find("#split_id").val();
-            var totalPerPekerjaan = parseInt($("#subtotal"+id).val()) - parseInt($("#loss_charge"+id).val());
-            $("#total"+id).val(totalPerPekerjaan);
+        var total;
+        total = 0;
+        $(".work_id").each(function() {
+            var id = $(this).parent().parent().find(".process_id").val();
+            var subtotal = parseInt($("#start_amount" + id).val()) * parseInt($("#charge" + id).val());
+             $("#subtotal" + id).val(subtotal);
+            var totalPerPekerjaan = parseInt(subtotal) - parseInt($("#loss_charge" + id).val());
+            $("#total" + id).val(totalPerPekerjaan);
+            total = parseInt(total) + parseInt(totalPerPekerjaan);
         });
+        $("#totalAll").val(total);
+    }
+    function rp(angka) {
+        var rupiah = "";
+        var angkarev = angka.toString().split("").reverse().join("");
+        for (var i = 0; i < angkarev.length; i++)
+            if (i % 3 == 0)
+                rupiah += angkarev.substr(i, 3) + ".";
+        return rupiah.split("", rupiah.length - 1).reverse().join("");
     }
 
 </script>
