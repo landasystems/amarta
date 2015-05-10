@@ -1,5 +1,5 @@
 <div id="printArea">
-    <div style="text-align: center;"><h2>Nota Produksi</h2></div>
+    <div style="text-align: center;"><h2>Nota Jahit</h2></div>
     <div style="text-align: center;"><h4>Per : <?php echo date('d - F - Y', strtotime('today')); ?></h4></div>
     <hr>
 
@@ -14,7 +14,7 @@
                 <th rowspan="2" style="text-align:center">Total</th>                                                            
             </tr>
             <tr>
-                <th style="text-align:center">Nota Produksi</th> 
+                <th style="text-align:center">Nota Jahit</th> 
                 <th style="text-align:center">Nama Pekerja</th>
                 <th style="text-align:center">SPK</th> 
                 <th style="text-align:center">Cust</th> 
