@@ -77,7 +77,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'name' => 'time_end',
-            'value' => 'date("d-m-Y, H:i",strtotime($data->time_end))',
+            'value' => '(!empty($data->time_end)) ? date("d-m-Y, H:i",strtotime($data->time_end)) : "-"',
             'htmlOptions' => array('style' => 'text-align: center'),
         ),             
         array(
