@@ -368,11 +368,15 @@
         ));
         foreach ($prosesTerambil as $value) {
             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
+            $denda = '';
+            if (!empty($value->loss_charge)) {
+                $denda = '<br> - ' . landa()->rp($value->loss_charge);
+            }
             echo '<tr>';
             echo '<td>' . $value->NOPOT->code . '</td>';
             echo '<td>' . $size . ' (' . $value->start_qty . ')</td>';
             echo '<td>' . landa()->rp($value->charge) . '</td>';
-            echo '<td>' . landa()->rp($value->charge * $value->start_qty) . '</td>';
+            echo '<td>' . landa()->rp($value->charge * $value->start_qty) . $denda.'</td>';
             echo '</tr>';
         }
         ?>
