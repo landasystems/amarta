@@ -85,7 +85,7 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->workorder_status_id = $model->id;
                         $workorderProcess->work_process_id = $_POST['process_id'][$i];
                         $workorderProcess->workorder_split_id = $_POST['split_id'][$i];
-                        $workorderProcess->charge = $_POST['charge'][$i];
+                        $workorderProcess->charge = $_POST['total'][$i];
                         $workorderProcess->workorder_id = $_POST['spk_id'][$i];
                         $workorderProcess->time_start = $model->time_start;
                         $workorderProcess->time_end = $model->time_end;
@@ -158,7 +158,7 @@ class WorkorderStatusController extends Controller {
                         $workorderProcess->workorder_status_id = $model->id;
                         $workorderProcess->work_process_id = $_POST['process_id'][$i];
                         $workorderProcess->workorder_split_id = $_POST['split_id'][$i];
-                        $workorderProcess->charge = $_POST['charge'][$i];
+                        $workorderProcess->charge = $_POST['total'][$i];
                         $workorderProcess->workorder_id = $_POST['spk_id'][$i];
                         $workorderProcess->time_start = $model->time_start;
                         $workorderProcess->time_end = $model->time_end;

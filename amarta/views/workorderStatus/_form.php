@@ -192,11 +192,11 @@
                                         <td>' . $value->NOPOT->code . '</td>
                                         <td><input type="text" name="desc[]" class="desc span1" value="' . $size . '" readonly="true"></td>
                                         <td><input type="text" class="angka" name="start_amount[]" value="' . $value->start_qty . '" id="start_amount' . $value->work_process_id . '" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $value->charge . '" id="charge' . $value->work_process_id . '" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $value->charge * $value->start_qty . '" id="subtotal' . $value->work_process_id . '" onkeyup="total()" readonly></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $value->Process->charge . '" id="charge' . $value->work_process_id . '" onkeyup="total()"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $value->Process->charge * $value->start_qty . '" id="subtotal' . $value->work_process_id . '" onkeyup="total()" readonly></div></td>
                                         <td><input type="text" class="angka" name="loss_qty[]" value="' . $value->loss_qty . '" id="loss_qty' . $value->work_process_id . '" onkeyup="total()"></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $value->loss_charge . '" id="loss_charge' . $value->work_process_id . '" onkeyup="total()" ></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $value->work_process_id . '" name="total[]" value="' . (($value->charge * $value->start_qty) - $value->loss_charge) . '" readonly onkeyup="total()"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $value->work_process_id . '" name="total[]" value="' . $value->charge  . '" readonly onkeyup="total()"></div></td>
                                         <td>
                                             ' . $hps . '
                                             <input type="hidden" name="id[]" class="work_id" value="' . $value->id . '">

@@ -84,10 +84,14 @@ $totalsalary = 0;
                                 ';
                         $group = $value->start_from_user_id;
                     }
-                    $nopot = (empty($type)) ? $value->NOPOT->code : "'".$value->NOPOT->code;
+                    $nopot = (empty($type)) ? $value->NOPOT->code : "'" . $value->NOPOT->code;
                     $customer = (isset($value->SPK->SellOrder->Customer->code)) ? $value->SPK->SellOrder->Customer->code : '';
                     echo '<tr class="' . $color . '" id="' . $value->id . '">';
-                    echo '<td style="text-align:center">' . '<input ' . $checked . ' type="checkbox" id="partItem" name="process_id[]" value="' . $value->id . '" class="partItem" />';
+                    if (empty($value->time_end)) {
+                        echo '<td style="text-align:center"></td>';
+                    } else {
+                        echo '<td style="text-align:center">' . '<input ' . $checked . ' type="checkbox" id="partItem" name="process_id[]" value="' . $value->id . '" class="partItem" />';
+                    }
                     echo '<input type="hidden" class="employ" name="employ[]" value="' . $value->start_from_user_id . '">';
                     echo '<input type="hidden" class="charge_' . $class . ' charge" name="detCharge[]" value="' . $value->charge . '" />';
                     echo '<input type="hidden" class="loss_charge_' . $class . ' loss_charge" name="detLossCharge[]" value="' . $loss_charge . '" />';
@@ -101,9 +105,15 @@ $totalsalary = 0;
                     echo '<td style="text-align:right">' . landa()->rp($value->Process->charge) . '</td>';
                     echo '<td style="text-align:right">' . landa()->rp($value->NOPOT->qty * ($value->Process->charge)) . '</td>';
                     echo '<td style="text-align:center">' . date('d-M-Y, H:i', strtotime($value->time_start)) . '</td>';
-                    echo '<td style="text-align:center">' . date('d-M-Y, H:i', strtotime($value->time_end)) . '</td>';
-                    echo '<td style="text-align:center">' . $value->loss_qty . '</td>';
-                    echo '<td style="text-align:right">' . landa()->rp($value->loss_charge) . '</td>';
+                    if (empty($value->time_end)) {
+                        echo '<td style="text-align:center">-</td>';
+                        echo '<td style="text-align:center">-</td>';
+                        echo '<td style="text-align:right">-</td>';
+                    } else {
+                        echo '<td style="text-align:center">' . date('d-M-Y, H:i', strtotime($value->time_end)) . '</td>';
+                        echo '<td style="text-align:center">' . $value->loss_qty . '</td>';
+                        echo '<td style="text-align:right">' . landa()->rp($value->loss_charge) . '</td>';
+                    }
                     echo '<td style="text-align:right"><div class="showSalary">' . landa()->rp($value->charge) . '</div></td>';
                     echo '</tr>';
 
