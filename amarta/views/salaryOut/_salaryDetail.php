@@ -61,7 +61,7 @@ $totalsalary = 0;
                         $payable = '<span class="label label-success">Yes</span>';
                         $color = 'success';
                         $class = 'ok';
-                    } elseif ($value->NOPOT->is_payment == 1) {//cek layak bayar
+                    } elseif (isset($value->NOPOT->is_payment) && $value->NOPOT->is_payment == 1) {//cek layak bayar
                         $checked = '';
                         $payable = '<span class="label label-success">Yes</span>';
                         $color = 'info';

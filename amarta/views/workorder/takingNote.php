@@ -51,7 +51,7 @@ $this->breadcrumbs = array(
                 </div>
             </div>
             <div class="control-group ">
-                <label class="control-label">Tanggal :</label>
+                <label class="control-label">Tanggal Ambil:</label>
                 <div class="controls">
                     <div class="input-prepend">
                         <span class="add-on"><i class="icon-calendar"></i></span>
@@ -66,6 +66,28 @@ $this->breadcrumbs = array(
                         ));
                         ?>
                     </div>
+                </div>
+            </div>
+            <div class="control-group ">
+                <label class="control-label">Penjahit :</label>
+                <div class="controls">
+                    <?php
+                    $listUser = User::model()->listUsers('employment');
+                    $this->widget('bootstrap.widgets.TbSelect2', array(
+                        'asDropDownList' => TRUE,
+                        'data' => CHtml::listData($listUser, 'id', 'name'),
+                        'name' => 'user_id',
+                        'value'=> (isset($_POST['user_id'])) ? $_POST['user_id'] : array(),
+                        'options' => array(
+                            'placeholder' => "Kosongkan untuk menampilkan semua pegawai",
+                            'width' => '40%',
+                            'tokenSeparators' => array(',', ' ')
+                        ),
+                        'htmlOptions' => array(
+                            'multiple' => 'multiple',
+                        )
+                    ));
+                    ?>
                 </div>
             </div>
         </div>
@@ -87,7 +109,7 @@ $this->breadcrumbs = array(
                         'label' => 'Report',
                         'icon' => 'print',
                         'items' => array(
-                            array('label' => 'Export Ke Excel', 'url' => url('workorder/excelProductNote', array('spk' => $_POST['spk'],'date' => $_POST['Workorder']['created']))),
+                            array('label' => 'Export Ke Excel', 'url' => url('workorder/excelProductNote', array('spk' => $_POST['spk'], 'date' => $_POST['Workorder']['created']))),
                             array('label' => 'Print', 'icon' => 'icon-print', 'url' => 'javascript:void(0);return false', 'linkOptions' => array('onclick' => 'printDiv("printArea");return false;')),
                         )
                     ),

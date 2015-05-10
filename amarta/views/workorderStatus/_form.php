@@ -1,33 +1,29 @@
-<style>
+<style type="text/css">
     body .modal {
         /* new custom width */
         width: 900px;
         /* must be half of the width, minus scrollbar on the left (30px) */
         margin-left: -420px;
     }
+    
+    #printNotaAmbil, #printNotaSelesai{display: none}
 </style>
 <style type="text/css" media="print">
     body {visibility:hidden;}
+    #printNotaAmbil, #printNotaSelesai{visibility:visible;display: block; position: absolute;top: 0;left: 0;float: left;padding: 0 20px 0 0;} 
 </style>
 <script>
-    function printAmbil()
+    function printDiv(divName)
     {
-        var div = document.getElementById('printNotaSelesai');
-        div.setAttribute('style', 'visibility:hidden;');
-        var div = document.getElementById('printNotaAmbil');
-        div.setAttribute('style', 'visibility:visible;');
-        window.print();
-
+        var w = window.open();
+        var css = '<style media="print">table{width: 100%;border-spacing:0px;border-collapse: collapse;border: none;margin:0pt;padding:0px;font-size: 12px;} html * {font-size:12px !important;margin-top:0 !important} body{margin-top:0 !important}</style>';
+        var printContents = $("#"+divName+"").html();
+        
+        $(w.document.body).html(css+printContents);
+        w.print();
+        w.window.close();
     }
-    function printSelesai()
-    {
-        var div = document.getElementById('printNotaAmbil');
-        div.setAttribute('style', 'visibility:hidden;');
-        var div = document.getElementById('printNotaSelesai');
-        div.setAttribute('style', 'visibility:visible;');
-        window.print();
-
-    }
+    
 </script>
 <div class="form">
     <?php
@@ -107,7 +103,7 @@
                                         'dateFormat' => 'dd-mm-yy',
                                     )
                                 ));
-                                ?> , <input type="text" name="mulai_jam" style="width:15px !important" class="angka" maxlength="2" value="<?php ($model->isNewRecord == false) ? date('H', strtotime($model->time_start)) : date('H') ?>"/>:<input type="text" name="mulai_menit" style="width:15px !important" class="angka" maxlength="2" value="<?php ($model->isNewRecord == false) ? date('i', strtotime($model->time_start)) : date('i') ?>"/>
+                                ?> , <input type="text" name="mulai_jam" style="width:15px !important" class="angka" maxlength="2" value="<?php echo ($model->isNewRecord == false) ? date('H', strtotime($model->time_start)) : date('H') ?>"/>:<input type="text" name="mulai_menit" style="width:15px !important" class="angka" maxlength="2" value="<?php echo ($model->isNewRecord == false) ? date('i', strtotime($model->time_start)) : date('i') ?>"/>
                             </div>
                         </div>
                         <div class="control-group ">
@@ -115,7 +111,7 @@
                             <div class="controls">
                                 <?php
                                 $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                                    'name' => 'date_ends',
+                                    'name' => 'time_end',
                                     'value' => (!empty($model->time_end)) ? date('d-m-Y', strtotime($model->time_end)) : "",
                                     'htmlOptions' => array(
                                         'size' => '7', // textField size
@@ -130,7 +126,7 @@
                                         'dateFormat' => 'dd-mm-yy',
                                     )
                                 ));
-                                ?> , <input type="text" name="selesai_jam" style="width:15px !important" class="angka" maxlength="2" value="<?php (!empty($model->time_end)) ? date('H', strtotime($model->time_end)) : "" ?>"/>:<input type="text" name="selesai_menit" style="width:15px !important" class="angka" maxlength="2" value="<?php (!empty($model->time_end)) ? date('i', strtotime($model->time_end)) : "" ?>"/>
+                                ?> , <input type="text" name="selesai_jam" style="width:15px !important" class="angka" maxlength="2" value="<?php echo (!empty($model->time_end)) ? date('H', strtotime($model->time_end)) : "" ?>"/>:<input type="text" name="selesai_menit" style="width:15px !important" class="angka" maxlength="2" value="<?php echo (!empty($model->time_end)) ? date('i', strtotime($model->time_end)) : "" ?>"/>
                             </div>
                         </div>
                     </td>
@@ -144,8 +140,8 @@
                         <?php if (!isset($_GET['v'])) { ?>
                             <input id="btnFindProcess" class="btn btn-primary btn-large" type="submit" name="yt0" value="AMBIL PROSES">
                         <?php } else { ?>
-                            <a class="btn btn-primary btn-large" onclick="printAmbil()"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
-                            <a class="btn btn-primary btn-large" onclick="printSelesai()"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
+                            <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaAmbil');return false;"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
+                            <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaSelesai');return false;"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
                         <?php } ?>
                     </td>
                 </tr>
@@ -205,6 +201,7 @@
                                             ' . $hps . '
                                             <input type="hidden" name="id[]" class="work_id" value="' . $value->id . '">
                                             <input type="hidden" name="process_id[]" class="process_id" value="' . $value->work_process_id . '">
+                                            <input type="hidden" name="spk_id[]" class="process_id" value="' . $value->workorder_id . '">
                                             <input type="hidden" name="split_id[]" class="split_id" value="' . $value->workorder_split_id . '">
                                         </td>    
                                   </tr>';
@@ -288,16 +285,16 @@
     <table class="printTable" style="margin : 0 auto;">
         <tr>
             <td style="max-width:40% !important; text-align: left;"><b>Nota Jahit</b></td>
-            <td style="!important"><?php echo $model->code ?></td>
+            <td style=""><?php echo $model->code ?></td>
             <td><b>AMBIL</b></td>
         </tr>
         <tr>
             <td style="max-width:40% !important; text-align: left;"><b>Nama</b></td>
-            <td style="!important" colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+            <td style="" colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
         </tr>
         <tr>
             <td style="max-width:40% !important; text-align: left;"><b>Tanggal</b></td>
-            <td style="!important" colspan="2"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+            <td style="" colspan="2"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
         </tr>
         <tr>
             <td><b>NOPOT</b></td>
@@ -305,9 +302,13 @@
             <td><b>HARGA</b></td>
         </tr>
         <?php
-        $prosesTerambil = WorkorderProcess::model()->findAll(array(
-            'condition' => 'workorder_status_id=' . $model->id
-        ));
+        if (empty($model->id)) {
+            $prosesTerambil = array();
+        } else {
+            $prosesTerambil = WorkorderProcess::model()->findAll(array(
+                'condition' => 'workorder_status_id=' . $model->id
+            ));
+        }
         foreach ($prosesTerambil as $value) {
             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
             echo '<tr>';
@@ -345,16 +346,16 @@
     <table class="printTable" style="margin : 0 auto;">
         <tr>
             <td style="max-width:40% !important; text-align: left;"><b>Nota Jahit</b></td>
-            <td style="width: 20%; !important" colspan="2"><?php echo $model->code ?></td>
+            <td style="width: 20%;" colspan="2"><?php echo $model->code ?></td>
             <td><b>SELESAI</b></td>
         </tr>
         <tr>
             <td style="max-width:50% !important; text-align: left;"><b>Nama</b></td>
-            <td style="!important" colspan="3"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+            <td style="" colspan="3"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
         </tr>
         <tr>
             <td style="max-width:50% !important; text-align: left;"><b>Tanggal</b></td>
-            <td style="!important" colspan="3"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+            <td style="" colspan="3"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
         </tr>
         <tr>
             <td><b>NOPOT</b></td>
@@ -363,9 +364,13 @@
             <td><b>SUBTOTAL</b></td>
         </tr>
         <?php
-        $prosesTerambil = WorkorderProcess::model()->findAll(array(
-            'condition' => 'workorder_status_id=' . $model->id
-        ));
+        if (empty($model->id)) {
+            $prosesTerambil = array();
+        } else {
+            $prosesTerambil = WorkorderProcess::model()->findAll(array(
+                'condition' => 'workorder_status_id=' . $model->id
+            ));
+        }
         $total = 0;
         foreach ($prosesTerambil as $value) {
             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
@@ -377,14 +382,14 @@
             echo '<td>' . $value->NOPOT->code . '</td>';
             echo '<td>' . $size . ' (' . $value->start_qty . ')</td>';
             echo '<td>' . landa()->rp($value->charge) . '</td>';
-            echo '<td>' . landa()->rp($value->charge * $value->start_qty) . $denda.' <hr></td>';
+            echo '<td>' . landa()->rp($value->charge * $value->start_qty) . $denda . ' <hr></td>';
             echo '</tr>';
-             $total+= ($value->charge * $value->start_qty) - $value->loss_charge;
+            $total+= ($value->charge * $value->start_qty) - $value->loss_charge;
         }
         ?>
         <tr>
             <td colspan="3"><b>Total</b></td>
-            <td><?php echo landa()->rp($total)?></td>
+            <td><?php echo landa()->rp($total) ?></td>
         </tr>
         <tr>
             <td colspan="2"><b>Penjahit</b></td>
@@ -404,23 +409,23 @@
     <p style="text-align:center">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
 </div>
 <script type="text/javascript">
-    $("body").on("click", "#btnFindProcess", function() {
+    $("body").on("click", "#btnFindProcess", function () {
         $("#myModal").modal('show');
         return false;
     });
-    $("body").on("change", "#select_spk", function() {
+    $("body").on("change", "#select_spk", function () {
         var id_spk = $(this).val();
         $.ajax({
             type: 'POST',
             data: {id: id_spk},
             url: "<?php echo url('workorderStatus/selectProcess') ?>",
-            success: function(data) {
+            success: function (data) {
                 $(".resultss").html(data);
                 $(".terambil").val($("#proses_terambil").val());
             }
         });
     });
-    $("body").on("click", ".ambil", function() {
+    $("body").on("click", ".ambil", function () {
         var split_id = $(this).attr('split_id');
         var workprocess_id = $(this).attr('workprocess_id');
         var process_name = $(this).attr('process_name');
@@ -428,6 +433,7 @@
         var desc = $(this).attr('desc');
         var charge = $(this).attr('charge');
         var start_qty = $(this).attr('start_qty');
+        var spk_id = $(this).attr('spk_id');
         var data = '';
         data += '<tr id="' + workprocess_id + '">';
         data += '<td style="text-align: center">' + process_name + '</td>';
@@ -442,6 +448,7 @@
         data += '<td><a class="btnRemove btn" href="#"><i class="cut-icon-minus-2"></i></a>';
         data += '<input type="hidden" name="id[]" class="work_id" value="">';
         data += '<input type="hidden" name="process_id[]" class="process_id" value="' + workprocess_id + '">';
+        data += '<input type="hidden" name="spk_id[]" class="spk_id" value="' + spk_id + '">';
         data += '<input type="hidden" name="split_id[]" class="split_id" id="split_id" value="' + split_id + '">';
         data += '</td>';
         data += '</tr>';
@@ -450,7 +457,7 @@
         $(this).parent().parent().remove();
         total()
     });
-    $("body").on("click", ".btnRemove", function() {
+    $("body").on("click", ".btnRemove", function () {
         var r = confirm('Anda yakin ingin menghapus proses ini?');
         if (r == true) {
             $(this).parent().parent().remove();
@@ -460,7 +467,7 @@
     function total() {
         var total;
         total = 0;
-        $(".work_id").each(function() {
+        $(".work_id").each(function () {
             var id = $(this).parent().parent().find(".process_id").val();
             var subtotal = parseInt($("#start_amount" + id).val()) * parseInt($("#charge" + id).val());
             $("#subtotal" + id).val(subtotal);

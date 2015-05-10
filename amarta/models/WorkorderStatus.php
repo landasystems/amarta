@@ -30,8 +30,8 @@ class WorkorderStatus extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('employee_id, start_user_id, ordering', 'numerical', 'integerOnly' => true),
-            array('code', 'length', 'max' => 11),
+            array('code,employee_id, start_user_id, ordering', 'numerical', 'integerOnly' => true),
+            array('', 'length', 'max' => 11),
             array('description', 'length', 'max' => 255),
             array('time_start, time_end', 'safe'),
             array('time_start, employee_id', 'required'),
@@ -48,8 +48,8 @@ class WorkorderStatus extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'Penjahit' => array(self::BELONGS_TO, 'User', 'employee_id'),
-            'Admin' => array(self::BELONGS_TO, 'User', 'start_user_id'),
+            'Penjahit' => array(self::BELONGS_TO, 'User', 'employee_id'), //ini harusnya field start_from_user_id
+            'Admin' => array(self::BELONGS_TO, 'User', 'start_user_id'), 
         );
     }
 

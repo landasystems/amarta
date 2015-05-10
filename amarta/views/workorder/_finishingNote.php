@@ -33,8 +33,10 @@
             <?php
             $ProcessId = array();
             $ends = date('Y-m-d',  strtotime('+1 day',  strtotime($end)));
+//            print_r($_POST);
+            $sPenjahit = (isset($_POST['user_id'])) ? ' AND start_from_user_id IN ('.  implode(',', $_POST['user_id']).')' : "";
             $workOrderProcess = WorkorderProcess::model()->findAll(array(
-                'condition' => 'workorder_id=' . $spk . ' AND work_process_id <> "" AND workorder_split_id <> "" AND(time_start > "'.date('Y-m-d',  strtotime($start)).'" AND time_start < "'.$ends.'" )',
+                'condition' => 'workorder_id=' . $spk . ' AND work_process_id <> "" AND workorder_split_id <> "" AND(time_start > "'.date('Y-m-d',  strtotime($start)).'" AND time_start < "'.$ends.'" '.$sPenjahit.')',
                 'order' => 'code ASC'
             ));
             foreach ($workOrderProcess as $value) {
