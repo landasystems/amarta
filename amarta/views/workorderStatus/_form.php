@@ -280,7 +280,7 @@
         <div>Jumlah Proses Terambil : <input type="text" readonly="readonly" value="0" class="terambil angka" style="width:40px !important"></div>&nbsp;
     </div>
 </div>
-<div class="printNotaAmbil" id="printNotaAmbil" style="width:310px;visibility:hidden;">
+<div class="printNotaAmbil" id="printNotaAmbil" style="width:310px;">
     <center><strong>CV Amarta Wisesa</strong></center>
     <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
     <center>Telp. (0341) 551678</center>
@@ -337,15 +337,15 @@
     <p style="text-align:center">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
 </div>
 
-<div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;visibility:hidden;">
+<div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;">
     <center><strong>CV Amarta Wisesa</strong></center>
     <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
     <center>Telp. (0341) 551678</center>
     <hr>
     <table class="printTable" style="margin : 0 auto;">
         <tr>
-            <td style="max-width:50% !important; text-align: left;"><b>Nota Jahit</b></td>
-            <td style="!important" colspan="2"><?php echo $model->code ?></td>
+            <td style="max-width:40% !important; text-align: left;"><b>Nota Jahit</b></td>
+            <td style="width: 20%; !important" colspan="2"><?php echo $model->code ?></td>
             <td><b>SELESAI</b></td>
         </tr>
         <tr>
@@ -366,6 +366,7 @@
         $prosesTerambil = WorkorderProcess::model()->findAll(array(
             'condition' => 'workorder_status_id=' . $model->id
         ));
+        $total = 0;
         foreach ($prosesTerambil as $value) {
             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
             $denda = '';
@@ -376,10 +377,15 @@
             echo '<td>' . $value->NOPOT->code . '</td>';
             echo '<td>' . $size . ' (' . $value->start_qty . ')</td>';
             echo '<td>' . landa()->rp($value->charge) . '</td>';
-            echo '<td>' . landa()->rp($value->charge * $value->start_qty) . $denda.'</td>';
+            echo '<td>' . landa()->rp($value->charge * $value->start_qty) . $denda.' <hr></td>';
             echo '</tr>';
+             $total+= ($value->charge * $value->start_qty) - $value->loss_charge;
         }
         ?>
+        <tr>
+            <td colspan="3"><b>Total</b></td>
+            <td><?php echo landa()->rp($total)?></td>
+        </tr>
         <tr>
             <td colspan="2"><b>Penjahit</b></td>
             <td colspan="2" style="text-align: right"><b>Printed By</b></td>
