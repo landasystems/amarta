@@ -6,6 +6,29 @@
         margin-left: -420px;
     }
 </style>
+<style type="text/css" media="print">
+    body {visibility:hidden;}
+</style>
+<script>
+    function printAmbil()
+    {
+        var div = document.getElementById('printNotaSelesai');
+        div.setAttribute('style', 'visibility:hidden;');
+        var div = document.getElementById('printNotaAmbil');
+        div.setAttribute('style', 'visibility:visible;');
+        window.print();
+
+    }
+    function printSelesai()
+    {
+        var div = document.getElementById('printNotaAmbil');
+        div.setAttribute('style', 'visibility:hidden;');
+        var div = document.getElementById('printNotaSelesai');
+        div.setAttribute('style', 'visibility:visible;');
+        window.print();
+
+    }
+</script>
 <div class="form">
     <?php
     $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
@@ -93,7 +116,7 @@
                                 <?php
                                 $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                                     'name' => 'date_ends',
-                                    'value' => (!empty($model->time_end)) ? date('d-m-Y', strtotime($model->time_end)) : "" ,
+                                    'value' => (!empty($model->time_end)) ? date('d-m-Y', strtotime($model->time_end)) : "",
                                     'htmlOptions' => array(
                                         'size' => '7', // textField size
                                         'maxlength' => '10', // textField maxlength
@@ -121,8 +144,8 @@
                         <?php if (!isset($_GET['v'])) { ?>
                             <input id="btnFindProcess" class="btn btn-primary btn-large" type="submit" name="yt0" value="AMBIL PROSES">
                         <?php } else { ?>
-                            <a class="btn btn-primary btn-large"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
-                            <a class="btn btn-primary btn-large"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
+                            <a class="btn btn-primary btn-large" onclick="printAmbil()"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
+                            <a class="btn btn-primary btn-large" onclick="printSelesai()"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
                         <?php } ?>
                     </td>
                 </tr>
@@ -152,7 +175,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    $total=0;
+                    $total = 0;
                     if ($model->isNewRecord == true) {
                         //nothing
                     } else {
@@ -257,56 +280,119 @@
         <div>Jumlah Proses Terambil : <input type="text" readonly="readonly" value="0" class="terambil angka" style="width:40px !important"></div>&nbsp;
     </div>
 </div>
-<table>
-    <tr>
-        <td>
-            <div class="printNotaAmbil" id="printNotaAmbil" style="width:310px;">
-                <center><strong>CV Amarta Wisesa</strong></center>
-                <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
-                <center>Telp. (0341) 551678</center>
-                <hr>
-                <table class="printTable" style="margin : 0 auto;">
-                    <thead><tr><th colspan="3" style="text-align: center;">NOTA AMBIL : <?php echo $model->code ?></th></tr></thead>
-                    <tbody>
-                        <tr><td style="min-width:50% !important;"><b>PEKERJA</b></td><td style="max-width:2% !important">:</td><td> <?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-"; ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">NOPOT | Size</td><td>:</td><td style="width:47%"> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Jml. Awal | Akhir</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Proses</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Mulai</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Selesai</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Hilang | Denda</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                    </tbody>
-                </table>
-                <hr>
-                <strong>Perhatian :</strong>
-                Harap simpan nota ini sebagai bukti pengambilan pekerjaan.
-            </div>
-        </td>
-        <td>
-            <div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;">
-                <center><strong>CV Amarta Wisesa</strong></center>
-                <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
-                <center>Telp. (0341) 551678</center>
-                <hr>
-                <table class="printTable" style="margin : 0 auto;">
-                    <thead><tr><th colspan="3" style="text-align: center;">NOTA SELESAI : <?php echo $model->code ?></th></tr></thead>
-                    <tbody>
-                        <tr><td style="min-width:50% !important;"><b>PEKERJA</b></td><td style="max-width:2% !important">:</td><td> <?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-"; ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">NOPOT | Size</td><td>:</td><td style="width:47%"> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Jml. Awal | Akhir</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Proses</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Mulai</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Selesai</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                        <tr><td style="max-width:50% !important;">Hilang | Denda</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
-                    </tbody>
-                </table>
-                <hr>
-                <strong>Perhatian :</strong>
-                Harap simpan nota ini sebagai bukti pengambilan pekerjaan.
-            </div>
-        </td>
-    </tr>
-</table>
+<div class="printNotaAmbil" id="printNotaAmbil" style="width:310px;visibility:hidden;">
+    <center><strong>CV Amarta Wisesa</strong></center>
+    <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
+    <center>Telp. (0341) 551678</center>
+    <hr>
+    <table class="printTable" style="margin : 0 auto;">
+        <tr>
+            <td style="max-width:40% !important; text-align: left;"><b>Nota Jahit</b></td>
+            <td style="!important"><?php echo $model->code ?></td>
+            <td><b>AMBIL</b></td>
+        </tr>
+        <tr>
+            <td style="max-width:40% !important; text-align: left;"><b>Nama</b></td>
+            <td style="!important" colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+        </tr>
+        <tr>
+            <td style="max-width:40% !important; text-align: left;"><b>Tanggal</b></td>
+            <td style="!important" colspan="2"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+        </tr>
+        <tr>
+            <td><b>NOPOT</b></td>
+            <td><b>SIZE/QTY</b></td>
+            <td><b>HARGA</b></td>
+        </tr>
+        <?php
+        $prosesTerambil = WorkorderProcess::model()->findAll(array(
+            'condition' => 'workorder_status_id=' . $model->id
+        ));
+        foreach ($prosesTerambil as $value) {
+            $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
+            echo '<tr>';
+            echo '<td>' . $value->NOPOT->code . '</td>';
+            echo '<td>' . $size . ' (' . $value->start_qty . ')</td>';
+            echo '<td>' . landa()->rp($value->charge) . '</td>';
+            echo '</tr>';
+        }
+        ?>
+        <tr>
+            <td><b>Penjahit</b></td>
+            <td></td>
+            <td style="text-align: right"><b>Printed By</b></td>
+        </tr>
+        <tr style="height: 20px;">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr style="height: 50px;">
+            <td><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+            <td></td>
+            <td style="text-align: right"><?php echo isset($model->Admin->name) ? $model->Admin->name : "-" ?></td>
+        </tr>
+    </table>
+    <hr>
+    <p style="text-align:center">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+</div>
+
+<div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;visibility:hidden;">
+    <center><strong>CV Amarta Wisesa</strong></center>
+    <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
+    <center>Telp. (0341) 551678</center>
+    <hr>
+    <table class="printTable" style="margin : 0 auto;">
+        <tr>
+            <td style="max-width:50% !important; text-align: left;"><b>Nota Jahit</b></td>
+            <td style="!important" colspan="2"><?php echo $model->code ?></td>
+            <td><b>SELESAI</b></td>
+        </tr>
+        <tr>
+            <td style="max-width:50% !important; text-align: left;"><b>Nama</b></td>
+            <td style="!important" colspan="3"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+        </tr>
+        <tr>
+            <td style="max-width:50% !important; text-align: left;"><b>Tanggal</b></td>
+            <td style="!important" colspan="3"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+        </tr>
+        <tr>
+            <td><b>NOPOT</b></td>
+            <td><b>SIZE/QTY</b></td>
+            <td><b>HARGA</b></td>
+            <td><b>SUBTOTAL</b></td>
+        </tr>
+        <?php
+        $prosesTerambil = WorkorderProcess::model()->findAll(array(
+            'condition' => 'workorder_status_id=' . $model->id
+        ));
+        foreach ($prosesTerambil as $value) {
+            $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
+            echo '<tr>';
+            echo '<td>' . $value->NOPOT->code . '</td>';
+            echo '<td>' . $size . ' (' . $value->start_qty . ')</td>';
+            echo '<td>' . landa()->rp($value->charge) . '</td>';
+            echo '<td>' . landa()->rp($value->charge * $value->start_qty) . '</td>';
+            echo '</tr>';
+        }
+        ?>
+        <tr>
+            <td colspan="2"><b>Penjahit</b></td>
+            <td colspan="2" style="text-align: right"><b>Printed By</b></td>
+        </tr>
+        <tr style="height: 20px;">
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+        </tr>
+        <tr style="height: 50px;">
+            <td colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+            <td colspan="2" style="text-align: right"><?php echo isset($model->Admin->name) ? $model->Admin->name : "-" ?></td>
+        </tr>
+    </table>
+    <hr>
+    <p style="text-align:center">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+</div>
 <script type="text/javascript">
     $("body").on("click", "#btnFindProcess", function() {
         $("#myModal").modal('show');
