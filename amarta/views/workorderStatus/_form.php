@@ -268,7 +268,7 @@
                 <table class="printTable" style="margin : 0 auto;">
                     <thead><tr><th colspan="3" style="text-align: center;">NOTA AMBIL : <?php echo $model->code ?></th></tr></thead>
                     <tbody>
-                        <tr><td style="min-width:50% !important;"><b>PEKERJA</b></td><td style="max-width:2% !important">:</td><td> <?php echo isset($model->Admin->name) ? $model->Penjahit->name : "-"; ?> </td></tr>
+                        <tr><td style="min-width:50% !important;"><b>PEKERJA</b></td><td style="max-width:2% !important">:</td><td> <?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-"; ?> </td></tr>
                         <tr><td style="max-width:50% !important;">NOPOT | Size</td><td>:</td><td style="width:47%"> <?php echo $model->code ?> </td></tr>
                         <tr><td style="max-width:50% !important;">Jml. Awal | Akhir</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
                         <tr><td style="max-width:50% !important;">Proses</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
@@ -291,7 +291,7 @@
                 <table class="printTable" style="margin : 0 auto;">
                     <thead><tr><th colspan="3" style="text-align: center;">NOTA SELESAI : <?php echo $model->code ?></th></tr></thead>
                     <tbody>
-                        <tr><td style="min-width:50% !important;"><b>PEKERJA</b></td><td style="max-width:2% !important">:</td><td> <?php echo isset($model->Admin->name) ? $model->Penjahit->name : "-"; ?> </td></tr>
+                        <tr><td style="min-width:50% !important;"><b>PEKERJA</b></td><td style="max-width:2% !important">:</td><td> <?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-"; ?> </td></tr>
                         <tr><td style="max-width:50% !important;">NOPOT | Size</td><td>:</td><td style="width:47%"> <?php echo $model->code ?> </td></tr>
                         <tr><td style="max-width:50% !important;">Jml. Awal | Akhir</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
                         <tr><td style="max-width:50% !important;">Proses</td><td>:</td><td> <?php echo $model->code ?> </td></tr>
