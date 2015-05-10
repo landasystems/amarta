@@ -76,6 +76,8 @@ class WorkorderStatusController extends Controller {
 
                 $model->time_start = date('Y-m-d H:i', strtotime($_POST['time_start'] . ' ' . $_POST['mulai_jam'] . ':' . $_POST['mulai_menit']));
                 if (!empty($_POST['time_end'])) {
+                    $_POST['selesai_jam'] = (!empty($_POST['selesai_jam'])) ? $_POST['selesai_jam'] : date("H");
+                    $_POST['selesai_menit'] = (!empty($_POST['selesai_menit'])) ? $_POST['selesai_menit'] : date("i");
                     $model->time_end = date('Y-m-d H:i', strtotime($_POST['time_end'] . ' ' . $_POST['selesai_jam'] . ':' . $_POST['selesai_menit']));
                 }
                 $model->start_user_id = user()->id;
@@ -145,6 +147,8 @@ class WorkorderStatusController extends Controller {
 //                logs($_POST['time_start'] . ' ' . $_POST['mulai_jam'].':'.$_POST['mulai_menit']);
                 $model->time_start = date('Y-m-d H:i', strtotime($_POST['time_start'] . ' ' . $_POST['mulai_jam'] . ':' . $_POST['mulai_menit']));
                 if (!empty($_POST['time_end'])) {
+                    $_POST['selesai_jam'] = (!empty($_POST['selesai_jam'])) ? $_POST['selesai_jam'] : date("H");
+                    $_POST['selesai_menit'] = (!empty($_POST['selesai_menit'])) ? $_POST['selesai_menit'] : date("i");
                     $model->time_end = date('Y-m-d H:i', strtotime($_POST['time_end'] . ' ' . $_POST['selesai_jam'] . ':' . $_POST['selesai_menit']));
                 }
                 $model->start_user_id = user()->id;
