@@ -128,20 +128,20 @@
                         if (isset($process->time_end))
                             $selesai[$i] ++;
 
-
-                        $button = '<a href="#" data-toggle="modal" class="btn btn-mini">'
-                                . '<div class="tombol" ukuran="' . $process->NOPOT->Size->name . '" nopot="' . $worksplit->code . '" workproc="' . $process->code . '" id="tb[' . $id . ']" pekerja="' . $startFromUser . '" dari="' . $startUser . '" penerima="' . $endUser . '" jml_awal="' . $startqty . '" jml_akhir="' . $endqty . '" loss="' . $loss_qty . '" denda="' . $loss_charge . '" date_start="' . $dateStart . '" date_end="' . $dateEnd . '" proses="' . $value->name . '"  time_start= "' . $timeStart . '" time_end="' . $timeEnd . '">'
-                                . '<i class="icon-eye-open" rel="tooltip" title="lihat"></i></div></a>'
-                                . '<a href="#" data-toggle="modal" class="btn btn-mini">'
-                                . '<div class="selEdit" act="selesai" workId="' . $workId . '" id="tb[' . $id . ']" employe_id="' . $process->start_from_user_id . '" pekerja="' . $startFromUser . '" dari="' . $startUser . '" penerima="' . $endUser . '" jml_awal="' . $startqty . '" jml_akhir="' . $endqty . '" loss="' . $loss_qty . '" denda="' . $loss_charge . '" date_start="' . $dateStart . '" date_end="' . $dateEnd . '" time_start= "' . $timeStart . '" time_end="' . $timeEnd . '">'
-                                . '<i class="icon-ok" rel="tooltip" title="selesai"></i></div></a>'
-                                . '<a href="#" data-toggle="modal" class="btn btn-mini">'
-                                . '<div class="selEdit" act="edit" workId="' . $workId . '" id="tb[' . $id . ']" employe_id="' . $process->start_from_user_id . '" pekerja="' . $startFromUser . '" dari="' . $startUser . '" penerima="' . $endUser . '" jml_awal="' . $startqty . '" jml_akhir="' . $endqty . '" loss="' . $loss_qty . '" denda="' . $loss_charge . '" date_start="' . $dateStart . '" date_end="' . $dateEnd . '" time_start= "' . $timeStart . '" time_end="' . $timeEnd . '">'
-                                . '<i class="icomoon-icon-pencil" rel="tooltip" title="edit"></i></div></a>'
-                                . '<a href="#" id="yw2" class="btn btn-mini">'
-                                . '<div class="delProcess" work_process="'.$process->work_process_id.'" id="' . $id . '" nopot="' . $workSplitId[$i - 1] . '"><i class="icon-trash" rel="tooltip" title="hapus"></i>'
-                                . '</div>'
-                                . '</a>';
+                        $button = '';
+//                        $button = '<a href="#" data-toggle="modal" class="btn btn-mini">'
+//                                . '<div class="tombol" ukuran="' . $process->NOPOT->Size->name . '" nopot="' . $worksplit->code . '" workproc="' . $process->code . '" id="tb[' . $id . ']" pekerja="' . $startFromUser . '" dari="' . $startUser . '" penerima="' . $endUser . '" jml_awal="' . $startqty . '" jml_akhir="' . $endqty . '" loss="' . $loss_qty . '" denda="' . $loss_charge . '" date_start="' . $dateStart . '" date_end="' . $dateEnd . '" proses="' . $value->name . '"  time_start= "' . $timeStart . '" time_end="' . $timeEnd . '">'
+//                                . '<i class="icon-eye-open" rel="tooltip" title="lihat"></i></div></a>'
+//                                . '<a href="#" data-toggle="modal" class="btn btn-mini">'
+//                                . '<div class="selEdit" act="selesai" workId="' . $workId . '" id="tb[' . $id . ']" employe_id="' . $process->start_from_user_id . '" pekerja="' . $startFromUser . '" dari="' . $startUser . '" penerima="' . $endUser . '" jml_awal="' . $startqty . '" jml_akhir="' . $endqty . '" loss="' . $loss_qty . '" denda="' . $loss_charge . '" date_start="' . $dateStart . '" date_end="' . $dateEnd . '" time_start= "' . $timeStart . '" time_end="' . $timeEnd . '">'
+//                                . '<i class="icon-ok" rel="tooltip" title="selesai"></i></div></a>'
+//                                . '<a href="#" data-toggle="modal" class="btn btn-mini">'
+//                                . '<div class="selEdit" act="edit" workId="' . $workId . '" id="tb[' . $id . ']" employe_id="' . $process->start_from_user_id . '" pekerja="' . $startFromUser . '" dari="' . $startUser . '" penerima="' . $endUser . '" jml_awal="' . $startqty . '" jml_akhir="' . $endqty . '" loss="' . $loss_qty . '" denda="' . $loss_charge . '" date_start="' . $dateStart . '" date_end="' . $dateEnd . '" time_start= "' . $timeStart . '" time_end="' . $timeEnd . '">'
+//                                . '<i class="icomoon-icon-pencil" rel="tooltip" title="edit"></i></div></a>'
+//                                . '<a href="#" id="yw2" class="btn btn-mini">'
+//                                . '<div class="delProcess" work_process="'.$process->work_process_id.'" id="' . $id . '" nopot="' . $workSplitId[$i - 1] . '"><i class="icon-trash" rel="tooltip" title="hapus"></i>'
+//                                . '</div>'
+//                                . '</a>';
 
                         $data = '<label class="label ' . $labelWarna . '" >' . $process->code . '<br/>' . $startFromUser
                                 . '<hr style="margin:0px"/><span style="font-size:10px">Mulai: '
@@ -177,12 +177,14 @@
                         }
                     } else {
                         $nopot = WorkorderSplit::model()->findByPk($workSplitId[$i - 1]);
-                        $data = '<a href="#createNew" role="button"  data-toggle="modal"><i class="icon-plus-sign"></i></a>';
+                        $data = '';
+//                        $data = '<a href="#createNew" role="button"  data-toggle="modal"><i class="icon-plus-sign"></i></a>';
 
                         $button = '';
                         $style = '';
                         $isi = (isset($id)) ? $id : '"-"';
-                        $divTd = '<a href="#createNew" role="button"  data-toggle="modal" onclick="$(\'.value\').val(' . $id . '-' . $nopot->code . ')"><div class="tambah btn btn-primary" jml_awal="' . $nopot->qty . '" workproc="' . $workprocess . '" nopot="' . $workSplitId[$i - 1] . '" id="' . $nopot->code . '" ><i class="icon-plus-sign"></i></div></a>';
+                        $divTd = '';
+//                        $divTd = '<a href="#createNew" role="button"  data-toggle="modal" onclick="$(\'.value\').val(' . $id . '-' . $nopot->code . ')"><div class="tambah btn btn-primary" jml_awal="' . $nopot->qty . '" workproc="' . $workprocess . '" nopot="' . $workSplitId[$i - 1] . '" id="' . $nopot->code . '" ><i class="icon-plus-sign"></i></div></a>';
                     }
                     $yesOrNot = (isset($process->time_end) ? '1' : '0');
                     echo '<td id="' . $workprocess . '-' . $workSplitId[$i - 1] . '" class="' . $workSplitId[$i - 1] . '" jongos="' . $yesOrNot . '" style="text-align: center;vertical-align:middle; background-color:' . $style . ';min-width:160px;max-width:160">' . $divTd . '</td>';
@@ -250,13 +252,8 @@
 
 </table>
 <div class="alert alert-info" style="text-align: left">
-    <h4><b>Informasi!!</b></h4><br>
+    <h4><b>Keterangan : </b></h4><br>
     <span class="label label-important">Sudah Terbayar</span>
-    <span class="label">Sudah Terkoreksi</span> <br><br>
-    <i class="brocco-icon-checkmark btn btn-white btn-mini"></i> : Tombol untuk mengganti sudah terbayarkan atau belum nopot tersebut.<br>
-    <i class="brocco-icon-checkmark btn btn-success btn-mini"></i> : Tombol informasi bahwa nopot tersebut telah terbayar.<br>
-    <i class="brocco-icon-pencil"></i> : Tombol untuk mengoreksi.<br>
-    <i class="wpzoom-trashcan"></i> : Tombol untuk menghapus user.
     <div class="row-fluid">
         <div class="span3">
             Proses yang sudah selesai

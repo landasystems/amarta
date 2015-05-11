@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 	'Workorder Statuses'=>array('index'),
 	$model->id,
 );
-}else{$this->setPageTitle('Edit Workorder Statuses | Kode Nota Produksi : '. $model->code);
+}else{$this->setPageTitle('Edit | Kode Nota Produksi : '. $model->code);
 $this->breadcrumbs=array(
 	'Workorder Statuses'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),

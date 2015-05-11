@@ -65,6 +65,7 @@ class WorkorderProcess extends CActiveRecord {
                     'WorkStatus' => array(self::BELONGS_TO, 'WorkorderStatus', 'work_process_status'),
                     'EndUser' => array(self::BELONGS_TO, 'User', 'end_user_id'),
                     'ProductOutput' => array(self::BELONGS_TO,'Product','product_output_id'),
+                    'SPK' => array(self::BELONGS_TO,'Workorder','workorder_id'),
 		);
 	}
 

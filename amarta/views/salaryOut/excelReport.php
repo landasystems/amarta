@@ -110,10 +110,16 @@ $totalsalary = 0;
                 echo '<td style="text-align:right">' . landa()->rp($value->Process->charge) . '</td>';
                 echo '<td style="text-align:right">' . landa()->rp($value->NOPOT->qty * ($value->Process->charge)) . '</td>';
                 echo '<td style="text-align:center">' . date('d-M-Y, H:i', strtotime($value->time_start)) . '</td>';
-                echo '<td style="text-align:center">' . date('d-M-Y, H:i', strtotime($value->time_end)) . '</td>';
-                echo '<td style="text-align:center">' . $value->loss_qty . '</td>';
-                echo '<td style="text-align:right">' . landa()->rp($value->loss_charge) . '</td>';
-                echo '<td style="text-align:right;background-color:'.$warna.';"><div class="showSalary">' . landa()->rp($value->charge) . '</div></td>';
+                if (empty($value->time_end)) {
+                    echo '<td style="text-align:center">-</td>';
+                    echo '<td style="text-align:center">-</td>';
+                    echo '<td style="text-align:right">-</td>';
+                } else {
+                    echo '<td style="text-align:center">' . date('d-M-Y, H:i', strtotime($value->time_end)) . '</td>';
+                    echo '<td style="text-align:center">' . $value->loss_qty . '</td>';
+                    echo '<td style="text-align:right">' . landa()->rp($value->loss_charge) . '</td>';
+                }
+                echo '<td style="text-align:right;background-color:' . $warna . ';"><div class="showSalary">' . landa()->rp($value->charge) . '</div></td>';
                 echo '</tr>';
 
                 if ($value->is_payment == 1) {
