@@ -268,6 +268,26 @@ class WorkorderStatusController extends Controller {
         echo $select;
     }
 
+    public function actionSalinData() {
+        $workOrderProcess = WorkorderProcess::model()->findAll(array('order' => 'id ASC'));
+        $status = array();
+        $i = 1;
+        foreach ($workOrderProcess as $val) {
+            $status = new WorkorderStatus;
+            $status->id = $i;
+            $status->code = $i;
+            $status->employee_id = $val->start_from_user_id;
+            $status->start_user_id = $val->start_user_id;
+            $status->end_user_id = $val->end_user_id;
+            $status->time_start = $val->time_start;
+            $status->time_end = $val->time_end;
+            $status->save();
+            $val->workorder_status_id = $i;
+            $val->save();
+            $i++;
+        }
+    }
+
     public function actionSelectProcess() {
         $id = $_POST['id'];
         $nopot = $_POST['nopot'];
@@ -277,7 +297,7 @@ class WorkorderStatusController extends Controller {
         ));
         $workSplit = WorkorderSplit::model()->findAll(array(
             'with' => 'SPP.RM.SPK',
-            'condition' => 'SPK.id =' . $id.' and t.code = "'.$nopot.'"',
+            'condition' => 'SPK.id =' . $id . ' and t.code = "' . $nopot . '"',
             'order' => 't.code'
         ));
         $values = $this->renderPartial('_selectProcess', array(

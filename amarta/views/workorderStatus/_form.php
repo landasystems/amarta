@@ -25,11 +25,11 @@
     {
         var w = window.open();
         var css = '<style media="print">body{ margin-top:0 !important}</style>';
-        var printContents = '<div style="width:310px;" class="printNota"><center>'+$("#" + divName + "").html()+'</center></div>';
+        var printContents = '<div style="width:310px;" class="printNota"><center>' + $("#" + divName + "").html() + '</center></div>';
 
         $(w.document.body).html(css + printContents);
-//        w.print();
-//        w.window.close();
+        w.print();
+        w.window.close();
     }
 
 </script>
@@ -149,9 +149,9 @@
                             <input id="btnFindProcess" class="btn btn-primary btn-large" type="submit" name="yt0" value="AMBIL PROSES">
                         <?php } else { ?>
                             <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaAmbil');
-                                    return false;"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
+                                        return false;"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
                             <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaSelesai');
-                                    return false;"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
+                                        return false;"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
                            <?php } ?>
                     </td>
                 </tr>
@@ -196,17 +196,20 @@
                             } else {
                                 $hps = '<a class="btn btnRemove" href="#"><i class="cut-icon-minus-2"></i></a>';
                             }
-
+                            $proses = isset($value->Process->name) ? $value->Process->name : "-";
+                            $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
+                            $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
+                            $loss_charge = isset($value->loss_charge) ? $value->loss_charge : 0;
                             echo '<tr id="' . $value->work_process_id . '">
-                                        <td>' . $value->Process->name . '</td>
-                                        <td>' . $value->NOPOT->code . '</td>
+                                        <td>' . $proses . '</td>
+                                        <td>' . $nopot . '</td>
                                         <td><input type="text" name="desc[]" class="desc span1" value="' . $size . '" readonly="true"></td>
                                         <td><input type="text" class="angka" name="start_amount[]" value="' . $value->start_qty . '" id="start_amount' . $value->work_process_id . '" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $value->Process->charge . '" id="charge' . $value->work_process_id . '" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $value->Process->charge * $value->start_qty . '" id="subtotal' . $value->work_process_id . '" onkeyup="total()" readonly></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $charge . '" id="charge' . $value->work_process_id . '" onkeyup="total()"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $charge * $value->start_qty . '" id="subtotal' . $value->work_process_id . '" onkeyup="total()" readonly></div></td>
                                         <td><input type="text" class="angka" name="loss_qty[]" value="' . $value->loss_qty . '" id="loss_qty' . $value->work_process_id . '" onkeyup="total()"></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $value->loss_charge . '" id="loss_charge' . $value->work_process_id . '" onkeyup="total()" ></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $value->work_process_id . '" name="total[]" value="' . $value->charge . '" readonly onkeyup="total()"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $loss_charge . '" id="loss_charge' . $value->work_process_id . '" onkeyup="total()" ></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $value->work_process_id . '" name="total[]" value="' . $charge * $value->start_qty . '" readonly onkeyup="total()"></div></td>
                                         <td>
                                             ' . $hps . '
                                             <input type="hidden" name="id[]" class="work_id" value="' . $value->id . '">
@@ -215,7 +218,7 @@
                                             <input type="hidden" name="split_id[]" class="split_id" value="' . $value->workorder_split_id . '">
                                         </td>    
                                   </tr>';
-                            $total+= ($value->Process->charge * $value->start_qty) - $value->loss_charge;
+                            $total+= ($charge * $value->start_qty) - $loss_charge;
                         }
                     }
                     ?>
@@ -327,19 +330,14 @@
             <td style="width:70px;"><b>HARGA</b></td>
         </tr>
         <?php
-        if (empty($model->id)) {
-            $prosesTerambil = array();
-        } else {
-            $prosesTerambil = WorkorderProcess::model()->findAll(array(
-                'condition' => 'workorder_status_id=' . $model->id
-            ));
-        }
         foreach ($prosesTerambil as $value) {
+            $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
+            $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
             echo '<tr>';
-            echo '<td>' . $value->NOPOT->code . '</td>';
+            echo '<td>' . $nopot . '</td>';
             echo '<td>' . $size . '/' . $value->start_qty . '</td>';
-            echo '<td>' . landa()->rp($value->Process->charge) . '</td>';
+            echo '<td>' . landa()->rp($charge) . '</td>';
             echo '</tr>';
         }
         ?>
@@ -384,7 +382,9 @@
         </tr>
         <tr>
             <td style="text-align: left;"><b>Tgl Selesai</b></td>
-            <td style="" colspan="3"><?php echo !empty($model->time_end) ? date("d M Y H:i:s", strtotime($model->time_end)) : "-"; ; ?></td>
+            <td style="" colspan="3"><?php echo!empty($model->time_end) ? date("d M Y H:i:s", strtotime($model->time_end)) : "-";
+        ;
+        ?></td>
         </tr>
         <tr>
             <td><b>NOPOT</b></td>
@@ -393,27 +393,23 @@
             <td><b>SUBTOTAL</b></td>
         </tr>
         <?php
-        if (empty($model->id)) {
-            $prosesTerambil = array();
-        } else {
-            $prosesTerambil = WorkorderProcess::model()->findAll(array(
-                'condition' => 'workorder_status_id=' . $model->id
-            ));
-        }
         $total = 0;
         foreach ($prosesTerambil as $value) {
+            $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
+            $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
+            $loss_charge = isset($value->loss_charge) ? $value->loss_charge : 0;
             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
             $denda = '';
-            if (!empty($value->loss_charge)) {
-                $denda = '<br> - ' . landa()->rp($value->loss_charge);
+            if (!empty($loss_charge)) {
+                $denda = '<br> - ' . landa()->rp($loss_charge);
             }
             echo '<tr>';
-            echo '<td>' . $value->NOPOT->code . '</td>';
+            echo '<td>' . $nopot . '</td>';
             echo '<td>' . $size . '/' . $value->start_qty . '</td>';
-            echo '<td>' . landa()->rp($value->Process->charge) . '</td>';
-            echo '<td>' . landa()->rp($value->Process->charge * $value->start_qty) ."". $denda . ' <hr></td>';
+            echo '<td>' . landa()->rp($charge) . '</td>';
+            echo '<td>' . landa()->rp($charge * $value->start_qty) . "" . $denda . ' <hr></td>';
             echo '</tr>';
-            $total+= ($value->Process->charge * $value->start_qty) - $value->loss_charge;
+            $total+= ($charge * $value->start_qty) - $loss_charge;
         }
         ?>
         <tr>
