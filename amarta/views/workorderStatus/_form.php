@@ -13,18 +13,23 @@
 </style>
 <style type="text/css" media="print">
     body {visibility:hidden;}
-    #printNotaAmbil, #printNotaSelesai{visibility:visible;display: block; position: absolute;top: 0;left: 0;float: left;padding: 0 20px 0 0;} 
+    #printNotaAmbil, #printNotaSelesai{
+        visibility:visible;
+        display: block; 
+        position: absolute;top: 0;left: 0;float: left;
+        padding: 0 20px 0 0;
+    } 
 </style>
 <script>
     function printDiv(divName)
     {
         var w = window.open();
-        var css = '<style media="print">table{width: 100%;border-spacing:0px;border-collapse: collapse;border: none;margin:0pt;padding:0px;font-size: 12px;} html * {font-size:12px !important;margin-top:0 !important} body{margin-top:0 !important}</style>';
-        var printContents = $("#" + divName + "").html();
+        var css = '<style media="print">body{ margin-top:0 !important}</style>';
+        var printContents = '<div style="width:310px;" class="printNota"><center>'+$("#" + divName + "").html()+'</center></div>';
 
         $(w.document.body).html(css + printContents);
-        w.print();
-        w.window.close();
+//        w.print();
+//        w.window.close();
     }
 
 </script>
@@ -298,28 +303,28 @@
     </div>
 </div>
 <div class="printNotaAmbil" id="printNotaAmbil" style="width:310px; width:310px;">
-    <center><strong>CV Amarta Wisesa</strong></center>
-    <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
-    <center>Telp. (0341) 551678</center>
+    <center style="font-size: 11.5px;"><strong>CV Amarta Wisesa</strong></center>
+    <center style="font-size: 11.5px;">Jl. Mayjen Panjaitan No. 62 Malang</center>
+    <center style="font-size: 11.5px;">Telp. (0341) 551678</center>
     <hr>
-    <table class="printTable" id="nota" style="margin : 0 auto;">
+    <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
         <tr>
-            <td style="max-width:40% !important; text-align: left;"><b>Nota Jahit</b></td>
-            <td style=""><?php echo $model->code ?></td>
-            <td><b>AMBIL</b></td>
+            <td style="width:80px; text-align: left;"><b>Nota Jahit</b></td>
+            <td><?php echo $model->code ?></td>
+            <td style="text-align: right;"><b>AMBIL</b></td>
         </tr>
         <tr>
-            <td style="max-width:40% !important; text-align: left;"><b>Nama</b></td>
+            <td style="text-align: left;"><b>Nama</b></td>
             <td style="" colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
         </tr>
         <tr>
-            <td style="max-width:40% !important; text-align: left;"><b>Tanggal</b></td>
+            <td style="text-align: left;"><b>Tanggal</b></td>
             <td style="" colspan="2"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
         </tr>
         <tr>
             <td><b>NOPOT</b></td>
             <td><b>SIZE/QTY</b></td>
-            <td><b>HARGA</b></td>
+            <td style="width:70px;"><b>HARGA</b></td>
         </tr>
         <?php
         if (empty($model->id)) {
@@ -333,8 +338,8 @@
             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
             echo '<tr>';
             echo '<td>' . $value->NOPOT->code . '</td>';
-            echo '<td>' . $size . ' (' . $value->start_qty . ')</td>';
-            echo '<td>' . landa()->rp($value->charge) . '</td>';
+            echo '<td>' . $size . '/' . $value->start_qty . '</td>';
+            echo '<td>' . landa()->rp($value->Process->charge) . '</td>';
             echo '</tr>';
         }
         ?>
@@ -355,27 +360,31 @@
         </tr>
     </table>
     <hr>
-    <p style="text-align:center">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+    <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
 </div>
 
 <div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;">
-    <center><strong>CV Amarta Wisesa</strong></center>
-    <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
-    <center>Telp. (0341) 551678</center>
+    <center style="font-size: 11.5px;"><strong>CV Amarta Wisesa</strong></center>
+    <center style="font-size: 11.5px;">Jl. Mayjen Panjaitan No. 62 Malang</center>
+    <center style="font-size: 11.5px;">Telp. (0341) 551678</center>
     <hr>
-    <table class="printTable" id="nota" style="margin : 0 auto; width:310px;">
+    <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
         <tr>
-            <td style="width:20% !important; text-align: left;"><b>Nota Jahit</b></td>
+            <td style="width:75px; text-align: left;"><b>Nota Jahit</b></td>
             <td colspan="2"><?php echo $model->code ?></td>
-            <td><b>SELESAI</b></td>
+            <td style="width: 70px; text-align: right;"><b>SELESAI</b></td>
         </tr>
         <tr>
             <td style="text-align: left;"><b>Nama</b></td>
             <td style="" colspan="3"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
         </tr>
         <tr>
-            <td style="text-align: left;"><b>Tanggal</b></td>
+            <td style="text-align: left;"><b>Tgl Ambil</b></td>
             <td style="" colspan="3"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;"><b>Tgl Selesai</b></td>
+            <td style="" colspan="3"><?php echo !empty($model->time_end) ? date("d M Y H:i:s", strtotime($model->time_end)) : "-"; ; ?></td>
         </tr>
         <tr>
             <td><b>NOPOT</b></td>
@@ -400,7 +409,7 @@
             }
             echo '<tr>';
             echo '<td>' . $value->NOPOT->code . '</td>';
-            echo '<td>' . $size . ' (' . $value->start_qty . ')</td>';
+            echo '<td>' . $size . '/' . $value->start_qty . '</td>';
             echo '<td>' . landa()->rp($value->Process->charge) . '</td>';
             echo '<td>' . landa()->rp($value->Process->charge * $value->start_qty) ."". $denda . ' <hr></td>';
             echo '</tr>';
@@ -426,7 +435,7 @@
         </tr>
     </table>
     <hr>
-    <p style="text-align:center">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+    <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
 </div>
 <script type="text/javascript">
     $("body").on("click", "#btnFindProcess", function () {
