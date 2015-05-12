@@ -275,7 +275,7 @@ class WorkorderStatusController extends Controller {
         foreach ($workOrderProcess as $val) {
             $status = new WorkorderStatus;
             $status->id = $i;
-            $status->code = $i;
+            $status->code = $val->code;
             $status->employee_id = $val->start_from_user_id;
             $status->start_user_id = $val->start_user_id;
             $status->end_user_id = $val->end_user_id;
