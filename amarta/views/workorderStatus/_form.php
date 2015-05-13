@@ -25,7 +25,7 @@
     {
         var w = window.open();
         var css = '<style media="print">body{ margin-top:0 !important}</style>';
-        var printContents = '<div style="width:310px;" class="printNota"><center>' + $("#" + divName + "").html() + '</center></div>';
+        var printContents = '<div style="width:100%;" class="printNota"><center>' + $("#" + divName + "").html() + '</center></div>';
 
         $(w.document.body).html(css + printContents);
         w.print();
@@ -149,9 +149,9 @@
                             <input id="btnFindProcess" class="btn btn-primary btn-large" type="submit" name="yt0" value="AMBIL PROSES">
                         <?php } else { ?>
                             <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaAmbil');
-                                        return false;"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
+                                    return false;"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
                             <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaSelesai');
-                                        return false;"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
+                                    return false;"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
                            <?php } ?>
                     </td>
                 </tr>
@@ -305,134 +305,139 @@
         <div>Jumlah Proses Terambil : <input type="text" readonly="readonly" value="0" class="terambil angka" style="width:40px !important"></div>&nbsp;
     </div>
 </div>
-<div class="printNotaAmbil" id="printNotaAmbil" style="width:310px; width:310px;">
-    <center style="font-size: 11.5px;"><strong>CV Amarta Wisesa</strong></center>
-    <center style="font-size: 11.5px;">Jl. Mayjen Panjaitan No. 62 Malang</center>
-    <center style="font-size: 11.5px;">Telp. (0341) 551678</center>
-    <hr>
-    <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
-        <tr>
-            <td style="width:80px; text-align: left;"><b>Nota Jahit</b></td>
-            <td><?php echo $model->code ?></td>
-            <td style="text-align: right;"><b>AMBIL</b></td>
-        </tr>
-        <tr>
-            <td style="text-align: left;"><b>Nama</b></td>
-            <td style="" colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
-        </tr>
-        <tr>
-            <td style="text-align: left;"><b>Tanggal</b></td>
-            <td style="" colspan="2"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
-        </tr>
-        <tr>
-            <td><b>NOPOT</b></td>
-            <td><b>SIZE/QTY</b></td>
-            <td style="width:70px;"><b>HARGA</b></td>
-        </tr>
-        <?php
-        foreach ($prosesTerambil as $value) {
-            $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
-            $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
-            $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
-            echo '<tr>';
-            echo '<td>' . $nopot . '</td>';
-            echo '<td>' . $size . '/' . $value->start_qty . '</td>';
-            echo '<td>' . landa()->rp($charge) . '</td>';
-            echo '</tr>';
-        }
-        ?>
-        <tr>
-            <td><b>Penjahit</b></td>
-            <td></td>
-            <td style="text-align: right"><b>Printed By</b></td>
-        </tr>
-        <tr style="height: 20px;">
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr style="height: 50px;">
-            <td><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
-            <td></td>
-            <td style="text-align: right"><?php echo isset($model->Admin->name) ? $model->Admin->name : "-" ?></td>
-        </tr>
-    </table>
-    <hr>
-    <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
-</div>
-
-<div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;">
-    <center style="font-size: 11.5px;"><strong>CV Amarta Wisesa</strong></center>
-    <center style="font-size: 11.5px;">Jl. Mayjen Panjaitan No. 62 Malang</center>
-    <center style="font-size: 11.5px;">Telp. (0341) 551678</center>
-    <hr>
-    <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
-        <tr>
-            <td style="width:75px; text-align: left;"><b>Nota Jahit</b></td>
-            <td colspan="2"><?php echo $model->code ?></td>
-            <td style="width: 70px; text-align: right;"><b>SELESAI</b></td>
-        </tr>
-        <tr>
-            <td style="text-align: left;"><b>Nama</b></td>
-            <td style="" colspan="3"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
-        </tr>
-        <tr>
-            <td style="text-align: left;"><b>Tgl Ambil</b></td>
-            <td style="" colspan="3"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
-        </tr>
-        <tr>
-            <td style="text-align: left;"><b>Tgl Selesai</b></td>
-            <td style="" colspan="3"><?php echo!empty($model->time_end) ? date("d M Y H:i:s", strtotime($model->time_end)) : "-";
-        ;
-        ?></td>
-        </tr>
-        <tr>
-            <td><b>NOPOT</b></td>
-            <td><b>SIZE/QTY</b></td>
-            <td><b>HARGA</b></td>
-            <td><b>SUBTOTAL</b></td>
-        </tr>
-        <?php
-        $total = 0;
-        foreach ($prosesTerambil as $value) {
-            $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
-            $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
-            $loss_charge = isset($value->loss_charge) ? $value->loss_charge : 0;
-            $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
-            $denda = '';
-            if (!empty($loss_charge)) {
-                $denda = '<br> - ' . landa()->rp($loss_charge);
+<?php if ($model->isNewRecord == false) { ?>
+    <div class="printNotaAmbil" id="printNotaAmbil" style="width:310px; width:310px;">
+        <center style="font-size: 11.5px;"><strong>CV Amarta Wisesa</strong></center>
+        <center style="font-size: 11.5px;">Jl. Mayjen Panjaitan No. 62 Malang</center>
+        <center style="font-size: 11.5px;">Telp. (0341) 551678</center>
+        <hr>
+        <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
+            <tr>
+                <td style="width:80px; text-align: left;"><b>Nota Jahit</b></td>
+                <td><?php echo $model->code ?></td>
+                <td style="text-align: right;"><b>AMBIL</b></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><b>Nama</b></td>
+                <td style="" colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><b>Tanggal</b></td>
+                <td style="" colspan="2"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+            </tr>
+            <tr>
+                <td><b>NOPOT</b></td>
+                <td><b>SIZE/QTY</b></td>
+                <td style="width:70px;"><b>HARGA</b></td>
+            </tr>
+            <?php
+            foreach ($prosesTerambil as $value) {
+                $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
+                $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
+                $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
+                echo '<tr>';
+                echo '<td>' . $nopot . '</td>';
+                echo '<td>' . $size . '/' . $value->start_qty . '</td>';
+                echo '<td>' . landa()->rp($charge) . '</td>';
+                echo '</tr>';
             }
-            echo '<tr>';
-            echo '<td>' . $nopot . '</td>';
-            echo '<td>' . $size . '/' . $value->start_qty . '</td>';
-            echo '<td>' . landa()->rp($charge) . '</td>';
-            echo '<td>' . landa()->rp($charge * $value->start_qty) . "" . $denda . ' <hr></td>';
-            echo '</tr>';
-            $total+= ($charge * $value->start_qty) - $loss_charge;
-        }
-        ?>
-        <tr>
-            <td colspan="3"><b>Total</b></td>
-            <td><?php echo landa()->rp($total) ?></td>
-        </tr>
-        <tr>
-            <td colspan="2"><b>Penjahit</b></td>
-            <td colspan="2" style="text-align: right"><b>Printed By</b></td>
-        </tr>
-        <tr style="height: 20px;">
-            <td></td>
-            <td colspan="2"></td>
-            <td></td>
-        </tr>
-        <tr style="height: 50px;">
-            <td colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
-            <td colspan="2" style="text-align: right"><?php echo isset($model->Admin->name) ? $model->Admin->name : "-" ?></td>
-        </tr>
-    </table>
-    <hr>
-    <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
-</div>
+            ?>
+            <tr>
+                <td><b>Penjahit</b></td>
+                <td></td>
+                <td style="text-align: right"><b>Printed By</b></td>
+            </tr>
+            <tr style="height: 20px;">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr style="height: 50px;">
+                <td><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+                <td></td>
+                <td style="text-align: right"><?php echo isset($model->Admin->name) ? $model->Admin->name : "-" ?></td>
+            </tr>
+        </table>
+        <hr>
+        <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+    </div>
+
+    <div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;">
+        <center style="font-size: 11.5px;"><strong>CV Amarta Wisesa</strong></center>
+        <center style="font-size: 11.5px;">Jl. Mayjen Panjaitan No. 62 Malang</center>
+        <center style="font-size: 11.5px;">Telp. (0341) 551678</center>
+        <hr>
+        <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
+            <tr>
+                <td style="width:75px; text-align: left;"><b>Nota Jahit</b></td>
+                <td colspan="2"><?php echo $model->code ?></td>
+                <td style="width: 70px; text-align: right;"><b>SELESAI</b></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><b>Nama</b></td>
+                <td style="" colspan="3"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><b>Tgl Ambil</b></td>
+                <td style="" colspan="3"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><b>Tgl Selesai</b></td>
+                <td style="" colspan="3"><?php
+                    echo!empty($model->time_end) ? date("d M Y H:i:s", strtotime($model->time_end)) : "-";
+                    ;
+                    ?></td>
+            </tr>
+            <tr>
+                <td><b>NOPOT</b></td>
+                <td><b>SIZE/QTY</b></td>
+                <td><b>HARGA</b></td>
+                <td><b>SUBTOTAL</b></td>
+            </tr>
+            <?php
+            $total = 0;
+
+
+            foreach ($prosesTerambil as $value) {
+                $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
+                $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
+                $loss_charge = isset($value->loss_charge) ? $value->loss_charge : 0;
+                $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
+                $denda = '';
+                if (!empty($loss_charge)) {
+                    $denda = '<br> - ' . landa()->rp($loss_charge);
+                }
+                echo '<tr>';
+                echo '<td>' . $nopot . '</td>';
+                echo '<td>' . $size . '/' . $value->start_qty . '</td>';
+                echo '<td>' . landa()->rp($charge) . '</td>';
+                echo '<td>' . landa()->rp($charge * $value->start_qty) . "" . $denda . ' <hr></td>';
+                echo '</tr>';
+                $total+= ($charge * $value->start_qty) - $loss_charge;
+            }
+            ?>
+            <tr>
+                <td colspan="3"><b>Total</b></td>
+                <td><?php echo landa()->rp($total) ?></td>
+            </tr>
+            <tr>
+                <td colspan="2"><b>Penjahit</b></td>
+                <td colspan="2" style="text-align: right"><b>Printed By</b></td>
+            </tr>
+            <tr style="height: 20px;">
+                <td></td>
+                <td colspan="2"></td>
+                <td></td>
+            </tr>
+            <tr style="height: 50px;">
+                <td colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+                <td colspan="2" style="text-align: right"><?php echo isset($model->Admin->name) ? $model->Admin->name : "-" ?></td>
+            </tr>
+        </table>
+        <hr>
+        <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+    </div>
+<?php } ?>
 <script type="text/javascript">
     $("body").on("click", "#btnFindProcess", function () {
         $("#myModal").modal('show');

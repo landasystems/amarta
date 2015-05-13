@@ -269,9 +269,9 @@ class WorkorderStatusController extends Controller {
     }
 
     public function actionSalinData() {
-        $workOrderProcess = WorkorderProcess::model()->findAll(array('order' => 'id ASC'));
+        $workOrderProcess = WorkorderProcess::model()->findAll(array('condition'=>'id <= 791','order' => 'id ASC'));
         $status = array();
-        $i = 1;
+        $i = 15;
         foreach ($workOrderProcess as $val) {
             $status = new WorkorderStatus;
             $status->id = $i;
@@ -285,6 +285,15 @@ class WorkorderStatusController extends Controller {
             $val->workorder_status_id = $i;
             $val->save();
             $i++;
+        }
+    }
+    
+    public function actionHapusData(){
+        $delete = WorkorderProcess::model()->findAll(array("condition"=>" work_process_id = '' AND workorder_split_id = '' "));
+        foreach($delete as $del){
+            $status = WorkorderStatus::model()->findByPk($del->workorder_status_id);
+            $status->delete();
+            $del->delete();
         }
     }
 
