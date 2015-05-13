@@ -321,7 +321,7 @@ class WorkorderIntructionController extends Controller {
         $tSize = "";
         foreach ($_POST['size'] as $key => $size) {
             if ($size != "") {
-                $tSize .= $key . ' (' . $size . ')  <input type="hidden" class="size-qty" value="' . $size . '">';
+                $tSize .= $key . ' (' . $size . ')  <input type="hidden" class="size-qty" value="' . $size . '" size="'.$key.'">';
             }
         }
 

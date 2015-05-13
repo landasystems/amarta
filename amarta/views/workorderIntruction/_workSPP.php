@@ -99,7 +99,7 @@
                 } else {
                     $result .= '<a data-original-title="Process Terpakai" rel="tooltip" title="" class="btn btn-medium btn-danger" href="#"><i class="icon-check"></i></a>';
                 }
-                $result .= '<input type="hidden" name="id_det[]" value="'.$value->id.'">';
+                $result .= '<input type="hidden" name="id_det[]" value="' . $value->id . '">';
                 $result .= '</td>';
                 $check = ($value->is_nopot) ? 'checked="checked" value="1"' : 'value="0"';
                 $result .= '<td style="text-align: center"><input type="checkbox" ' . $check . ' name="isNopot[]" value="false"/></td>';
@@ -107,7 +107,9 @@
                 $result .= '<td align="center"><input style="width:95%;" type="text" name="detailDescription[]" value="' . $value->description . '" /></td>';
                 $result .= '<td>' . $tSize;
                 foreach ($jsonSize as $key => $size) {
-                    $result .= '<input type="hidden" class="size-qty" value="' . $size . '">';
+                    if ($size != "") {
+                        $result .= '<input type="hidden" class="size-qty" value="' . $size . '" size="' . $masterSize[$key] . '">';
+                    }
                 }
                 $result .= '</td>';
                 $result .= '<td style="text-align:center"><input type="text" maxlength="4" class="angka matAmount" id="detailAmount" name="detailAmount[]" value="' . $value->amount . '" /></td>';
