@@ -69,7 +69,7 @@ class WorkorderStatusController extends Controller {
             if (isset($_POST['process_id'])) {
                 $model->attributes = $_POST['WorkorderStatus'];
 
-                if (empty($_POST['WorkorderStatus']['code'])) {
+                if (empty($_POST['WorkorderStatus']['code']) or ( $_POST['WorkorderStatus']['code'] == 0)) {
                     $model->code = (empty($lastNumber)) ? 1 : $lastNumber->code + 1;
 //                    $model->code = substr("0000000" . $model->code, -7);
                 }
@@ -249,15 +249,55 @@ class WorkorderStatusController extends Controller {
         }
     }
 
+    public function actionSelectProcessNopot() {
+        $id = $_POST['id'];
+        $workSplit = WorkorderSplit::model()->findAll(array(
+            'with' => 'SPP.RM.SPK',
+            'condition' => 'SPK.id =' . $id,
+            'order' => 't.code'
+        ));
+        $select = '';
+        if (empty($workSplit)) {
+            $select .= '<option value="">Tidak ditemukan nopot</option>';
+        } else {
+            $select .= '<option value="">Pilih NOPOT</option>';
+            foreach ($workSplit as $val) {
+                $select .= '<option value="' . $val->code . '">' . $val->code . '</option>';
+            }
+        }
+        echo $select;
+    }
+
+    public function actionSalinData() {
+        $workOrderProcess = WorkorderProcess::model()->findAll(array('order' => 'id ASC'));
+        $status = array();
+        $i = 1;
+        foreach ($workOrderProcess as $val) {
+            $status = new WorkorderStatus;
+            $status->id = $i;
+            $status->code = $val->code;
+            $status->employee_id = $val->start_from_user_id;
+            $status->start_user_id = $val->start_user_id;
+            $status->end_user_id = $val->end_user_id;
+            $status->time_start = $val->time_start;
+            $status->time_end = $val->time_end;
+            $status->save();
+            $val->workorder_status_id = $i;
+            $val->save();
+            $i++;
+        }
+    }
+
     public function actionSelectProcess() {
         $id = $_POST['id'];
+        $nopot = $_POST['nopot'];
         $workProcess = WorkProcess::model()->findAll(array(
             'condition' => 'workorder_id=' . $id,
             'order' => 'ordering'
         ));
         $workSplit = WorkorderSplit::model()->findAll(array(
             'with' => 'SPP.RM.SPK',
-            'condition' => 'SPK.id =' . $id,
+            'condition' => 'SPK.id =' . $id . ' and t.code = "' . $nopot . '"',
             'order' => 't.code'
         ));
         $values = $this->renderPartial('_selectProcess', array(

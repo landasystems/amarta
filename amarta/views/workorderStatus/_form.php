@@ -5,25 +5,33 @@
         /* must be half of the width, minus scrollbar on the left (30px) */
         margin-left: -420px;
     }
-    
-    #printNotaAmbil, #printNotaSelesai{display: none}
+
+    #printNotaAmbil, #printNotaSelesai{display: none;}
+    #nota{
+        font-size: 8px;
+    }
 </style>
 <style type="text/css" media="print">
     body {visibility:hidden;}
-    #printNotaAmbil, #printNotaSelesai{visibility:visible;display: block; position: absolute;top: 0;left: 0;float: left;padding: 0 20px 0 0;} 
+    #printNotaAmbil, #printNotaSelesai{
+        visibility:visible;
+        display: block; 
+        position: absolute;top: 0;left: 0;float: left;
+        padding: 0 20px 0 0;
+    } 
 </style>
 <script>
     function printDiv(divName)
     {
         var w = window.open();
-        var css = '<style media="print">table{width: 100%;border-spacing:0px;border-collapse: collapse;border: none;margin:0pt;padding:0px;font-size: 12px;} html * {font-size:12px !important;margin-top:0 !important} body{margin-top:0 !important}</style>';
-        var printContents = $("#"+divName+"").html();
-        
-        $(w.document.body).html(css+printContents);
+        var css = '<style media="print">body{ margin-top:0 !important}</style>';
+        var printContents = '<div style="width:310px;" class="printNota"><center>' + $("#" + divName + "").html() + '</center></div>';
+
+        $(w.document.body).html(css + printContents);
         w.print();
         w.window.close();
     }
-    
+
 </script>
 <div class="form">
     <?php
@@ -140,9 +148,11 @@
                         <?php if (!isset($_GET['v'])) { ?>
                             <input id="btnFindProcess" class="btn btn-primary btn-large" type="submit" name="yt0" value="AMBIL PROSES">
                         <?php } else { ?>
-                            <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaAmbil');return false;"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
-                            <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaSelesai');return false;"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
-                        <?php } ?>
+                            <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaAmbil');
+                                        return false;"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
+                            <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaSelesai');
+                                        return false;"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
+                           <?php } ?>
                     </td>
                 </tr>
             </table>
@@ -186,17 +196,20 @@
                             } else {
                                 $hps = '<a class="btn btnRemove" href="#"><i class="cut-icon-minus-2"></i></a>';
                             }
-
+                            $proses = isset($value->Process->name) ? $value->Process->name : "-";
+                            $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
+                            $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
+                            $loss_charge = isset($value->loss_charge) ? $value->loss_charge : 0;
                             echo '<tr id="' . $value->work_process_id . '">
-                                        <td>' . $value->Process->name . '</td>
-                                        <td>' . $value->NOPOT->code . '</td>
+                                        <td>' . $proses . '</td>
+                                        <td>' . $nopot . '</td>
                                         <td><input type="text" name="desc[]" class="desc span1" value="' . $size . '" readonly="true"></td>
                                         <td><input type="text" class="angka" name="start_amount[]" value="' . $value->start_qty . '" id="start_amount' . $value->work_process_id . '" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $value->Process->charge . '" id="charge' . $value->work_process_id . '" onkeyup="total()"></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $value->Process->charge * $value->start_qty . '" id="subtotal' . $value->work_process_id . '" onkeyup="total()" readonly></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="charge[]" value="' . $charge . '" id="charge' . $value->work_process_id . '" onkeyup="total()"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $charge * $value->start_qty . '" id="subtotal' . $value->work_process_id . '" onkeyup="total()" readonly></div></td>
                                         <td><input type="text" class="angka" name="loss_qty[]" value="' . $value->loss_qty . '" id="loss_qty' . $value->work_process_id . '" onkeyup="total()"></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $value->loss_charge . '" id="loss_charge' . $value->work_process_id . '" onkeyup="total()" ></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $value->work_process_id . '" name="total[]" value="' . $value->charge  . '" readonly onkeyup="total()"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $loss_charge . '" id="loss_charge' . $value->work_process_id . '" onkeyup="total()" ></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $value->work_process_id . '" name="total[]" value="' . $charge * $value->start_qty . '" readonly onkeyup="total()"></div></td>
                                         <td>
                                             ' . $hps . '
                                             <input type="hidden" name="id[]" class="work_id" value="' . $value->id . '">
@@ -205,7 +218,7 @@
                                             <input type="hidden" name="split_id[]" class="split_id" value="' . $value->workorder_split_id . '">
                                         </td>    
                                   </tr>';
-                            $total+= ($value->charge * $value->start_qty) - $value->loss_charge;
+                            $total+= ($charge * $value->start_qty) - $loss_charge;
                         }
                     }
                     ?>
@@ -269,6 +282,21 @@
                 'style' => 'width:450px;',
             ),
         ));
+        echo " ";
+        $data3 = array(0 => "Pilih NOPOT");
+        $this->widget('bootstrap.widgets.TbSelect2', array(
+            'asDropDownList' => TRUE,
+            'data' => $data3,
+            'name' => 'nopot',
+            'options' => array(
+                "placeholder" => t('choose', 'global'),
+                "allowClear" => true,
+            ),
+            'htmlOptions' => array(
+                'id' => 'nopot',
+                'style' => 'width:250px;',
+            ),
+        ));
         ?>
 
         <div class="well well-small resultss"></div>
@@ -277,44 +305,39 @@
         <div>Jumlah Proses Terambil : <input type="text" readonly="readonly" value="0" class="terambil angka" style="width:40px !important"></div>&nbsp;
     </div>
 </div>
-<div class="printNotaAmbil" id="printNotaAmbil" style="width:310px;">
-    <center><strong>CV Amarta Wisesa</strong></center>
-    <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
-    <center>Telp. (0341) 551678</center>
+<div class="printNotaAmbil" id="printNotaAmbil" style="width:310px; width:310px;">
+    <center style="font-size: 11.5px;"><strong>CV Amarta Wisesa</strong></center>
+    <center style="font-size: 11.5px;">Jl. Mayjen Panjaitan No. 62 Malang</center>
+    <center style="font-size: 11.5px;">Telp. (0341) 551678</center>
     <hr>
-    <table class="printTable" style="margin : 0 auto;">
+    <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
         <tr>
-            <td style="max-width:40% !important; text-align: left;"><b>Nota Jahit</b></td>
-            <td style=""><?php echo $model->code ?></td>
-            <td><b>AMBIL</b></td>
+            <td style="width:80px; text-align: left;"><b>Nota Jahit</b></td>
+            <td><?php echo $model->code ?></td>
+            <td style="text-align: right;"><b>AMBIL</b></td>
         </tr>
         <tr>
-            <td style="max-width:40% !important; text-align: left;"><b>Nama</b></td>
+            <td style="text-align: left;"><b>Nama</b></td>
             <td style="" colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
         </tr>
         <tr>
-            <td style="max-width:40% !important; text-align: left;"><b>Tanggal</b></td>
+            <td style="text-align: left;"><b>Tanggal</b></td>
             <td style="" colspan="2"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
         </tr>
         <tr>
             <td><b>NOPOT</b></td>
             <td><b>SIZE/QTY</b></td>
-            <td><b>HARGA</b></td>
+            <td style="width:70px;"><b>HARGA</b></td>
         </tr>
         <?php
-        if (empty($model->id)) {
-            $prosesTerambil = array();
-        } else {
-            $prosesTerambil = WorkorderProcess::model()->findAll(array(
-                'condition' => 'workorder_status_id=' . $model->id
-            ));
-        }
         foreach ($prosesTerambil as $value) {
+            $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
+            $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
             echo '<tr>';
-            echo '<td>' . $value->NOPOT->code . '</td>';
-            echo '<td>' . $size . ' (' . $value->start_qty . ')</td>';
-            echo '<td>' . landa()->rp($value->charge) . '</td>';
+            echo '<td>' . $nopot . '</td>';
+            echo '<td>' . $size . '/' . $value->start_qty . '</td>';
+            echo '<td>' . landa()->rp($charge) . '</td>';
             echo '</tr>';
         }
         ?>
@@ -335,27 +358,33 @@
         </tr>
     </table>
     <hr>
-    <p style="text-align:center">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+    <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
 </div>
 
 <div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;">
-    <center><strong>CV Amarta Wisesa</strong></center>
-    <center>Jl. Mayjen Panjaitan No. 62 Malang</center>
-    <center>Telp. (0341) 551678</center>
+    <center style="font-size: 11.5px;"><strong>CV Amarta Wisesa</strong></center>
+    <center style="font-size: 11.5px;">Jl. Mayjen Panjaitan No. 62 Malang</center>
+    <center style="font-size: 11.5px;">Telp. (0341) 551678</center>
     <hr>
-    <table class="printTable" style="margin : 0 auto;">
+    <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
         <tr>
-            <td style="max-width:40% !important; text-align: left;"><b>Nota Jahit</b></td>
-            <td style="width: 20%;" colspan="2"><?php echo $model->code ?></td>
-            <td><b>SELESAI</b></td>
+            <td style="width:75px; text-align: left;"><b>Nota Jahit</b></td>
+            <td colspan="2"><?php echo $model->code ?></td>
+            <td style="width: 70px; text-align: right;"><b>SELESAI</b></td>
         </tr>
         <tr>
-            <td style="max-width:50% !important; text-align: left;"><b>Nama</b></td>
+            <td style="text-align: left;"><b>Nama</b></td>
             <td style="" colspan="3"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
         </tr>
         <tr>
-            <td style="max-width:50% !important; text-align: left;"><b>Tanggal</b></td>
+            <td style="text-align: left;"><b>Tgl Ambil</b></td>
             <td style="" colspan="3"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;"><b>Tgl Selesai</b></td>
+            <td style="" colspan="3"><?php echo!empty($model->time_end) ? date("d M Y H:i:s", strtotime($model->time_end)) : "-";
+        ;
+        ?></td>
         </tr>
         <tr>
             <td><b>NOPOT</b></td>
@@ -364,27 +393,23 @@
             <td><b>SUBTOTAL</b></td>
         </tr>
         <?php
-        if (empty($model->id)) {
-            $prosesTerambil = array();
-        } else {
-            $prosesTerambil = WorkorderProcess::model()->findAll(array(
-                'condition' => 'workorder_status_id=' . $model->id
-            ));
-        }
         $total = 0;
         foreach ($prosesTerambil as $value) {
+            $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
+            $charge = isset($value->Process->charge) ? $value->Process->charge : 0;
+            $loss_charge = isset($value->loss_charge) ? $value->loss_charge : 0;
             $size = isset($value->NOPOT->Size->name) ? $value->NOPOT->Size->name : "-";
             $denda = '';
-            if (!empty($value->loss_charge)) {
-                $denda = '<br> - ' . landa()->rp($value->loss_charge);
+            if (!empty($loss_charge)) {
+                $denda = '<br> - ' . landa()->rp($loss_charge);
             }
             echo '<tr>';
-            echo '<td>' . $value->NOPOT->code . '</td>';
-            echo '<td>' . $size . ' (' . $value->start_qty . ')</td>';
-            echo '<td>' . landa()->rp($value->charge) . '</td>';
-            echo '<td>' . landa()->rp($value->charge * $value->start_qty) . $denda . ' <hr></td>';
+            echo '<td>' . $nopot . '</td>';
+            echo '<td>' . $size . '/' . $value->start_qty . '</td>';
+            echo '<td>' . landa()->rp($charge) . '</td>';
+            echo '<td>' . landa()->rp($charge * $value->start_qty) . "" . $denda . ' <hr></td>';
             echo '</tr>';
-            $total+= ($value->charge * $value->start_qty) - $value->loss_charge;
+            $total+= ($charge * $value->start_qty) - $loss_charge;
         }
         ?>
         <tr>
@@ -406,7 +431,7 @@
         </tr>
     </table>
     <hr>
-    <p style="text-align:center">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+    <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
 </div>
 <script type="text/javascript">
     $("body").on("click", "#btnFindProcess", function () {
@@ -418,6 +443,19 @@
         $.ajax({
             type: 'POST',
             data: {id: id_spk},
+            url: "<?php echo url('workorderStatus/selectProcessNopot') ?>",
+            success: function (data) {
+                $(".resultss").html("");
+                $("#nopot").html(data);
+            }
+        });
+    });
+    $("body").on("change", "#nopot", function () {
+        var id_spk = $("#select_spk").val();
+        var kode = $("#nopot").val();
+        $.ajax({
+            type: 'POST',
+            data: {id: id_spk, nopot: kode},
             url: "<?php echo url('workorderStatus/selectProcess') ?>",
             success: function (data) {
                 $(".resultss").html(data);
@@ -425,6 +463,19 @@
             }
         });
     });
+//    });
+//    $("body").on("change", "#select_spk", function () {
+//        var id_spk = $(this).val();
+//        $.ajax({
+//            type: 'POST',
+//            data: {id: id_spk},
+//            url: "<?php echo url('workorderStatus/selectProcess') ?>",
+//            success: function (data) {
+//                $(".resultss").html(data);
+//                $(".terambil").val($("#proses_terambil").val());
+//            }
+//        });
+//    });
     $("body").on("click", ".ambil", function () {
         var split_id = $(this).attr('split_id');
         var workprocess_id = $(this).attr('workprocess_id');
