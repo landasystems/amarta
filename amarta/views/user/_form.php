@@ -28,7 +28,18 @@
                 <table>
                     <tr>
                         <td width="300">
-                            <input type="hidden" name="User[roles_id]" value="-1"/>
+                            <?php 
+                                if (isset($_GET['type'])){
+                                    if ($_GET['type']=='employment'){
+                                        $isi = 3;
+                                    }elseif ($_GET['type']=='customer'){
+                                        $isi = 1;
+                                    }
+                                }else{
+                                    $isi = -1;
+                                }
+                                echo '<input type="hidden" name="User[roles_id]" value="'.$isi.'"/>';
+                            ?>
                             <?php
 //                          $imgs = '';
                             $cc = '';
