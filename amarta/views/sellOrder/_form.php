@@ -234,6 +234,7 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                                                             $("#stock").html(obj.stock);
                                                             $("#myStock").val(obj.stock);
                                                             $(".measure").html(obj.ProductMeasureName);
+                                                            calculate();
                                                         }
                                                      });
                                             }'),

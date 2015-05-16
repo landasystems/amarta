@@ -284,7 +284,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     function calcTotalMat(gelar, marker, tr) {
 //        var col = 7;
         var isi = gelar * marker;
-        $(tr).find("td:eq(7)").html(isi + " Meter" +'<input type="hidden" id="detailTotalMaterialUsed" name="detailTotalMaterialUsed[]" value="'+isi+'">');
+        $(tr).find("td:eq(7)").html(isi + " Meter" + '<input type="hidden" id="detailTotalMaterialUsed" name="detailTotalMaterialUsed[]" value="' + isi + '">');
 
     }
     function calcSize(tr, gelar) {
@@ -292,11 +292,11 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         var col = 8;
         $(tr).find(".size-qty").each(function () {
             var jmlSize = parseInt($(this).val());
-            var lbl = $(this).parent().parent().find('td:eq(' + col + ')');
-            if ($(this).val() != "") {
-                lbl.find('.lbl').val(jmlSize * gelar);
-            } else {
-                lbl.find('.lbl').val(0);
+//            var lbl = $(this).parent().parent().find('td:eq(' + col + ')');
+            var size = $(this).attr("size");
+            if (jmlSize != "") {
+                var sizeTotal = $(this).parent().parent().find(".total_" + size);
+                sizeTotal.val(jmlSize * gelar);
             }
             col++;
         });
@@ -325,11 +325,11 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     });
 
     $("body").on("click", "#saveBtn", function () {
-        if($('#WorkorderIntruction_workorder_id').val()==false){
+        if ($('#WorkorderIntruction_workorder_id').val() == false) {
             alert("Nomor SPK belum di pilih");
             return false;
         }
-        if($('#WorkorderIntruction_product_id').val()==false){
+        if ($('#WorkorderIntruction_product_id').val() == false) {
             alert("Bahan belum terpilih");
             return false;
         }
