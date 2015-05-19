@@ -149,10 +149,12 @@
                             <input id="btnFindProcess" class="btn btn-primary btn-large" type="submit" name="yt0" value="AMBIL PROSES">
                         <?php } else { ?>
                             <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaAmbil');
-                                        return false;"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
-                            <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaSelesai');
+                                    return false;"><i class="icon-print icon-white"></i> NOTA AMBIL</a>
+                               <?php if (!empty($model->time_end)) { ?>
+                                <a class="btn btn-primary btn-large" onclick="js:printDiv('printNotaSelesai');
                                         return false;"><i class="icon-print icon-white"></i> NOTA SELESAI</a>
-                           <?php } ?>
+                               <?php }
+                           } ?>
                     </td>
                 </tr>
             </table>
@@ -210,7 +212,7 @@
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="subTotal[]" value="' . $charge * $value->start_qty . '" id="subtotal' . $unik . '" onkeyup="total()" readonly></div></td>
                                         <td><input type="text" class="angka" name="loss_qty[]" value="' . $value->loss_qty . '" id="loss_qty' . $unik . '" onkeyup="total()"></td>
                                         <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="loss_charge[]" value="' . $loss_charge . '" id="loss_charge' . $unik . '" onkeyup="total()" ></div></td>
-                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $unik . '" name="total[]" value="' . (($charge * $value->start_qty)-$loss_charge) . '" readonly onkeyup="total()"></div></td>
+                                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" id="total' . $unik . '" name="total[]" value="' . (($charge * $value->start_qty) - $loss_charge) . '" readonly onkeyup="total()"></div></td>
                                         <td>
                                             ' . $hps . '
                                             <input type="hidden" name="id[]" class="work_id" value="' . $value->id . '">
@@ -237,7 +239,7 @@
                 </tbody>
             </table>
         </div>
-        <?php if (!isset($_GET['v'])) { ?>
+            <?php if (!isset($_GET['v'])) { ?>
             <div class="form-actions">
                 <?php
                 $this->widget('bootstrap.widgets.TbButton', array(
@@ -255,9 +257,9 @@
                 ));
                 ?>
             </div>
-        <?php } ?>    
+    <?php } ?>    
     </fieldset>
-    <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 </div>
 
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -315,21 +317,21 @@
         <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
             <tr>
                 <td style="width:80px; text-align: left;"><b>Nota Jahit</b></td>
-                <td><?php echo $model->code ?></td>
+                <td>: <?php echo $model->code ?></td>
                 <td style="text-align: right;"><b>AMBIL</b></td>
             </tr>
             <tr>
                 <td style="text-align: left;"><b>Nama</b></td>
-                <td style="" colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+                <td style="" colspan="2">: <?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
             </tr>
             <tr>
                 <td style="text-align: left;"><b>Tanggal</b></td>
-                <td style="" colspan="2"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+                <td style="" colspan="2">: <?php echo date("d M Y, H:i", strtotime($model->time_start)); ?></td>
             </tr>
             <tr>
-                <td><b>NOPOT</b></td>
-                <td><b>SIZE/QTY</b></td>
-                <td style="width:70px;"><b>HARGA</b></td>
+                <td style="border-bottom: solid 1pt #000"><b>NOPOT</b></td>
+                <td style="border-bottom: solid 1pt #000"><b>SIZE/QTY</b></td>
+                <td style="border-bottom: solid 1pt #000;width:70px;"><b>HARGA</b></td>
             </tr>
             <?php
             foreach ($prosesTerambil as $value) {
@@ -343,6 +345,9 @@
                 echo '</tr>';
             }
             ?>
+            <tr style="height: 5px;">
+                <td></td>
+            </tr>
             <tr>
                 <td><b>Penjahit</b></td>
                 <td></td>
@@ -353,14 +358,14 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr style="height: 50px;">
+            <tr>
                 <td><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
                 <td></td>
                 <td style="text-align: right"><?php echo isset($model->Admin->name) ? $model->Admin->name : "-" ?></td>
             </tr>
         </table>
-        <hr>
-        <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+        <hr style="margin:0"/>
+        <p style="text-align:center;font-size: 10px;">Simpan nota ini sebagai bukti pengambilan pekerjaan, dan kembalikan ke admin jika sudah selesai untuk mendapatkan nota selesai</p>
     </div>
 
     <div class="printNotaSelesai" id="printNotaSelesai" style="width:310px;">
@@ -371,33 +376,32 @@
         <table class="printTable" id="nota" style="margin : 0 auto; font-size: 11px;  width:100%;">
             <tr>
                 <td style="width:75px; text-align: left;"><b>Nota Jahit</b></td>
-                <td colspan="2"><?php echo $model->code ?></td>
+                <td colspan="2">: <?php echo $model->code ?></td>
                 <td style="width: 70px; text-align: right;"><b>SELESAI</b></td>
             </tr>
             <tr>
                 <td style="text-align: left;"><b>Nama</b></td>
-                <td style="" colspan="3"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
+                <td style="" colspan="3">: <?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
             </tr>
             <tr>
                 <td style="text-align: left;"><b>Tgl Ambil</b></td>
-                <td style="" colspan="3"><?php echo date("d M Y H:i:s", strtotime($model->time_start)); ?></td>
+                <td style="" colspan="3">: <?php echo date("d M Y, H:i", strtotime($model->time_start)); ?></td>
             </tr>
             <tr>
                 <td style="text-align: left;"><b>Tgl Selesai</b></td>
-                <td style="" colspan="3"><?php
-                    echo!empty($model->time_end) ? date("d M Y H:i:s", strtotime($model->time_end)) : "-";
+                <td style="" colspan="3">: <?php
+                    echo!empty($model->time_end) ? date("d M Y, H:i", strtotime($model->time_end)) : "-";
                     ;
                     ?></td>
             </tr>
             <tr>
-                <td><b>NOPOT</b></td>
-                <td><b>SIZE/QTY</b></td>
-                <td><b>HARGA</b></td>
-                <td><b>SUBTOTAL</b></td>
+                <td style="border-bottom: solid 1pt #000"><b>NOPOT</b></td>
+                <td style="border-bottom: solid 1pt #000"><b>SIZE/QTY</b></td>
+                <td style="border-bottom: solid 1pt #000"><b>HARGA</b></td>
+                <td style="border-bottom: solid 1pt #000"><b>SUBTOTAL</b></td>
             </tr>
             <?php
             $total = 0;
-
 
             foreach ($prosesTerambil as $value) {
                 $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
@@ -412,7 +416,7 @@
                 echo '<td>' . $nopot . '</td>';
                 echo '<td>' . $size . '/' . $value->start_qty . '</td>';
                 echo '<td>' . landa()->rp($charge) . '</td>';
-                echo '<td>' . landa()->rp($charge * $value->start_qty) . "" . $denda . ' <hr></td>';
+                echo '<td>' . landa()->rp($charge * $value->start_qty) . "" . $denda . ' </td>';
                 echo '</tr>';
                 $total+= ($charge * $value->start_qty) - $loss_charge;
             }
@@ -420,6 +424,9 @@
             <tr>
                 <td colspan="3"><b>Total</b></td>
                 <td><?php echo landa()->rp($total) ?></td>
+            </tr>
+            <tr style="height: 5px;">
+                <td></td>
             </tr>
             <tr>
                 <td colspan="2"><b>Penjahit</b></td>
@@ -430,13 +437,13 @@
                 <td colspan="2"></td>
                 <td></td>
             </tr>
-            <tr style="height: 50px;">
+            <tr>
                 <td colspan="2"><?php echo isset($model->Penjahit->name) ? $model->Penjahit->name : "-" ?></td>
                 <td colspan="2" style="text-align: right"><?php echo isset($model->Admin->name) ? $model->Admin->name : "-" ?></td>
             </tr>
         </table>
-        <hr>
-        <p style="text-align:center;font-size: 11.5px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan sebagai bukti sah untuk mendapatkan gaji</p>
+        <hr style="margin:0"/>
+        <p style="text-align:center;font-size: 10px;">Simpan nota ini sebagai bukti menyelesaikan pekerjaan dan bukti sah untuk mendapatkan gaji</p>
     </div>
 <?php } ?>
 <script type="text/javascript">
@@ -493,8 +500,8 @@
         var start_qty = $(this).attr('start_qty');
         var spk_id = $(this).attr('spk_id');
         var data = '';
-        var unik = split_id+workprocess_id;
-        
+        var unik = split_id + workprocess_id;
+
         var cek = 0;
         $(".work_id").each(function () {
             var id = $(this).parent().parent().attr("id");
