@@ -139,7 +139,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                 ),
                 'delete' => array(
                     'label' => 'Hapus',
-                    'visible' => '(!isset($data->is_processed))',
+                    'visible' => '$data->isEmpty',
                     'options' => array(
                         'class' => 'btn btn-small delete'
                     )

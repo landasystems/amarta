@@ -146,4 +146,12 @@ class Workorder extends CActiveRecord {
         $product = $this->model()->findByPk($id);
         return $product;
     }
+    public function getIsEmpty(){
+        $isi = WorkorderIntruction::model()->findAll(array('condition' => 'workorder_id='.$this->id));
+        if(empty($isi))
+            return true;
+        else
+            return false;
+        
+    }
 }
