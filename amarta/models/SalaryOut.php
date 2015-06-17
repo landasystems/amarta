@@ -57,7 +57,7 @@ class SalaryOut extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'created' => 'Tgl Pembuatan',
+			'created' => 'Tgl Selesai',
 			'created_user_id' => 'Yang mengeluarkan Gaji',
 			'modified' => 'Modified',
 			'description' => 'Keterangan',
