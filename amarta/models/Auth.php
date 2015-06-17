@@ -108,12 +108,13 @@ class Auth extends CActiveRecord {
         return array(
             array('visible' => landa()->checkAccess('Dashboard', 'r'), 'label' => '<span class="icon16 icomoon-icon-screen"></span>Dashboard', 'url' => array('/dashboard'), 'auth_id' => 'Dashboard'),
             array('visible' => landa()->checkAccess('User', 'r'), 'label' => '<span class="icon16 icomoon-icon-user-3"></span>User', 'url' => array('/user'), 'auth_id' => 'User'),
-            array('visible' => (landa()->checkAccess('ProductBrand', 'r') || landa()->checkAccess('ProductMeasure', 'r') || landa()->checkAccess('ProductCategory', 'r') || landa()->checkAccess('Product', 'r')), 'label' => '<span class="icon16 silk-icon-notebook"></span>Inventory', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
-                    array('visible' => landa()->checkAccess('ProductMeasure', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Satuan', 'url' => array('/productMeasure'), 'auth_id' => 'ProductMeasure'),
-                    array('visible' => landa()->checkAccess('ProductCategory', 'r'), 'label' => '<span class="icon16 cut-icon-tree"></span>Kategori', 'url' => array('/productCategory'), 'auth_id' => 'ProductCategory'),
-                    array('visible' => landa()->checkAccess('Product', 'r'), 'label' => '<span class="icon16 cut-icon-list"></span>Barang', 'url' => array('/product'), 'auth_id' => 'Product'),
-                )),
-            array('visible' => landa()->checkAccess('Supplier', 'r'), 'label' => '<span class="icon16  entypo-icon-user"></span>Supplier', 'url' => array('/user/supplier'), 'auth_id' => 'Supplier'),
+//            array('visible' => (landa()->checkAccess('ProductBrand', 'r') || landa()->checkAccess('ProductMeasure', 'r') || landa()->checkAccess('ProductCategory', 'r') || landa()->checkAccess('Product', 'r')), 'label' => '<span class="icon16 silk-icon-notebook"></span>Inventory', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
+//                    array('visible' => landa()->checkAccess('ProductMeasure', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Satuan', 'url' => array('/productMeasure'), 'auth_id' => 'ProductMeasure'),
+//                    array('visible' => landa()->checkAccess('ProductCategory', 'r'), 'label' => '<span class="icon16 cut-icon-tree"></span>Kategori', 'url' => array('/productCategory'), 'auth_id' => 'ProductCategory'),
+//                    array('visible' => landa()->checkAccess('Product', 'r'), 'label' => '<span class="icon16 cut-icon-list"></span>Barang', 'url' => array('/product'), 'auth_id' => 'Product'),
+//                )),
+            array('visible' => landa()->checkAccess('Product', 'r'), 'label' => '<span class="icon16 silk-icon-notebook"></span>Barang', 'url' => array('/product'), 'auth_id' => 'Product'),
+//            array('visible' => landa()->checkAccess('Supplier', 'r'), 'label' => '<span class="icon16  entypo-icon-user"></span>Supplier', 'url' => array('/user/supplier'), 'auth_id' => 'Supplier'),
             array('label' => '<span class="icon16  entypo-icon-user"></span>Customer', 'url' => array('/user/customer'), 'auth_id' => 'Customer'),
             array('visible' => landa()->checkAccess('Employment', 'r'), 'label' => '<span class="icon16  entypo-icon-user"></span>Pegawai', 'url' => array('/user/employment'), 'auth_id' => 'Employment'),
             array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 silk-icon-notebook"></span>Produksi', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
@@ -128,7 +129,7 @@ class Auth extends CActiveRecord {
                     array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Proses Produksi', 'url' => array('/workorder/takingNote'), 'auth_id' => 'ProsesStatus'),
                     array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Proses Per-Nopot', 'url' => array('/report/processPerSplit'), 'auth_id' => 'ProsesStatus'),
                     array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Proses Status', 'url' => array('/workorder/process'), 'auth_id' => 'ProsesStatus'),
-                array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Nomor Potong', 'url' => array('/report/nopot'), 'auth_id' => 'ProsesStatus'),
+                    array('visible' => in_array('manufacture', param('menu')) && landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Nomor Potong', 'url' => array('/report/nopot'), 'auth_id' => 'ProsesStatus'),
                 )),
         );
     }
