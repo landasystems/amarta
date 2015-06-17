@@ -247,7 +247,6 @@ class WorkorderIntructionController extends Controller {
         }
 //        $session['WorkorderIntruction_records'] = WorkorderIntruction::model()->findAll($criteria);
 
-
         $this->render('index', array(
             'model' => $model,
         ));

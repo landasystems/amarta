@@ -143,5 +143,14 @@ class WorkorderIntruction extends CActiveRecord {
         $name =(isset($this->SPK->SellOrder->Customer->name)) ? $this->SPK->SellOrder->Customer->name : '-';
         return $name;
     }
+    public function getIsDelete(){
+//        $cc='';
+        $isi = WorkorderIntructionDet::model()->findAll(array('condition' => 'workorder_intruction_id='.$this->id.' AND code IS NOT NULL'));
+        if(count($isi) == 0){
+            return true;
+        } else{
+            return false;
+        }
+    }
 
 }

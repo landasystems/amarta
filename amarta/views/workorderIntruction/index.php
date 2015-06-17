@@ -125,7 +125,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'header' => 'Keterangan',
             'name' => 'description',
             'type' => 'raw',
-            'value' => '$data->description',
+            'value' => '$data->isDelete',
         ),        
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
@@ -145,7 +145,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                 ),
                 'delete' => array(
                     'label' => 'Hapus',
-                    'visible' => '(!isset($data->is_processed))',
+                    'visible' => '$data->isDelete',
                     'options' => array(
                         'class' => 'btn btn-small delete'
                     )
