@@ -79,10 +79,11 @@
         if ($model->isNewRecord == FALSE) {
             $workProcess = WorkProcess::model()->findAll(array('condition' => 'workorder_id=' . $model->id, 'order' => 'ordering ASC'));
             foreach ($workProcess as $value) {
+                $checkOrder = WorkorderProcess::model()->findAll(array('condition' => 'work_process_id='.$value->id));
                 $row .= '<tr class="data_process"><td style="text-align:center;vertical-align: top">';
                 $row .= '<input type="hidden" name="process_group[]" value="' . $value->group . '" />';
                 $row .= '<input type="hidden" name="process_id[]" value="' . $value->id . '" />';
-                if ($value->is_workorder_process == 0) {
+                if (empty($checkOrder)) {
                     $row .= '<button class="btn btn-medium removeRow removeProcess"><i class="icon-remove-circle"></i></button>';
                 } else {
                     $row .= '<a rel="tooltip" title="Process Terpakai" class="btn btn-medium btn-danger" href="#"><i class="icon-check"></i></a>';
