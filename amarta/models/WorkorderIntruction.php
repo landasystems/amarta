@@ -152,5 +152,9 @@ class WorkorderIntruction extends CActiveRecord {
             return false;
         }
     }
+//    public function getJenisKain(){
+//        $model = $this->Material->name;
+//        return $model;
+//    }
 
 }

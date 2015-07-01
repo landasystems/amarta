@@ -8,7 +8,7 @@
 
         <?php echo $form->textFieldRow($model,'code',array('class'=>'span5','maxlength'=>255)); ?>
 
-        <?php echo $form->textFieldRow($model,'departement_id',array('class'=>'span5')); ?>
+        <?php // echo $form->textFieldRow($model,'departement_id',array('class'=>'span5')); ?>
 
         <?php echo $form->textFieldRow($model,'customer_user_id',array('class'=>'span5')); ?>       
 
@@ -26,7 +26,7 @@
 $cs->registerCoreScript('jquery');
 $cs->registerCoreScript('jquery.ui');
 $cs->registerCssFile(Yii::app()->request->baseUrl.'/css/bootstrap/jquery-ui.css');
-?>	
+?>
 <script type="text/javascript">
     jQuery(function($) {
         $(".btnreset").click(function() {

@@ -48,6 +48,7 @@ class WorkorderIntructionDetController extends Controller {
         $this->layout = 'mainWide';
         app()->landa->registerAssetScript('jquery.tablednd.js', CClientScript::POS_BEGIN);
         $model = Workorder::model()->findByPk($id);
+        $count = WorkorderIntruction::model()->findAll(array('with' => 'Material', 'condition' => 'workorder_id=' . $id));
         $sppDet = WorkorderIntructionDet::model()->findAll(array('with' => array('RM'), 'condition' => 'RM.workorder_id=' . $id, 'order' => '-t.code DESC'));
         $workorderDet = WorkorderDet::model()->findAll(array('condition' => 'workorder_id=' . $_GET['id'],));
         $nopot = WorkorderSplit::model()->findAll(array('with' => array('SPP', 'SPP.RM'), 'condition' => 'RM.workorder_id=' . $id, 'order' => 't.code'));
@@ -57,6 +58,7 @@ class WorkorderIntructionDetController extends Controller {
             'sppDet' => $sppDet,
             'detail' => $workorderDet,
             'nopot' => $nopot,
+            'count' => $count
         ));
     }
 
@@ -67,7 +69,7 @@ class WorkorderIntructionDetController extends Controller {
     public function actionCreate($id) {
         $model = WorkorderIntructionDet::model()->findByPk($id);
 
-        $mOrdering = WorkorderIntructionDet::model()->findAll(array('with' => array('RM'), 'condition' => 'ordering IS NOT NULL AND RM.workorder_id=' . $model->RM->workorder_id));
+        $mOrdering = WorkorderIntructionDet::model()->findAll(array('with' => array('RM'), 'condition' => 'ordering IS NOT NULL AND RM.workorder_id=' . $model->RM->workorder_id . ' AND RM.product_id=' . $_GET['product_id']));
         $iOrdering = count($mOrdering) + 1;
         $code = SiteConfig::model()->formatting('spp', false, $model->RM->SPK->code, $iOrdering);
 
@@ -181,14 +183,23 @@ class WorkorderIntructionDetController extends Controller {
         if (isset($_POST['spp_id']) and isset($_POST['nopot_id'])) {
             $spp = $_POST['spp_id'];
             $id = $_POST['nopot_id'];
+            $product = $_POST['product_id'];
             $k = 1;
             $j = 1;
+
             for ($a = 0; $a < count($_POST['spp_id']); $a++) {
+
                 $codes = SiteConfig::model()->formatting('spp', false, '', $k);
                 $mSpp = WorkorderIntructionDet::model()->findByPk($spp[$a]);
                 $mSpp->code = $codes;
                 $mSpp->save();
-                $k++;
+
+                if (isset($product[$a + 1]) and $product[$a] == $product[$a + 1]) {
+                    $k++;
+                }else{
+                    $k = 1;
+                }
+
             }
             for ($i = 0; $i < count($_POST['nopot_id']); $i++) {
                 $codeNopot = SiteConfig::model()->formatting('nopot', false, '', $j);
@@ -213,7 +224,7 @@ class WorkorderIntructionDetController extends Controller {
 //            'detail' => $workorderDet,
 //            'nopot' => $nopot,
 //        ));
-        Yii::app()->request->sendFile('Laporan SPP dan NOPOT dari SPK '.$model->code.'.xls', $this->renderPartial('_excelSPP', array(
+        Yii::app()->request->sendFile('Laporan SPP dan NOPOT dari SPK ' . $model->code . '.xls', $this->renderPartial('_excelSPP', array(
                     'model' => $model,
                     'sppDet' => $sppDet,
                     'detail' => $workorderDet,

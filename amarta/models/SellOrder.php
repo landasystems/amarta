@@ -39,7 +39,7 @@ class SellOrder extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('departement_id, created_user_id, dp, credit, payment', 'numerical', 'integerOnly' => true),
-           array('departement_id,customer_user_id,term','required'),
+           array('customer_user_id,term','required'),
             array('total', 'numerical'),
             array('subtotal, ppn, other', 'numerical'),
             array('code, description', 'length', 'max' => 255),
@@ -60,7 +60,7 @@ class SellOrder extends CActiveRecord {
         return array(
             'User' => array(self::BELONGS_TO, 'User', 'created_user_id'),
             'Customer' => array(self::BELONGS_TO, 'User', 'customer_user_id'),
-            'Departement' => array(self::BELONGS_TO, 'Departement', 'departement_id'),
+//            'Departement' => array(self::BELONGS_TO, 'Departement', 'departement_id'),
             'ProductSupplier' => array(self::BELONGS_TO, 'ProductSupplier', 'supplier_id'),
         );
     }
@@ -105,12 +105,12 @@ class SellOrder extends CActiveRecord {
         // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria = new CDbCriteria;
-        $criteria->with = array('Departement','User','Customer');
+        $criteria->with = array('User','Customer');
         $criteria->together = true;
 
         $criteria->compare('id', $this->id);
         $criteria->compare('code', $this->code, true);
-        $criteria->compare('Departement.name',$this->departement_id,true);
+//        $criteria->compare('Departement.name',$this->departement_id,true);
         $criteria->compare('Customer.username',$this->customer_user_id,true);
         $criteria->compare('created', $this->created, true);
         $criteria->compare('created_user_id', $this->created_user_id);

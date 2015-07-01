@@ -222,6 +222,7 @@ class SellOrderController extends Controller {
                     }
                     $this->redirect(array('view', 'id' => $model->id));
                 }
+                logs($model->getErrors());
             } else {
                 Yii::app()->user->setFlash('error', '<strong>Error! </strong>No product added.');
             }
@@ -333,71 +334,6 @@ class SellOrderController extends Controller {
 
         $model = new SellOrder('search');
         $model->unsetAttributes();  // clear any default values
-
-        if (isset($_GET['SellOrder'])) {
-            $model->attributes = $_GET['SellOrder'];
-
-
-
-            if (!empty($model->id))
-                $criteria->addCondition('id = "' . $model->id . '"');
-
-
-            if (!empty($model->code))
-                $criteria->addCondition('code = "' . $model->code . '"');
-
-
-            if (!empty($model->departement_id))
-                $criteria->addCondition('departement_id = "' . $model->departement_id . '"');
-
-
-            if (!empty($model->created))
-                $criteria->addCondition('created = "' . $model->created . '"');
-
-
-            if (!empty($model->created_user_id))
-                $criteria->addCondition('created_user_id = "' . $model->created_user_id . '"');
-
-
-            if (!empty($model->modified))
-                $criteria->addCondition('modified = "' . $model->modified . '"');
-
-
-            if (!empty($model->description))
-                $criteria->addCondition('description = "' . $model->description . '"');
-
-
-            if (!empty($model->subtotal))
-                $criteria->addCondition('subtotal = "' . $model->subtotal . '"');
-
-
-            if (!empty($model->discount))
-                $criteria->addCondition('discount = "' . $model->discount . '"');
-
-            if (!empty($model->ppn))
-                $criteria->addCondition('ppn = "' . $model->ppn . '"');
-
-
-            if (!empty($model->tax))
-                $criteria->addCondition('tax = "' . $model->tax . '"');
-
-
-            if (!empty($model->term))
-                $criteria->addCondition('term = "' . $model->term . '"');
-
-
-            if (!empty($model->dp))
-                $criteria->addCondition('dp = "' . $model->dp . '"');
-
-
-            if (!empty($model->credit))
-                $criteria->addCondition('credit = "' . $model->credit . '"');
-
-
-            if (!empty($model->payment))
-                $criteria->addCondition('payment = "' . $model->payment . '"');
-        }
-//        $session['SellOrder_records'] = SellOrder::model()->findAll($criteria);
 
 
         $this->render('index', array(

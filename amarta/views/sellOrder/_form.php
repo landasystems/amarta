@@ -128,9 +128,9 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                         ?>
                         <div style="display:none">
                             <?php
-                            echo $form->dropDownListRow($model, 'departement_id', CHtml::listData(Departement::model()->findAll(), 'id', 'name'), array(
-                                'class' => 'span3',
-                            ));
+//                            echo $form->dropDownListRow($model, 'departement_id', CHtml::listData(Departement::model()->findAll(), 'id', 'name'), array(
+//                                'class' => 'span3',
+//                            ));
                             ?>
                         </div>
                         <?php
@@ -245,6 +245,7 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                         <td style="text-align:right"><?php
                             echo CHtml::textField('amount', '', array('id' => 'amount',
                                 'maxlength' => 6,
+                                'class'=> 'angka',
                                 'style' => 'width:80px',
 //                                'oninput'=>'js:calculate()'
                             ))
