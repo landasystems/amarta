@@ -14,11 +14,11 @@
  */
 class SiteConfig extends CActiveRecord {
 
-    public $cache;
-
-    public function __construct() {
-        $this->cache = Yii::app()->cache;
-    }
+//    public $cache;
+//
+//    public function __construct() {
+//        $this->cache = Yii::app()->cache;
+//    }
 
     /**
      * Returns the static model of the specified AR class.
@@ -45,13 +45,10 @@ class SiteConfig extends CActiveRecord {
         return array(
             array('', 'numerical', 'integerOnly' => true),
             array('client_name, client_logo,', 'length', 'max' => 255),
-            array('is_approval, method, language_default,format_spp, format_salary, format_buy,format_buy_order,format_buy_retur,format_sell,format_sell_order,format_sell_retur,format_in,format_out,format_opname,format_workorder,format_workorder_split, format_workorder_process, format_cash_in, format_cash_out', 'length', 'max' => 45),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
-            array('roles_customer', 'safe'),
+            array('format_spp, format_salary, format_buy,format_buy_order,format_sell,format_sell_order,format_sell_retur,format_workorder,format_workorder_split, format_workorder_process', 'length', 'max' => 45),
             array('id, client_name', 'safe', 'on' => 'search'),
             array('client_logo', 'unsafe'),
-            array('report_sell_order,report_sell,report_sell_retur,report_buy_order,report_buy,report_buy_retur,report_in,report_out,report_cash_out,report_cash_in,report_jurnal,date_system,autonumber,autopostnumber', 'safe'),
+            array('report_sell_order,report_sell,report_sell_retur,report_buy_order,report_buy,report_buy_retur,report_in,report_out,report_jurnal,date_system,', 'safe'),
         );
     }
 
@@ -78,14 +75,10 @@ class SiteConfig extends CActiveRecord {
             'address' => 'Address',
             'phone' => 'Phone',
             'email' => 'Email',
-            'method' => 'Stocking Method',
             'format_workorder' => 'Format SPK',
             'format_spp' => 'Format SPP',
             'format_workorder_split' => 'Format NOPOT',
             'format_workorder_process' => 'Format Nota Jahit',
-            'format_cash_in' => 'Kas Masuk',
-            'format_cash_out' => 'Kas Keluar',
-            'format_jurnal' => 'Jurnal',
             'format_cash_inks_acc' => 'Kas Masuk Approval',
             'format_cash_inbk_acc' => 'Bank Masuk Approval',
             'format_cash_outks_acc' => 'Kas Keluar Approval',
@@ -93,45 +86,12 @@ class SiteConfig extends CActiveRecord {
             'format_jurnal_acc' => 'Jurnal Approval',
         );
     }
-
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-     */
-    public function search() {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
-
-        $criteria = new CDbCriteria;
-
-        $criteria->compare('id', $this->id);
-        $criteria->compare('client_name', $this->client_name, true);
-        $criteria->compare('client_logo', $this->client_logo, true);
-        $criteria->compare('city_id', $this->city_id);
-        $criteria->compare('address', $this->address, true);
-        $criteria->compare('phone', $this->phone, true);
-        $criteria->compare('email', $this->email, true);
-
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
-    }
-
 //    public function getFullAddress() {
 //        return $this->address . ', ' . $this->City->name . ', ' . $this->City->Province->name;
 //    }
 
     public function listSiteConfig() {
-
-//        return SiteConfig::model()->findByPk(param('id'));
-//        trace ($this->cache['listSiteConfig']);
-
-        if (empty(Yii::app()->session['site'])) {
-//            trace('bb');
-            Yii::app()->session['site'] = $this->findByPk(param('id'));
-        }
-//        trace ($this->cache['listSiteConfig']);
-        return Yii::app()->session['site'];
+        return $this->findByPk(param('id'));
     }
 
     public function formatting($type, $x = true, $prefix = '', $param = '', $date = null) {
