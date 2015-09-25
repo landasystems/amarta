@@ -55,16 +55,16 @@ $this->endWidget();
 
 
 <?php
-$buton="";
-if(landa()->checkAccess('WorkOrder', 'r')){
-   $buton .= '{view}'; 
-}
-if(landa()->checkAccess('WorkOrder', 'd')){
-   $buton .= '{delete}'; 
-}
-if(landa()->checkAccess('WorkOrder', 'u')){
-   $buton .= '{update}'; 
-}
+$buton="{view}{delete}{update}";
+//if(landa()->checkAccess('WorkOrder', 'r')){
+//   $buton .= '{view}'; 
+//}
+//if(landa()->checkAccess('WorkOrder', 'd')){
+//   $buton .= '{delete}'; 
+//}
+//if(landa()->checkAccess('WorkOrder', 'u')){
+//   $buton .= '{update}'; 
+//}
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'workorder-grid',
     'dataProvider' => $model->search(),

@@ -55,16 +55,16 @@ $this->endWidget();
 
 
 <?php
-$buton="";
-if(landa()->checkAccess('WorkOrderIntruction', 'r')){
-   $buton .= '{view}'; 
-}
-if(landa()->checkAccess('WorkOrderIntruction', 'd')){
-   $buton .= '{delete}'; 
-}
-if(landa()->checkAccess('WorkOrderIntruction', 'u')){
-   $buton .= '{update}'; 
-}
+$buton="{view}{delete}{update}";
+//if(landa()->checkAccess('WorkOrderIntruction', 'r')){
+//   $buton .= '{view}'; 
+//}
+//if(landa()->checkAccess('WorkOrderIntruction', 'd')){
+//   $buton .= '{delete}'; 
+//}
+//if(landa()->checkAccess('WorkOrderIntruction', 'u')){
+//   $buton .= '{update}'; 
+//}
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'workorder-intruction-grid',
     'dataProvider' => $model->search(),

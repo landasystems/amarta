@@ -49,16 +49,17 @@ $this->endWidget();
 
 
 <?php
-$buton = "";
-if (landa()->checkAccess('Product', 'r')) {
-    $buton .= '{view}';
-}
-if (landa()->checkAccess('Product', 'd')) {
-    $buton .= '{delete}';
-}
-if (landa()->checkAccess('Product', 'u')) {
-    $buton .= '{update}';
-}
+$buton = "{view}{delete}{update}";
+//if (landa()->checkAccess('Product', 'r')) {
+//    $buton .= '{view}';
+//}
+//if (landa()->checkAccess('Product', 'd')) {
+//    $buton .= '{delete}';
+//}
+//if (landa()->checkAccess('Product', 'u')) {
+//    $buton .= '{update}';
+//}
+
 ?>
 
 <div id="yw0">

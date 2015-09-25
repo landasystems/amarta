@@ -48,16 +48,16 @@ $this->endWidget();
 
 
 <?php
-$buton = "";
-if (landa()->checkAccess('ProductCategory', 'r')) {
-    $buton .= '{view}';
-}
-if (landa()->checkAccess('ProductCategory', 'd')) {
-    $buton .= '{delete}';
-}
-if (landa()->checkAccess('ProductCategory', 'u')) {
-    $buton .= '{update}';
-}
+$buton="{view}{delete}{update}";
+//if (landa()->checkAccess('ProductCategory', 'r')) {
+//    $buton .= '{view}';
+//}
+//if (landa()->checkAccess('ProductCategory', 'd')) {
+//    $buton .= '{delete}';
+//}
+//if (landa()->checkAccess('ProductCategory', 'u')) {
+//    $buton .= '{update}';
+//}
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'product-category-grid',
     'dataProvider' => $model->search(),
