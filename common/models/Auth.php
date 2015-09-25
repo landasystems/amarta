@@ -1,16 +1,5 @@
 <?php
 
-/**
- * This is the model class for table "{{auth}}".
- *
- * The followings are the available columns in table '{{auth}}':
- * @property integer $id
- * @property string $name
- * @property string $description
- * @property string $alias
- * @property string $module
- * @property string $crud
- */
 class Auth extends CActiveRecord {
 
     /**
@@ -94,24 +83,28 @@ class Auth extends CActiveRecord {
 
     public function modules($arg = NULL) {
         return array(
-            array('visible' => landa()->checkAccess('Dashboard', 'r'), 'label' => '<span class="icon16 icomoon-icon-screen"></span>Dashboard', 'url' => array('/dashboard'), 'auth_id' => 'Dashboard'),
-            array('visible' => landa()->checkAccess('User', 'r'), 'label' => '<span class="icon16 icomoon-icon-user-3"></span>User', 'url' => array('/user'), 'auth_id' => 'User'),
-            array('visible' => landa()->checkAccess('Product', 'r'), 'label' => '<span class="icon16 silk-icon-notebook"></span>Barang', 'url' => array('/product'), 'auth_id' => 'Product'),
-            array('label' => '<span class="icon16  entypo-icon-user"></span>Customer', 'url' => array('/user/customer'), 'auth_id' => 'Customer'),
-            array('visible' => landa()->checkAccess('Employment', 'r'), 'label' => '<span class="icon16  entypo-icon-user"></span>Pegawai', 'url' => array('/user/employment'), 'auth_id' => 'Employment'),
-            array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 silk-icon-notebook"></span>Produksi', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
-                    array('visible' => landa()->checkAccess('SellOrder', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Surat Pesanan', 'url' => array('/sellOrder'), 'auth_id' => 'SellOrder'),
-                    array('visible' => landa()->checkAccess('WorkOrder', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>SPK', 'url' => array('/workorder'), 'auth_id' => 'WorkOrder'),
-                    array('visible' => landa()->checkAccess('WorkOrderIntruction', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Rencana Marker', 'url' => array('/workorderIntruction'), 'auth_id' => 'WorkOrderIntruction'),
-                    array('visible' => landa()->checkAccess('WorkOrderIntructionDet', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>SPP & NOPOT', 'url' => array('/workorderIntructionDet'), 'auth_id' => 'WorkOrderIntructionDet'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Nota Jahit', 'url' => array('/workorderStatus/index'), 'auth_id' => 'ProsesStatus'),
+            array('visible' => landa()->checkAccess('Dashboard', 'r'), 'label' => 'Dashboard', 'url' => array('/dashboard'), 'auth_id' => 'Dashboard'),
+            array('visible' => landa()->checkAccess('SiteConfig', 'r') || landa()->checkAccess('Roles', 'r') || landa()->checkAccess('User', 'r'), 'label' => 'Settings', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
+                    array('visible' => landa()->checkAccess('SiteConfig', 'r'), 'auth_id' => 'SiteConfig', 'label' => 'Site config', 'url' => array('/siteConfig/update/1'), 'crud' => array("r" => 1)),
+                    array('visible' => landa()->checkAccess('Roles', 'r'), 'auth_id' => 'Roles', 'label' => 'Access', 'url' => array('/roles'), 'crud' => array("r" => 1)),
+                    array('visible' => landa()->checkAccess('User', 'r'), 'auth_id' => 'User', 'label' => 'User', 'url' => url('/user'), 'crud' => array("r" => 1)),
                 )),
-            array('visible' => landa()->checkAccess('Salary', 'r'), 'label' => '<span class="icon16 icomoon-icon-newspaper"></span>Gaji', 'url' => array('/salaryOut/create'), 'auth_id' => 'Salary'),
-            array('label' => '<span class="icon16 cut-icon-printer-2"></span>Laporan', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Proses Produksi', 'url' => array('/workorder/takingNote'), 'auth_id' => 'ProsesStatus'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Proses Per-Nopot', 'url' => array('/report/processPerSplit'), 'auth_id' => 'ProsesStatus'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Proses Status', 'url' => array('/workorder/process'), 'auth_id' => 'ProsesStatus'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => '<span class="icon16 entypo-icon-document"></span>Nomor Potong', 'url' => array('/report/nopot'), 'auth_id' => 'ProsesStatus'),
+            array('visible' => landa()->checkAccess('Product', 'r'), 'label' => 'Barang', 'url' => array('/product'), 'auth_id' => 'Product'),
+            array('label' => 'Customer', 'url' => array('/user/customer'), 'auth_id' => 'Customer'),
+            array('visible' => landa()->checkAccess('Employment', 'r'), 'label' => 'Pegawai', 'url' => array('/user/employment'), 'auth_id' => 'Employment'),
+            array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Produksi', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
+                    array('visible' => landa()->checkAccess('SellOrder', 'r'), 'label' => 'Surat Pesanan', 'url' => array('/sellOrder'), 'auth_id' => 'SellOrder'),
+                    array('visible' => landa()->checkAccess('WorkOrder', 'r'), 'label' => 'SPK', 'url' => array('/workorder'), 'auth_id' => 'WorkOrder'),
+                    array('visible' => landa()->checkAccess('WorkOrderIntruction', 'r'), 'label' => 'Rencana Marker', 'url' => array('/workorderIntruction'), 'auth_id' => 'WorkOrderIntruction'),
+                    array('visible' => landa()->checkAccess('WorkOrderIntructionDet', 'r'), 'label' => 'SPP & NOPOT', 'url' => array('/workorderIntructionDet'), 'auth_id' => 'WorkOrderIntructionDet'),
+                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Nota Jahit', 'url' => array('/workorderStatus/index'), 'auth_id' => 'ProsesStatus'),
+                )),
+            array('visible' => landa()->checkAccess('Salary', 'r'), 'label' => 'Gaji', 'url' => array('/salaryOut/create'), 'auth_id' => 'Salary'),
+            array('label' => 'Laporan', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
+                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Proses Produksi', 'url' => array('/workorder/takingNote'), 'auth_id' => 'ProsesStatus'),
+                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Proses Per-Nopot', 'url' => array('/report/processPerSplit'), 'auth_id' => 'ProsesStatus'),
+                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Proses Status', 'url' => array('/workorder/process'), 'auth_id' => 'ProsesStatus'),
+                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Nomor Potong', 'url' => array('/report/nopot'), 'auth_id' => 'ProsesStatus'),
                 )),
         );
     }
