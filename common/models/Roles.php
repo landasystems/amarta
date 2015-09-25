@@ -10,13 +10,6 @@
  */
 class Roles extends CActiveRecord {
 
-    /**
-     * @return string the associated database table name
-     */
-//    public function getDbConnection() {
-//        return Yii::app()->db2;
-//    }
-
     public function tableName() {
         return '{{roles}}';
     }

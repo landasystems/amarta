@@ -1,0 +1,1286 @@
+2015/05/10 23:49:23 [error] ['aa'] Landa Var Dump
+in /var/www/amarta/common/globals.php (6)
+in /var/www/amarta/amarta/controllers/WorkorderStatusController.php (132)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/10 23:49:23 [error] ['bb'] Landa Var Dump
+in /var/www/amarta/common/globals.php (6)
+in /var/www/amarta/amarta/controllers/WorkorderStatusController.php (138)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/10 23:49:23 [error] ['28-05-2015 03:33'] Landa Var Dump
+in /var/www/amarta/common/globals.php (6)
+in /var/www/amarta/amarta/controllers/WorkorderStatusController.php (145)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/10 23:49:50 [error] ['aa'] Landa Var Dump
+in /var/www/amarta/common/globals.php (6)
+in /var/www/amarta/amarta/controllers/WorkorderStatusController.php (132)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/10 23:49:50 [error] ['bb'] Landa Var Dump
+in /var/www/amarta/common/globals.php (6)
+in /var/www/amarta/amarta/controllers/WorkorderStatusController.php (138)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/10 23:49:50 [error] ['28-05-2015 15:33'] Landa Var Dump
+in /var/www/amarta/common/globals.php (6)
+in /var/www/amarta/amarta/controllers/WorkorderStatusController.php (145)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/11 00:23:42 [error] [php] Trying to get property of non-object (/var/www/amarta/amarta/views/workorderStatus/_form.php:195)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderStatusController->renderFile()
+#2 /var/www/amarta/amarta/views/workorderStatus/update.php(42): WorkorderStatusController->renderPartial()
+#3 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require()
+#4 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): WorkorderStatusController->renderInternal()
+#5 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderStatusController->renderFile()
+#7 /var/www/amarta/common/lib/yii/web/CController.php(782): WorkorderStatusController->renderPartial()
+#8 /var/www/amarta/amarta/controllers/WorkorderStatusController.php(187): WorkorderStatusController->render()
+#9 /var/www/amarta/amarta/controllers/WorkorderStatusController.php(53): WorkorderStatusController->actionUpdate()
+#10 unknown(0): WorkorderStatusController->actionView()
+#11 /var/www/amarta/common/lib/yii/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#12 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#13 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#14 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): WorkorderStatusController->runAction()
+#15 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#17 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): WorkorderStatusController->filterAccessControl()
+#18 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#19 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#20 /var/www/amarta/common/lib/yii/web/CController.php(265): WorkorderStatusController->runActionWithFilters()
+#21 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): WorkorderStatusController->run()
+#22 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#23 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#24 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/workorderStatus/14.html
+in /var/www/amarta/amarta/views/workorderStatus/_form.php (195)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/views/workorderStatus/update.php (42)
+2015/05/11 00:26:44 [error] [exception.CException] exception 'CException' with message 'Property "WorkorderProcess.SPK" is not defined.' in /var/www/amarta/common/lib/yii/base/CComponent.php:130
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(145): CComponent->__get('SPK')
+#1 /var/www/amarta/amarta/views/workorder/_finishingNote.php(46): CActiveRecord->__get('SPK')
+#2 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require('/var/www/amarta...')
+#3 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): CBaseController->renderInternal('/var/www/amarta...', Array, true)
+#4 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile(Object(WorkorderController), '/var/www/amarta...', Array, true)
+#5 /var/www/amarta/common/lib/yii/web/CController.php(869): CBaseController->renderFile('/var/www/amarta...', Array, true)
+#6 /var/www/amarta/amarta/views/workorder/takingNote.php(114): CController->renderPartial('_finishingNote', Array)
+#7 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require('/var/www/amarta...')
+#8 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): CBaseController->renderInternal('/var/www/amarta...', Array, true)
+#9 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile(Object(WorkorderController), '/var/www/amarta...', Array, true)
+#10 /var/www/amarta/common/lib/yii/web/CController.php(869): CBaseController->renderFile('/var/www/amarta...', Array, true)
+#11 /var/www/amarta/common/lib/yii/web/CController.php(782): CController->renderPartial('takingNote', Array, true)
+#12 /var/www/amarta/amarta/controllers/WorkorderController.php(851): CController->render('takingNote', Array)
+#13 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): WorkorderController->actionTakingNote()
+#14 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams(Array)
+#15 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#17 /var/www/amarta/common/lib/yii/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#21 /var/www/amarta/common/lib/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('takingNote')
+#23 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('workorder/takin...')
+#24 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#25 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#26 {main}
+REQUEST_URI=/amarta/amarta/www/sys/workorder/takingNote.html
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/workorder/takingNote.html
+---
+2015/05/11 00:30:34 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'StartFromUser.name' in 'order clause'. The SQL statement executed was: SELECT * FROM `acca_workorder_process` `t` WHERE (date(time_end) >="2015-05-03" AND date(time_end) <="2015-05-20") ORDER BY StartFromUser.name, time_end.
+in /var/www/amarta/amarta/controllers/SalaryOutController.php (74)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/11 00:30:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'StartFromUser.name' in 'order clause'. The SQL statement executed was: SELECT * FROM `acca_workorder_process` `t` WHERE (date(time_end) >="2015-05-03" AND date(time_end) <="2015-05-20") ORDER BY StartFromUser.name, time_end' in /var/www/amarta/common/lib/yii/db/CDbCommand.php:543
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /var/www/amarta/amarta/controllers/SalaryOutController.php(74): CActiveRecord->findAll(Object(CDbCriteria))
+#4 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): SalaryOutController->actionDetail()
+#5 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/amarta/common/lib/yii/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#12 /var/www/amarta/common/lib/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('detail')
+#14 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('salaryOut/detai...')
+#15 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#17 {main}
+REQUEST_URI=/amarta/amarta/www/sys/salaryOut/detail.html
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/salaryOut/create.html
+---
+2015/05/11 00:51:31 [error] [php] Undefined index: user_id (/var/www/amarta/amarta/views/workorder/_finishingNote.php:37)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderController->renderFile()
+#2 /var/www/amarta/amarta/views/workorder/takingNote.php(135): WorkorderController->renderPartial()
+#3 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require()
+#4 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): WorkorderController->renderInternal()
+#5 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderController->renderFile()
+#7 /var/www/amarta/common/lib/yii/web/CController.php(782): WorkorderController->renderPartial()
+#8 /var/www/amarta/amarta/controllers/WorkorderController.php(851): WorkorderController->render()
+#9 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): WorkorderController->actionTakingNote()
+#10 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#11 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): WorkorderController->runAction()
+#12 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#14 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): WorkorderController->filterAccessControl()
+#15 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#16 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#17 /var/www/amarta/common/lib/yii/web/CController.php(265): WorkorderController->runActionWithFilters()
+#18 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): WorkorderController->run()
+#19 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#20 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/workorder/takingNote.html
+in /var/www/amarta/amarta/views/workorder/_finishingNote.php (37)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/views/workorder/takingNote.php (135)
+2015/05/11 00:53:14 [error] [php] Undefined index: user_id (/var/www/amarta/amarta/views/workorder/_finishingNote.php:37)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderController->renderFile()
+#2 /var/www/amarta/amarta/views/workorder/takingNote.php(135): WorkorderController->renderPartial()
+#3 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require()
+#4 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): WorkorderController->renderInternal()
+#5 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderController->renderFile()
+#7 /var/www/amarta/common/lib/yii/web/CController.php(782): WorkorderController->renderPartial()
+#8 /var/www/amarta/amarta/controllers/WorkorderController.php(851): WorkorderController->render()
+#9 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): WorkorderController->actionTakingNote()
+#10 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#11 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): WorkorderController->runAction()
+#12 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#14 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): WorkorderController->filterAccessControl()
+#15 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#16 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#17 /var/www/amarta/common/lib/yii/web/CController.php(265): WorkorderController->runActionWithFilters()
+#18 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): WorkorderController->run()
+#19 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#20 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/workorder/takingNote.html
+in /var/www/amarta/amarta/views/workorder/_finishingNote.php (37)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/views/workorder/takingNote.php (135)
+2015/05/11 01:13:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/05/11 01:13:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/
+---
+2015/05/11 01:13:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/05/11 01:13:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/05/11 01:13:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/05/11 01:13:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/05/11 01:22:12 [error] [exception.CException] exception 'CException' with message 'Property "WorkorderProcess.workorder_status_id" is not defined.' in /var/www/amarta/common/lib/yii/base/CComponent.php:173
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(161): CComponent->__set('workorder_statu...', '16')
+#1 /var/www/amarta/amarta/controllers/WorkorderStatusController.php(85): CActiveRecord->__set('workorder_statu...', '16')
+#2 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): WorkorderStatusController->actionCreate()
+#3 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#10 /var/www/amarta/common/lib/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('create')
+#12 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('workorderStatus...')
+#13 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#15 {main}
+REQUEST_URI=/amarta/amarta/www/sys/workorderStatus/create.html
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/workorderStatus/create.html
+---
+2015/05/11 01:27:18 [error] [php] Trying to get property of non-object (/var/www/amarta/amarta/views/salaryOut/_salaryDetail.php:64)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(869): SalaryOutController->renderFile()
+#1 /var/www/amarta/amarta/controllers/SalaryOutController.php(85): SalaryOutController->renderPartial()
+#2 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): SalaryOutController->actionDetail()
+#3 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#4 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): SalaryOutController->runAction()
+#5 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): SalaryOutController->filterAccessControl()
+#8 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#10 /var/www/amarta/common/lib/yii/web/CController.php(265): SalaryOutController->runActionWithFilters()
+#11 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): SalaryOutController->run()
+#12 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/salaryOut/detail.html
+in /var/www/amarta/amarta/views/salaryOut/_salaryDetail.php (64)
+in /var/www/amarta/amarta/controllers/SalaryOutController.php (85)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/11 01:29:10 [error] [php] Trying to get property of non-object (/var/www/amarta/amarta/views/salaryOut/_salaryDetail.php:87)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(869): SalaryOutController->renderFile()
+#1 /var/www/amarta/amarta/controllers/SalaryOutController.php(85): SalaryOutController->renderPartial()
+#2 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): SalaryOutController->actionDetail()
+#3 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#4 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): SalaryOutController->runAction()
+#5 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): SalaryOutController->filterAccessControl()
+#8 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#10 /var/www/amarta/common/lib/yii/web/CController.php(265): SalaryOutController->runActionWithFilters()
+#11 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): SalaryOutController->run()
+#12 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/salaryOut/detail.html
+in /var/www/amarta/amarta/views/salaryOut/_salaryDetail.php (87)
+in /var/www/amarta/amarta/controllers/SalaryOutController.php (85)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/11 06:44:11 [error] [php] Undefined index: $_GET (/var/www/amarta/amarta/views/workorder/_finishingNote.php:36)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderController->renderFile()
+#2 /var/www/amarta/amarta/controllers/WorkorderController.php(910): WorkorderController->renderPartial()
+#3 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): WorkorderController->actionExcelProductNote()
+#4 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#5 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): WorkorderController->runAction()
+#6 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): WorkorderController->filterAccessControl()
+#9 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#11 /var/www/amarta/common/lib/yii/web/CController.php(265): WorkorderController->runActionWithFilters()
+#12 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): WorkorderController->run()
+#13 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/workorder/excelProductNote.html?user_id%5B0%5D=84&user_id%5B1%5D=138&spk=1&date=05%2F01%2F2015+-+05%2F11%2F2015
+in /var/www/amarta/amarta/views/workorder/_finishingNote.php (36)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/controllers/WorkorderController.php (910)
+2015/05/11 06:50:37 [error] [php] Undefined index: user_id (/var/www/amarta/amarta/views/workorder/takingNote.php:112)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderController->renderFile()
+#2 /var/www/amarta/common/lib/yii/web/CController.php(782): WorkorderController->renderPartial()
+#3 /var/www/amarta/amarta/controllers/WorkorderController.php(851): WorkorderController->render()
+#4 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): WorkorderController->actionTakingNote()
+#5 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#6 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): WorkorderController->runAction()
+#7 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): WorkorderController->filterAccessControl()
+#10 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#12 /var/www/amarta/common/lib/yii/web/CController.php(265): WorkorderController->runActionWithFilters()
+#13 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): WorkorderController->run()
+#14 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/workorder/takingNote.html
+in /var/www/amarta/amarta/views/workorder/takingNote.php (112)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/controllers/WorkorderController.php (851)
+2015/05/11 06:50:44 [error] [php] Undefined index: user_id (/var/www/amarta/amarta/views/workorder/takingNote.php:112)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderController->renderFile()
+#2 /var/www/amarta/common/lib/yii/web/CController.php(782): WorkorderController->renderPartial()
+#3 /var/www/amarta/amarta/controllers/WorkorderController.php(851): WorkorderController->render()
+#4 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): WorkorderController->actionTakingNote()
+#5 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#6 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): WorkorderController->runAction()
+#7 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): WorkorderController->filterAccessControl()
+#10 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#12 /var/www/amarta/common/lib/yii/web/CController.php(265): WorkorderController->runActionWithFilters()
+#13 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): WorkorderController->run()
+#14 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/workorder/takingNote.html
+in /var/www/amarta/amarta/views/workorder/takingNote.php (112)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/controllers/WorkorderController.php (851)
+2015/05/11 06:51:23 [error] [php] Undefined offset: 1 (/var/www/amarta/amarta/controllers/WorkorderController.php:903)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): WorkorderController->runAction()
+#1 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): WorkorderController->filterAccessControl()
+#4 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(265): WorkorderController->runActionWithFilters()
+#7 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): WorkorderController->run()
+#8 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/workorder/excelProductNote.html?&spk=0&date=
+in /var/www/amarta/amarta/controllers/WorkorderController.php (903)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/05/11 06:51:36 [error] [php] Undefined offset: 1 (/var/www/amarta/amarta/views/workorder/takingNote.php:131)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): WorkorderController->renderFile()
+#2 /var/www/amarta/common/lib/yii/web/CController.php(782): WorkorderController->renderPartial()
+#3 /var/www/amarta/amarta/controllers/WorkorderController.php(851): WorkorderController->render()
+#4 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): WorkorderController->actionTakingNote()
+#5 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#6 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): WorkorderController->runAction()
+#7 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): WorkorderController->filterAccessControl()
+#10 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#12 /var/www/amarta/common/lib/yii/web/CController.php(265): WorkorderController->runActionWithFilters()
+#13 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): WorkorderController->run()
+#14 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/workorder/takingNote.html
+in /var/www/amarta/amarta/views/workorder/takingNote.php (131)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/controllers/WorkorderController.php (851)
+2015/05/11 06:54:06 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'WARNING!! Minimal mengambil satu Proses Produksi!' in /var/www/amarta/amarta/controllers/WorkorderStatusController.php:110
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): WorkorderStatusController->actionCreate()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#3 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /var/www/amarta/common/lib/yii/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#5 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#7 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#8 /var/www/amarta/common/lib/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('create')
+#10 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('workorderStatus...')
+#11 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#13 {main}
+REQUEST_URI=/amarta/amarta/www/sys/workorderStatus/create.html
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/workorderStatus/create.html
+---
+2015/05/11 06:54:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('workorderStatus...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/workorderStatus/images/favicon.ico
+---
+2015/05/12 14:26:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+---
+2015/05/12 14:26:59 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'landa_ims_amartawisesa.acca_user' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `acca_user`.
+in /var/www/amarta/common/components/UserIdentity.php (36)
+in /var/www/amarta/common/models/LoginForm.php (51)
+in /var/www/amarta/amarta/controllers/SiteController.php (115)
+2015/05/12 14:26:59 [error] [exception.CDbException] exception 'CDbException' with message 'The table "{{user}}" for active record class "User" cannot be found in the database.' in /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#4 /var/www/amarta/common/components/UserIdentity.php(36): CActiveRecord->find(Array)
+#5 /var/www/amarta/common/models/LoginForm.php(51): UserIdentity->authenticate()
+#6 /var/www/amarta/common/lib/yii/validators/CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#7 /var/www/amarta/common/lib/yii/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#8 /var/www/amarta/common/lib/yii/base/CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#9 /var/www/amarta/amarta/controllers/SiteController.php(115): CModel->validate()
+#10 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#11 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#13 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /var/www/amarta/common/lib/yii/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#15 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#16 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#17 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#18 /var/www/amarta/common/lib/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('login')
+#20 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#21 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#23 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/login.html
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/05/12 16:32:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+---
+2015/05/16 09:37:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+---
+2015/05/17 18:27:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+---
+2015/05/18 09:54:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+---
+2015/05/23 09:57:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+---
+2015/05/25 11:58:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+---
+2015/06/10 08:16:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/06/15 16:12:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+---
+2015/06/17 10:16:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/06/17 10:35:08 [error] [php] Trying to get property of non-object (/var/www/amarta/amarta/controllers/ProductController.php:489)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): ProductController->runAction()
+#1 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): ProductController->filterAccessControl()
+#4 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(265): ProductController->runActionWithFilters()
+#7 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): ProductController->run()
+#8 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/product/json.html
+in /var/www/amarta/amarta/controllers/ProductController.php (489)
+in /var/www/amarta/amarta/www/sys/index.php (16)
+2015/06/17 10:42:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/17 10:42:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/17 10:49:57 [error] [php] Trying to get property of non-object (/var/www/amarta/amarta/models/User.php:373)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/base/CComponent.php(612) : eval()'d code(1): User->__get()
+#1 /var/www/amarta/common/lib/yii/base/CComponent.php(612): eval()
+#2 /var/www/amarta/common/lib/yii/zii/widgets/grid/CDataColumn.php(137): TbDataColumn->evaluateExpression()
+#3 /var/www/amarta/common/lib/yii/zii/widgets/grid/CGridColumn.php(151): TbDataColumn->renderDataCellContent()
+#4 /var/www/amarta/common/lib/yii/zii/widgets/grid/CGridView.php(616): TbDataColumn->renderDataCell()
+#5 /var/www/amarta/common/lib/yii/zii/widgets/grid/CGridView.php(572): TbGridView->renderTableRow()
+#6 /var/www/amarta/common/lib/yii/zii/widgets/grid/CGridView.php(482): TbGridView->renderTableBody()
+#7 /var/www/amarta/common/lib/yii/zii/widgets/CBaseListView.php(167): TbGridView->renderItems()
+#8 unknown(0): TbGridView->renderSection()
+#9 /var/www/amarta/common/lib/yii/zii/widgets/CBaseListView.php(150): preg_replace_callback()
+#10 /var/www/amarta/common/lib/yii/zii/widgets/CBaseListView.php(135): TbGridView->renderContent()
+#11 /var/www/amarta/common/lib/yii/web/CBaseController.php(173): TbGridView->run()
+#12 /var/www/amarta/amarta/views/user/index.php(166): UserController->widget()
+#13 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require()
+#14 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): UserController->renderInternal()
+#15 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#16 /var/www/amarta/common/lib/yii/web/CController.php(869): UserController->renderFile()
+#17 /var/www/amarta/common/lib/yii/web/CController.php(782): UserController->renderPartial()
+#18 /var/www/amarta/amarta/controllers/UserController.php(638): UserController->render()
+#19 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): UserController->actionEmployment()
+#20 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#21 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): UserController->runAction()
+#22 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#23 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#24 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#25 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#26 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#27 /var/www/amarta/common/lib/yii/web/CController.php(265): UserController->runActionWithFilters()
+#28 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): UserController->run()
+#29 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#30 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#31 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/user/employment.html
+in /var/www/amarta/amarta/models/User.php (373)
+in /var/www/amarta/amarta/views/user/index.php (166)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+2015/06/17 14:46:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/06/17 14:48:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/20 12:43:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/06/20 12:46:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/20 12:49:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/20 12:49:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/25 15:18:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/06/25 21:45:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://192.168.1.114/amarta/amarta/www/sys/site/login.html
+---
+2015/06/25 21:46:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/app...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/apple-touch-icon-57-precomposed.png
+---
+2015/06/25 21:46:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/app...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/apple-touch-icon-57-precomposed.png
+---
+2015/06/25 21:46:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/app...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/apple-touch-icon-57-precomposed.png
+---
+2015/06/25 21:46:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/app...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/apple-touch-icon-57-precomposed.png
+---
+2015/06/25 21:47:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://192.168.1.114/amarta/amarta/www/sys/
+---
+2015/06/25 21:47:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/apple-touch-icon-57-precomposed.png".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/apple-to...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/apple-touch-icon-57-precomposed.png
+---
+2015/06/25 21:47:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/apple-touch-icon-57-precomposed.png".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/apple-to...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/apple-touch-icon-57-precomposed.png
+---
+2015/06/25 21:48:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/25 21:48:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/25 21:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://192.168.1.114/amarta/amarta/www/sys/site/login.html
+---
+2015/06/25 21:51:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('workorderStatus...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/workorderStatus/images/apple-touch-icon-57-precomposed.png
+---
+2015/06/25 22:05:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('workorderStatus...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/workorderStatus/images/apple-touch-icon-57-precomposed.png
+---
+2015/06/25 22:38:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/25 22:38:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/25 22:40:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/25 22:40:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/25 22:40:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://192.168.1.114/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/25 22:40:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://192.168.1.114/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/30 10:29:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/06/30 10:34:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/06/30 10:34:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/09/25 17:59:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/09/25 17:59:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1049] Unknown database 'landa_ims_amarta'' in /var/www/amarta/common/lib/yii/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/amarta/common/lib/yii/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/amarta/common/lib/yii/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(450): CModule->getComponent('db')
+#4 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(1455): CActiveRecord->getCommandBuilder()
+#7 /var/www/amarta/common/components/UserIdentity.php(36): CActiveRecord->find(Array)
+#8 /var/www/amarta/common/models/LoginForm.php(51): UserIdentity->authenticate()
+#9 /var/www/amarta/common/lib/yii/validators/CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#10 /var/www/amarta/common/lib/yii/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#11 /var/www/amarta/common/lib/yii/base/CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#12 /var/www/amarta/amarta/controllers/SiteController.php(115): CModel->validate()
+#13 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#14 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams(Array)
+#15 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#17 /var/www/amarta/common/lib/yii/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#21 /var/www/amarta/common/lib/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('login')
+#23 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#24 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#25 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#26 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/login.html
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/09/25 17:59:21 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1049] Unknown database 'landa_ims_amartawisesa'' in /var/www/amarta/common/lib/yii/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/amarta/common/lib/yii/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/amarta/common/lib/yii/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(450): CModule->getComponent('db')
+#4 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(1455): CActiveRecord->getCommandBuilder()
+#7 /var/www/amarta/common/components/UserIdentity.php(36): CActiveRecord->find(Array)
+#8 /var/www/amarta/common/models/LoginForm.php(51): UserIdentity->authenticate()
+#9 /var/www/amarta/common/lib/yii/validators/CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#10 /var/www/amarta/common/lib/yii/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#11 /var/www/amarta/common/lib/yii/base/CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#12 /var/www/amarta/amarta/controllers/SiteController.php(115): CModel->validate()
+#13 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#14 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams(Array)
+#15 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#17 /var/www/amarta/common/lib/yii/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#21 /var/www/amarta/common/lib/yii/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('login')
+#23 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#24 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#25 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#26 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/login.html
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/09/25 18:00:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/
+---
+2015/09/25 18:00:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/
+---
+2015/09/25 18:00:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/09/25 18:00:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/09/25 18:00:16 [error] [php] Undefined variable: isi (/var/www/amarta/amarta/views/user/_form.php:41)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): UserController->renderFile()
+#2 /var/www/amarta/amarta/views/user/create.php(26): UserController->renderPartial()
+#3 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require()
+#4 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): UserController->renderInternal()
+#5 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(869): UserController->renderFile()
+#7 /var/www/amarta/common/lib/yii/web/CController.php(782): UserController->renderPartial()
+#8 /var/www/amarta/amarta/controllers/UserController.php(163): UserController->render()
+#9 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): UserController->actionCreate()
+#10 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#11 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): UserController->runAction()
+#12 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#14 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#15 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#16 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#17 /var/www/amarta/common/lib/yii/web/CController.php(265): UserController->runActionWithFilters()
+#18 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): UserController->run()
+#19 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#20 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/user/create.html?type=user
+in /var/www/amarta/amarta/views/user/_form.php (41)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/views/user/create.php (26)
+2015/09/25 18:00:51 [error] [php] include(Departement.php): failed to open stream: No such file or directory (/var/www/amarta/common/lib/yii/YiiBase.php:427)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(395): spl_autoload_call()
+#1 /var/www/amarta/common/lib/yii/db/ar/CActiveFinder.php(182): model()
+#2 /var/www/amarta/common/lib/yii/db/ar/CActiveFinder.php(230): CActiveFinder->getModel()
+#3 /var/www/amarta/common/lib/yii/db/ar/CActiveFinder.php(296): CActiveFinder->buildJoinTree()
+#4 /var/www/amarta/common/lib/yii/db/ar/CActiveFinder.php(48): CActiveFinder->buildJoinTree()
+#5 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(909): CActiveFinder->__construct()
+#6 /var/www/amarta/common/lib/yii/db/ar/CActiveRecord.php(1604): SellOrder->getActiveFinder()
+#7 /var/www/amarta/common/lib/yii/web/CActiveDataProvider.php(228): SellOrder->count()
+#8 /var/www/amarta/common/lib/yii/web/CDataProvider.php(224): CActiveDataProvider->calculateTotalItemCount()
+#9 /var/www/amarta/common/lib/yii/web/CActiveDataProvider.php(178): CActiveDataProvider->getTotalItemCount()
+#10 /var/www/amarta/common/lib/yii/web/CDataProvider.php(168): CActiveDataProvider->fetchData()
+#11 /var/www/amarta/common/lib/yii/zii/widgets/CBaseListView.php(111): CActiveDataProvider->getData()
+#12 /var/www/amarta/common/lib/yii/zii/widgets/grid/CGridView.php(339): TbGridView->init()
+#13 /var/www/amarta/common/extensions/bootstrap/widgets/TbGridView.php(66): TbGridView->init()
+#14 /var/www/amarta/common/lib/yii/web/CBaseController.php(147): TbGridView->init()
+#15 /var/www/amarta/common/lib/yii/web/CBaseController.php(172): SellOrderController->createWidget()
+#16 /var/www/amarta/amarta/views/sellOrder/index.php(133): SellOrderController->widget()
+#17 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require()
+#18 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): SellOrderController->renderInternal()
+#19 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#20 /var/www/amarta/common/lib/yii/web/CController.php(869): SellOrderController->renderFile()
+#21 /var/www/amarta/common/lib/yii/web/CController.php(782): SellOrderController->renderPartial()
+#22 /var/www/amarta/amarta/controllers/SellOrderController.php(405): SellOrderController->render()
+#23 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): SellOrderController->actionIndex()
+#24 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#25 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): SellOrderController->runAction()
+#26 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#27 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#28 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): SellOrderController->filterAccessControl()
+#29 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#30 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#31 /var/www/amarta/common/lib/yii/web/CController.php(265): SellOrderController->runActionWithFilters()
+#32 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): SellOrderController->run()
+#33 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#34 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#35 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/sellOrder.html
+in /var/www/amarta/common/extensions/bootstrap/widgets/TbGridView.php (66)
+in /var/www/amarta/amarta/views/sellOrder/index.php (133)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+2015/09/25 18:01:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/09/25 18:01:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/09/25 18:03:54 [error] [php] Undefined variable: isi (/var/www/amarta/amarta/views/user/_form.php:41)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): UserController->renderFile()
+#2 /var/www/amarta/amarta/views/user/update.php(21): UserController->renderPartial()
+#3 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require()
+#4 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): UserController->renderInternal()
+#5 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(869): UserController->renderFile()
+#7 /var/www/amarta/common/lib/yii/web/CController.php(782): UserController->renderPartial()
+#8 /var/www/amarta/amarta/controllers/UserController.php(320): UserController->render()
+#9 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): UserController->actionUpdateProfile()
+#10 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#11 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): UserController->runAction()
+#12 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#14 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#15 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#16 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#17 /var/www/amarta/common/lib/yii/web/CController.php(265): UserController->runActionWithFilters()
+#18 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): UserController->run()
+#19 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#20 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/user/updateProfile.html?type=user
+in /var/www/amarta/amarta/views/user/_form.php (41)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/views/user/update.php (21)
+2015/09/25 18:04:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/09/25 18:04:17 [error] [php] Undefined variable: isi (/var/www/amarta/amarta/views/user/_form.php:41)
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 /var/www/amarta/common/lib/yii/web/CController.php(869): UserController->renderFile()
+#2 /var/www/amarta/amarta/views/user/update.php(21): UserController->renderPartial()
+#3 /var/www/amarta/common/lib/yii/web/CBaseController.php(126): require()
+#4 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): UserController->renderInternal()
+#5 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(869): UserController->renderFile()
+#7 /var/www/amarta/common/lib/yii/web/CController.php(782): UserController->renderPartial()
+#8 /var/www/amarta/amarta/controllers/UserController.php(320): UserController->render()
+#9 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): UserController->actionUpdateProfile()
+#10 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#11 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): UserController->runAction()
+#12 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#14 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#15 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#16 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#17 /var/www/amarta/common/lib/yii/web/CController.php(265): UserController->runActionWithFilters()
+#18 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): UserController->run()
+#19 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#20 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/amarta/amarta/www/sys/index.php(16): CWebApplication->run()
+REQUEST_URI=/amarta/amarta/www/sys/user/updateProfile.html?type=user
+in /var/www/amarta/amarta/views/user/_form.php (41)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/amarta/views/user/update.php (21)
+2015/09/25 18:04:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('images/site/1-7...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/dashboard.html
+---
+2015/09/25 22:42:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/amarta/common/lib/yii/web/CController.php:483
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('site/images/fav...')
+#3 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/amarta/amarta/www/sys/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/amarta/amarta/www/sys/site/images/favicon.ico
+HTTP_REFERER=http://localhost/amarta/amarta/www/sys/site/login.html
+---
+2015/09/25 23:01:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "amarta/www/sys/images/site/1-150x150-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('amarta/www/sys/...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-150x150-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/site/login.html
+---
+2015/09/25 23:01:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/favicon.ico".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('img/favicon.ico')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/img/favicon.ico
+HTTP_REFERER=http://localhost/amarta/site/login.html
+---
+2015/09/25 23:01:17 [error] [php] in_array() expects parameter 2 to be array, null given (/var/www/amarta/common/views/site/index.php:10)
+Stack trace:
+#0 /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php(40): SiteController->renderInternal()
+#1 /var/www/amarta/common/lib/yii/web/CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#2 /var/www/amarta/common/lib/yii/web/CController.php(869): SiteController->renderFile()
+#3 /var/www/amarta/common/lib/yii/web/CController.php(782): SiteController->renderPartial()
+#4 /var/www/amarta/common/controllers/SiteController.php(39): SiteController->render()
+#5 /var/www/amarta/common/lib/yii/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#6 /var/www/amarta/common/lib/yii/web/CController.php(308): CInlineAction->runWithParams()
+#7 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(133): SiteController->runAction()
+#8 /var/www/amarta/common/lib/yii/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /var/www/amarta/common/lib/yii/web/CController.php(1145): CAccessControlFilter->filter()
+#10 /var/www/amarta/common/lib/yii/web/filters/CInlineFilter.php(58): SiteController->filterAccessControl()
+#11 /var/www/amarta/common/lib/yii/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#12 /var/www/amarta/common/lib/yii/web/CController.php(291): CFilterChain->run()
+#13 /var/www/amarta/common/lib/yii/web/CController.php(265): SiteController->runActionWithFilters()
+#14 /var/www/amarta/common/lib/yii/web/CWebApplication.php(282): SiteController->run()
+#15 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController()
+#16 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /var/www/amarta/index.php(13): CWebApplication->run()
+REQUEST_URI=/amarta/
+in /var/www/amarta/common/views/site/index.php (10)
+in /var/www/amarta/common/extensions/yii-debug-toolbar/YiiDebugViewRenderer.php (40)
+in /var/www/amarta/common/controllers/SiteController.php (39)
+2015/09/25 23:02:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/begin.js".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('js/begin.js')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/js/begin.js
+HTTP_REFERER=http://localhost/amarta/
+---
+2015/09/25 23:02:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/loaderAjax.gif".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('img/loaderAjax....')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/img/loaderAjax.gif
+HTTP_REFERER=http://localhost/amarta/
+---
+2015/09/25 23:02:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "amarta/www/sys/images/150x150-noimage.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('amarta/www/sys/...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/150x150-noimage.jpg
+HTTP_REFERER=http://localhost/amarta/
+---
+2015/09/25 23:02:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('amarta/www/sys/...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/
+---
+2015/09/25 23:03:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "amarta/www/sys/images/150x150-noimage.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('amarta/www/sys/...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/150x150-noimage.jpg
+HTTP_REFERER=http://localhost/amarta/
+---
+2015/09/25 23:03:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg".' in /var/www/amarta/common/lib/yii/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/amarta/common/lib/yii/web/CWebApplication.php(141): CWebApplication->runController('amarta/www/sys/...')
+#1 /var/www/amarta/common/lib/yii/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/amarta/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/amarta/amarta/www/sys/images/site/1-700x700-cv-amarta-wisesa.jpg
+HTTP_REFERER=http://localhost/amarta/
+---
