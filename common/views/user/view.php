@@ -40,26 +40,6 @@ $this->endWidget();
 ?>
 <div class='printableArea'>
 
-<?php
-//$this->widget('bootstrap.widgets.TbDetailView', array(
-//    'data' => $model,
-//    'attributes' => array(
-//        'id',
-//        'username',
-//        'email',
-//        'password',
-//        'user_position_id',
-//        'code',
-//        'name',
-//        'city_id',
-//        'address',
-//        'phone',
-//        'created',
-//        'created_user_id',
-//        'modified',
-//    ),
-//));
-?>
 </div>
 <style type="text/css" media="print">
     body {visibility:hidden;}
