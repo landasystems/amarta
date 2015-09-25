@@ -107,34 +107,19 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'template' => '{summary}{pager}{items}{pager}',
     'columns' => array(
         array(
-            'name' => 'Foto',
+            'name' => 'Photo',
             'type' => 'raw',
             'value' => '"$data->tagImg"',
-            'htmlOptions' => array('style' => 'text-align: center; width:180px;text-align:center;')
+            'htmlOptions' => array('style' => 'text-align: center; width:40px;text-align:center;')
         ),
+        'username',
+        'email',
+        'name',
         array(
-            'name' => 'Biodata',
+            'name' => 'Group User',
             'type' => 'raw',
-            'value' => '"$data->tagBiodata"',
-            'htmlOptions' => array('style' => 'text-align: center;')
+            'value' => '(isset($data->Roles->name)) ? $data->Roles->name : ""',
         ),
-//        array(
-//            'name' => 'Access',
-//            'type' => 'raw',
-//            'value' => '"$data->tagAccess"',
-//            'htmlOptions' => array('style' => 'text-align: center;'),
-//            'headerHtmlOptions' => array('text-align' => 'center'),
-////            'value' => '"<img src=\"$data->imgUrl[\\"medium\\"]\" class="image"/>"', 
-////            'value' => 'aa', 
-//        ),
-//        array('header'=>'Enabled',
-//        'name'=>'enabled',
-//        'type'=>'raw',    
-//        'htmlOptions' => array('class' => 'span1'),    
-//        'value'=>'($data->enabled==0) ? "<span class=\"label label-important\">No</span>":
-//         "<span class=\"label label-info\">Yes</span>"',
-//        ),   
-//        'UserPosition.name',
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => $buton,

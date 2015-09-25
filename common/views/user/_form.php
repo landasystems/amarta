@@ -92,27 +92,7 @@
                             );
                             ?>
 
-                            <div class="control-group ">
-                                <?php
-                                echo CHtml::activeLabel($model, 'province_id', array('class' => 'control-label'));
-                                ?>
-                                <div class="controls">
-                                    <?php
-                                    echo CHtml::dropDownList('province_id', $model->City->province_id, CHtml::listData(Province::model()->findAll(), 'id', 'name'), array(
-                                        'empty' => t('choose', 'global'),
-                                        'ajax' => array(
-                                            'type' => 'POST',
-                                            'url' => CController::createUrl('landa/city/dynacities'),
-                                            'update' => '#User_city_id',
-                                        ),
-                                            )
-                                    );
-                                    ?>  
-                                </div>
-                            </div>
 
-
-                            <?php echo $form->dropDownListRow($model, 'city_id', CHtml::listData(City::model()->findAll('province_id=:province_id', array(':province_id' => (int) $model->City->province_id)), 'id', 'name'), array('class' => 'span3')); ?>
 
 
 
