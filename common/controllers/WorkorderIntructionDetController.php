@@ -21,22 +21,22 @@ class WorkorderIntructionDetController extends Controller {
 
     public function accessRules() {
         return array(
-            array('allow', // c
-                'actions' => array('create'),
-                'expression' => 'app()->controller->isValidAccess("WorkOrderIntructionDet","c")'
-            ),
+//            array('allow', // c
+//                'actions' => array('create'),
+//                'expression' => 'app()->controller->isValidAccess("WorkOrderIntructionDet","c")'
+//            ),
             array('allow', // r
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'update', 'delete', 'create'),
                 'expression' => 'app()->controller->isValidAccess("WorkOrderIntructionDet","r")'
-            ),
-            array('allow', // u
-                'actions' => array('update'),
-                'expression' => 'app()->controller->isValidAccess("WorkOrderIntructionDet","u")'
-            ),
-            array('allow', // d
-                'actions' => array('delete'),
-                'expression' => 'app()->controller->isValidAccess("WorkOrderIntructionDet","d")'
             )
+//            ,array('allow', // u
+//                'actions' => array('update'),
+//                'expression' => 'app()->controller->isValidAccess("WorkOrderIntructionDet","u")'
+//            ),
+//            array('allow', // d
+//                'actions' => array('delete'),
+//                'expression' => 'app()->controller->isValidAccess("WorkOrderIntructionDet","d")'
+//            )
         );
     }
 
@@ -196,10 +196,9 @@ class WorkorderIntructionDetController extends Controller {
 
                 if (isset($product[$a + 1]) and $product[$a] == $product[$a + 1]) {
                     $k++;
-                }else{
+                } else {
                     $k = 1;
                 }
-
             }
             for ($i = 0; $i < count($_POST['nopot_id']); $i++) {
                 $codeNopot = SiteConfig::model()->formatting('nopot', false, '', $j);

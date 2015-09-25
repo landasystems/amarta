@@ -7,6 +7,12 @@ $siteConfig = SiteConfig::model()->listSiteConfig();
 <div class="row-fluid">
     <div class="span8">
         <div class="row-fluid">
+             <div class="img-polaroid span6" style="padding: 15px">
+                <b>Amarta Wisesa</b><br/>
+                <i class="icon-home"></i> Jl. Jenderal DI Panjaitan No.62, Klojen, Kota Malang<br/>
+                <i class="icon-user"></i> (0341) 551 678<br/>
+                <i class="icon-envelope"></i> amartawisesa@yahoo.com
+            </div> 
         </div>
     </div>
     <div class="span4">

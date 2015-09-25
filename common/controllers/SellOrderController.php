@@ -18,22 +18,22 @@ class SellOrderController extends Controller {
 
     public function accessRules() {
         return array(
-            array('allow', // c
-                'actions' => array('create'),
-                'expression' => 'app()->controller->isValidAccess("SellOrder","c")'
-            ),
+//            array('allow', // c
+//                'actions' => array('create'),
+//                'expression' => 'app()->controller->isValidAccess("SellOrder","c")'
+//            ),
             array('allow', // r
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view','update','delete','create'),
                 'expression' => 'app()->controller->isValidAccess("SellOrder","r")'
-            ),
-            array('allow', // u
-                'actions' => array('update'),
-                'expression' => 'app()->controller->isValidAccess("SellOrder","u")'
-            ),
-            array('allow', // d
-                'actions' => array('delete'),
-                'expression' => 'app()->controller->isValidAccess("SellOrder","d")'
             )
+//            ,array('allow', // u
+//                'actions' => array('update'),
+//                'expression' => 'app()->controller->isValidAccess("SellOrder","u")'
+//            ),
+//            array('allow', // d
+//                'actions' => array('delete'),
+//                'expression' => 'app()->controller->isValidAccess("SellOrder","d")'
+//            )
         );
     }
 

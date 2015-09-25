@@ -13,22 +13,22 @@ class WorkorderController extends Controller {
 
     public function accessRules() {
         return array(
-            array('allow', // c
-                'actions' => array('create'),
-                'expression' => 'app()->controller->isValidAccess("WorkOrder","c")'
-            ),
+//            array('allow', // c
+//                'actions' => array('create'),
+//                'expression' => 'app()->controller->isValidAccess("WorkOrder","c")'
+//            ),
             array('allow', // r
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'update', 'delete', 'create'),
                 'expression' => 'app()->controller->isValidAccess("WorkOrder","r")'
-            ),
-            array('allow', // u
-                'actions' => array('update'),
-                'expression' => 'app()->controller->isValidAccess("WorkOrder","u")'
-            ),
-            array('allow', // d
-                'actions' => array('delete'),
-                'expression' => 'app()->controller->isValidAccess("WorkOrder","d")'
             )
+//            ,array('allow', // u
+//                'actions' => array('update'),
+//                'expression' => 'app()->controller->isValidAccess("WorkOrder","u")'
+//            ),
+//            array('allow', // d
+//                'actions' => array('delete'),
+//                'expression' => 'app()->controller->isValidAccess("WorkOrder","d")'
+//            )
         );
     }
 
@@ -471,12 +471,12 @@ class WorkorderController extends Controller {
 //            $model->code = SiteConfig::model()->formatting('workorder_process', false);
 //            $model->ordering = (!empty($lastNumber->ordering)) ? $lastNumber->ordering + 1 : 1;
 //            $model->code = (isset($_POST['code'])) ? $_POST['code'] : '';
-            if( isset($_POST['code']) && !empty($_POST['code'])){
+            if (isset($_POST['code']) && !empty($_POST['code'])) {
                 $ordering = (int) substr($_POST['code'], -5);
                 $code = $_POST['code'];
-            }else{
+            } else {
                 $ordering = (!empty($lastNumber->ordering)) ? $lastNumber->ordering + 1 : 1;
-                $code = $SPK->code. substr("000000" . $ordering, -5);
+                $code = $SPK->code . substr("000000" . $ordering, -5);
             }
 //            logs($ordering);
             $model->ordering = $ordering;
@@ -500,13 +500,13 @@ class WorkorderController extends Controller {
                     . '</span></br><span style="font-size:10px">Selesai: ' . $model->time_end . ' </span></label>'
                     . '<br>'
                     . '<a href="#" data-toggle="modal" class="btn btn-mini">'
-                    . '<div class="tombol" proses="'.$model->Process->name.'" workproc="' . $model->code . '" ukuran="' . $model->NOPOT->Size->name . '" nopot="' . $model->NOPOT->code . '" id="tb[' . $model->work_process_id . ']" employe_id="'.$model->start_from_user_id.'" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->StartUser->name . '" penerima="' . '' . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . date('d-F-Y', strtotime($model->time_start)) . '" date_end="" time_start="' . date('H:i', strtotime($model->time_start)) . '" time_end="">'
+                    . '<div class="tombol" proses="' . $model->Process->name . '" workproc="' . $model->code . '" ukuran="' . $model->NOPOT->Size->name . '" nopot="' . $model->NOPOT->code . '" id="tb[' . $model->work_process_id . ']" employe_id="' . $model->start_from_user_id . '" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->StartUser->name . '" penerima="' . '' . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . date('d-F-Y', strtotime($model->time_start)) . '" date_end="" time_start="' . date('H:i', strtotime($model->time_start)) . '" time_end="">'
                     . '<i class="icon-eye-open" rel="tooltip" title="lihat"></i></div></a>'
                     . '<a href="#" class="btn btn-mini">'
-                    . '<div class="selEdit" act="selesai" workId="' . $model->id . '" nopot="' . $model->NOPOT->code . '" id="tb[' . $model->work_process_id . ']" employe_id="'.$model->start_from_user_id.'" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->StartUser->name . '" penerima="' . '' . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . date('d-F-Y', strtotime($model->time_start)) . '" date_end="" time_start="' . date('H:i', strtotime($model->time_start)) . '" time_end="">'
+                    . '<div class="selEdit" act="selesai" workId="' . $model->id . '" nopot="' . $model->NOPOT->code . '" id="tb[' . $model->work_process_id . ']" employe_id="' . $model->start_from_user_id . '" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->StartUser->name . '" penerima="' . '' . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . date('d-F-Y', strtotime($model->time_start)) . '" date_end="" time_start="' . date('H:i', strtotime($model->time_start)) . '" time_end="">'
                     . '<i class="icon-ok" rel="tooltip" title="selesai"></i></div></a>'
                     . '<a href="#" class="btn btn-mini">'
-                    . '<div class="selEdit" act="edit" workId="' . $model->id . '" nopot="' . $model->NOPOT->code . '" id="tb[' . $model->work_process_id . ']" employe_id="'.$model->start_from_user_id.'" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->StartUser->name . '" penerima="' . '' . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . date('d-F-Y', strtotime($model->time_start)) . '" date_end="" time_start="' . date('H:i', strtotime($model->time_start)) . '" time_end="">'
+                    . '<div class="selEdit" act="edit" workId="' . $model->id . '" nopot="' . $model->NOPOT->code . '" id="tb[' . $model->work_process_id . ']" employe_id="' . $model->start_from_user_id . '" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->StartUser->name . '" penerima="' . '' . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . date('d-F-Y', strtotime($model->time_start)) . '" date_end="" time_start="' . date('H:i', strtotime($model->time_start)) . '" time_end="">'
                     . '<i class="icomoon-icon-pencil" rel="tooltip" title="edit"></i></div></a>'
                     . '<a href="#" id="yw2" class="btn btn-mini">'
                     . '<div class="delProcess" id="' . $model->id . '" nopot="123">'
@@ -580,14 +580,14 @@ class WorkorderController extends Controller {
             }
             if ($_POST['act'] == 'edit') {
                 if (!empty($_POST['date_ends'])) {
-                    $jam = (!empty($_POST['time_ends'])) ? date('h:i:s',  strtotime($_POST['time_ends'])) : date('h:i:s');
+                    $jam = (!empty($_POST['time_ends'])) ? date('h:i:s', strtotime($_POST['time_ends'])) : date('h:i:s');
                     $time_end = date('Y-m-d h:i:s', strtotime($_POST['date_ends'] . $jam));
-                }else{
+                } else {
                     $time_end = NULL;
                 }
             } else if ($_POST['act'] == 'selesai') {
                 if (!empty($_POST['date_ends'])) {
-                    $jam = (!empty($_POST['time_ends'])) ? date('h:i:s',  strtotime($_POST['time_ends'])) : date('h:i:s');
+                    $jam = (!empty($_POST['time_ends'])) ? date('h:i:s', strtotime($_POST['time_ends'])) : date('h:i:s');
                     $time_end = date('Y-m-d h:i:s', strtotime($_POST['date_ends'] . $jam));
                 } else {
                     $time_end = date('Y-m-d h:i:s');
@@ -611,22 +611,22 @@ class WorkorderController extends Controller {
 
 //        $results['warna'] = '"text-align: center;vertical-align:middle; background-color:'.$warna.';max-width:216px;"';
         $label = (!empty($model->time_end)) ? 'label-info' : 'label-warning';
-        $dateStarts= isset($model->time_start)?date('d-F-Y', strtotime($model->time_start)) : ''; 
-        $dateEnds= isset($model->time_end)?date('d-F-Y', strtotime($model->time_end)) : ''; 
-        $timeStarts= isset($model->time_start)?date('H:i', strtotime($model->time_start)) : ''; 
-        $timeEnds= isset($model->time_end)?date('H:i', strtotime($model->time_end)) : ''; 
+        $dateStarts = isset($model->time_start) ? date('d-F-Y', strtotime($model->time_start)) : '';
+        $dateEnds = isset($model->time_end) ? date('d-F-Y', strtotime($model->time_end)) : '';
+        $timeStarts = isset($model->time_start) ? date('H:i', strtotime($model->time_start)) : '';
+        $timeEnds = isset($model->time_end) ? date('H:i', strtotime($model->time_end)) : '';
         $results["ambil"] = '<div id="td' . $model->id . '"><label class="label ' . $label . '">Dari : ' . $model->StartFromUser->name
                 . '<hr style="margin:0px"/><span style="font-size:10px">Mulai:' . $model->time_start
                 . '</span></br><span style="font-size:10px">Selesai: ' . $model->time_end . ' </span></label>'
                 . '<br>'
                 . '<a href="#" data-toggle="modal" class="btn btn-mini">'
-                . '<div class="tombol" workproc="'.$model->code.'" ukuran="' . $model->NOPOT->Size->name . '" nopot="' . $model->NOPOT->code . '" proses="'.$model->Process->name.'" id="tb[' . $model->work_process_id . ']" employe_id="'.$model->start_from_user_id.'" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->start_user_id . '" penerima="' . $model->end_user_id . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . $dateStarts . '" date_end="' . $dateEnds . '" time_start="' . $timeStarts . '" time_end="' . $timeEnds . '">'
+                . '<div class="tombol" workproc="' . $model->code . '" ukuran="' . $model->NOPOT->Size->name . '" nopot="' . $model->NOPOT->code . '" proses="' . $model->Process->name . '" id="tb[' . $model->work_process_id . ']" employe_id="' . $model->start_from_user_id . '" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->start_user_id . '" penerima="' . $model->end_user_id . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . $dateStarts . '" date_end="' . $dateEnds . '" time_start="' . $timeStarts . '" time_end="' . $timeEnds . '">'
                 . '<i class="icon-eye-open" rel="tooltip" title="lihat"></i></div></a>'
                 . '<a href="#" class="btn btn-mini">'
-                . '<div class="selEdit" act="selesai" workId="' . $model->id . '" id="tb[' . $model->work_process_id . ']" employe_id="'.$model->start_from_user_id.'" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->start_user_id . '" penerima="' . $model->end_user_id . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . $dateStarts . '" date_end="' . $dateEnds . '" time_start="' . $timeStarts. '" time_end="' . $timeEnds. '">'
+                . '<div class="selEdit" act="selesai" workId="' . $model->id . '" id="tb[' . $model->work_process_id . ']" employe_id="' . $model->start_from_user_id . '" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->start_user_id . '" penerima="' . $model->end_user_id . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . $dateStarts . '" date_end="' . $dateEnds . '" time_start="' . $timeStarts . '" time_end="' . $timeEnds . '">'
                 . '<i class="icon-ok" rel="tooltip" title="selesai"></i></div></a>'
                 . '<a href="#" class="btn btn-mini">'
-                . '<div class="selEdit" act="edit" workId="' . $model->id . '" id="tb[' . $model->work_process_id . ']" employe_id="'.$model->start_from_user_id.'" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->start_user_id . '" penerima="' . $model->end_user_id . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . $dateStarts. '" date_end="' . $dateEnds. '" time_start="' . $timeStarts . '" time_end="' . $timeEnds . '">'
+                . '<div class="selEdit" act="edit" workId="' . $model->id . '" id="tb[' . $model->work_process_id . ']" employe_id="' . $model->start_from_user_id . '" pekerja="' . $model->StartFromUser->name . '" dari="' . $model->start_user_id . '" penerima="' . $model->end_user_id . '" jml_awal="' . $model->start_qty . '" jml_akhir="' . $model->end_qty . '" loss="' . $model->loss_qty . '" denda="' . $model->loss_charge . '" date_start="' . $dateStarts . '" date_end="' . $dateEnds . '" time_start="' . $timeStarts . '" time_end="' . $timeEnds . '">'
                 . '<i class="icomoon-icon-pencil" rel="tooltip" title="edit"></i></div></a>'
                 . '<a href="#" id="yw2" class="btn btn-mini"><i class="icon-trash" rel="tooltip" title="hapus"></i></a></div>';
 
@@ -681,7 +681,7 @@ class WorkorderController extends Controller {
 //            $results["countJob"] = '<td id="centang[' . $model->workorder_split_id . ']" style="text-align: center;vertical-align:middle" width="145px"><b><a href="#myModalPay" value="" role="button"  data-toggle="modal" title="Mengganti status sudah terbayarkan nopot tersebut."><i class="brocco-icon-checkmark"></i></a></b></td>';
 ////            ProductStock::model()->process('in', $model->product_output_id, $model->end_qty, 1, 400000, 'Ditambahkan pada : ' . date('d-F-Y H:i:s'));
 //        } else {
-            $results["countJob"] = '';
+        $results["countJob"] = '';
 //        }
         $totalBayar = WorkorderProcess::model()->find(array(
             'select' => 'SUM(charge) as sumCharge',
@@ -719,10 +719,10 @@ class WorkorderController extends Controller {
 //        logs($nopot->code);
         WorkorderProcess::model()->deleteByPk($id);
         $checkProcess = WorkorderProcess::model()->find(array(
-            'condition' => 'work_process_id='.$process_id
+            'condition' => 'work_process_id=' . $process_id
         ));
 //        logs($process_id);
-        if(empty($checkProcess)){
+        if (empty($checkProcess)) {
             WorkProcess::model()->updateAll(array('is_workorder_process' => 0), 'id=' . $process_id);
         }
         echo '<a href="#createNew" role="button"  data-toggle="modal" ><div class="tambah btn btn-primary" id="' . $id . '-' . $nopot->code . '" ><i class="icon-plus-sign"></i></div></a>';
@@ -873,9 +873,9 @@ class WorkorderController extends Controller {
 
     public function actionDelProcess() {
         $id = $_POST['id'];
-        
+
         WorkorderProcess::model()->deleteByPk($id);
-        
+
         echo 'data berhasil di hapus!';
     }
 
