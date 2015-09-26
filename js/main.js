@@ -3,9 +3,7 @@ $(window).resize(function() {
     s > 980 && ($(".shortcuts.hided").removeClass("hided").attr("style", ""), $(".sidenav.hided").removeClass("hided").attr("style", "")), "Window size is:" + $(window).width()
 }), $(document).ready(function() {
 
-    $("form").submit(function() {
-        $(this).find(":submit").attr("disabled", "disabled")
-    })
+
     $(".collapseBtn").trigger("click")
 
     function s() {

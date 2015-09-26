@@ -31,17 +31,17 @@
                     } else {
                         if (isset($_GET['type'])) {
                             if ($_GET['type'] == 'employment') {
-                                echo 'Jabatan Karyawan : ' ;
-                                echo CHtml::dropDownList('User[roles_id]', $model->roles_id, array(3=>'Penjahit',13=>'Setrika',15=>'Penjahit Luar'), array(
+                                echo 'Jabatan Karyawan : ';
+                                echo CHtml::dropDownList('User[roles_id]', $model->roles_id, array(3 => 'Penjahit', 13 => 'Setrika', 15 => 'Penjahit Luar'), array(
                                     'empty' => 'Please Choose',
                                 ));
                             } elseif ($_GET['type'] == 'customer') {
-                                echo 'Customer' ;
+                                echo 'Customer';
                                 echo '<input type="hidden" name="User[roles_id]" value="1"/> Customer';
                             } else {
                                 $array = Roles::model()->user();
                                 if (!empty($array)) {
-                                    echo 'Grup Hak Akses : ' ;
+                                    echo 'Grup Hak Akses : ';
                                     echo CHtml::dropDownList('User[roles_id]', $model->roles_id, CHtml::listData($array, 'id', 'name'), array(
                                         'empty' => 'Please Choose',
                                     ));
@@ -137,19 +137,14 @@
 
 <div class="form-actions">
     <?php
-    $this->widget('bootstrap.widgets.TbButton', array(
-        'buttonType' => 'submit',
-        'type' => 'primary',
-        'icon' => 'ok white',
-        'label' => 'Simpan',
-    ));
-    ?>
-    <?php
-//    $this->widget('bootstrap.widgets.TbButton', array(
-//        'buttonType' => 'reset',
-//        'icon' => 'remove',
-//        'label' => 'Reset',
-//    ));
+    if (!isset($_GET['v'])){
+            $this->widget( 'bootstrap.widgets.TbButton', array(
+                'buttonType' => 'submit',
+            'type' => 'primary',
+            'icon' => 'ok white',
+            'label' => 'Simpan',
+        ));
+    }
     ?>
 </div>
 </fieldset>

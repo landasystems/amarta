@@ -1,6 +1,9 @@
 <?php
+
 class UserController extends Controller {
+
     public $breadcrumbs;
+
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -15,58 +18,13 @@ class UserController extends Controller {
 
     public function accessRules() {
         return array(
-            array('allow', // c
-                'actions' => array('create'),
-                'expression' => 'app()->controller->isValidAccess("User","r") || app()->controller->isValidAccess("CLient","r") ||
-                    app()->controller->isValidAccess("CLient","r") || app()->controller->isValidAccess("Guest","r") ||
-                    app()->controller->isValidAccess("Supplier","r") || app()->controller->isValidAccess("Employment","r") ||
-                    app()->controller->isValidAccess("Contact","r") || app()->controller->isValidAccess("Customer","r")',
-//                'expression' => 'app()->controller->isValidAccess("CLient","c")',
-//                'expression' => 'app()->controller->isValidAccess("Guest","c")',
-//                'expression' => 'app()->controller->isValidAccess("Supplier","c")',
-//                'expression' => 'app()->controller->isValidAccess("Employment","c")',
-//                'expression' => 'app()->controller->isValidAccess("Contact","c")',
-//                'expression' => 'app()->controller->isValidAccess("Customer","c")'
-            ),
             array('allow', // r
-                'actions' => array('index', 'view'),
-                'expression' => 'app()->controller->isValidAccess("User","r") || app()->controller->isValidAccess("CLient","r") ||
-                    app()->controller->isValidAccess("CLient","r") || app()->controller->isValidAccess("Guest","r") ||
-                    app()->controller->isValidAccess("Supplier","r") || app()->controller->isValidAccess("Employment","r") ||
-                    app()->controller->isValidAccess("Contact","r") || app()->controller->isValidAccess("Customer","r")',
-//                'expression' => 'app()->controller->isValidAccess("CLient","r")',
-//                'expression' => 'app()->controller->isValidAccess("Guest","r")',
-//                'expression' => 'app()->controller->isValidAccess("Supplier","r")',
-//                'expression' => 'app()->controller->isValidAccess("Employment","r")',
-//                'expression' => 'app()->controller->isValidAccess("Contact","r")',
-//                'expression' => 'app()->controller->isValidAccess("Customer","r")'
+                'actions' => array('index', 'view','create','update','delete'),
+                'expression' => 'app()->controller->isValidAccess("User","r") || 
+                    app()->controller->isValidAccess("Employment","r") ||
+                    app()->controller->isValidAccess("Customer","r")',
             ),
-            array('allow', // u
-                'actions' => array('update'),
-                'expression' => 'app()->controller->isValidAccess("User","r") || app()->controller->isValidAccess("CLient","r") ||
-                    app()->controller->isValidAccess("CLient","r") || app()->controller->isValidAccess("Guest","r") ||
-                    app()->controller->isValidAccess("Supplier","r") || app()->controller->isValidAccess("Employment","r") ||
-                    app()->controller->isValidAccess("Contact","r") || app()->controller->isValidAccess("Customer","r")',
-//                'expression' => 'app()->controller->isValidAccess("CLient",u")',
-//                'expression' => 'app()->controller->isValidAccess("Guest","u")',
-//                'expression' => 'app()->controller->isValidAccess("Supplier","u")',
-//                'expression' => 'app()->controller->isValidAccess("Emplyoment","u")',
-//                'expression' => 'app()->controller->isValidAccess("Contact","u")',
-//                'expression' => 'app()->controller->isValidAccess("Customer","u")'
-            ),
-            array('allow', // d
-                'actions' => array('delete'),
-                'expression' => 'app()->controller->isValidAccess("User","r") || app()->controller->isValidAccess("CLient","r") ||
-                    app()->controller->isValidAccess("CLient","r") || app()->controller->isValidAccess("Guest","r") ||
-                    app()->controller->isValidAccess("Supplier","r") || app()->controller->isValidAccess("Employment","r") ||
-                    app()->controller->isValidAccess("Contact","r") || app()->controller->isValidAccess("Customer","r")',
-//                'expression' => 'app()->controller->isValidAccess("CLient","d")',
-//                'expression' => 'app()->controller->isValidAccess("Guest","d")',
-//                'expression' => 'app()->controller->isValidAccess("Supplier","d")',
-//                'expression' => 'app()->controller->isValidAccess("Emplyoment","d")',
-//                'expression' => 'app()->controller->isValidAccess("Contact","d")',
-//                'expression' => 'app()->controller->isValidAccess("Customer","d")'
-            )
+            
         );
     }
 
@@ -75,13 +33,22 @@ class UserController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-        $type = 'user';
+        cs()->registerScript('read', '
+            $("form input, form textarea, form select").each(function(){
+                $(this).prop("disabled", true);
+            });');
+        $_GET['v'] = true;
+
         if (!empty($_GET['type']))
             $type = $_GET['type'];
-        $this->render('view', array(
+        else
+            $type = 'user';
+        
+        $this->render('update', array(
             'model' => $this->loadModel($id),
             'type' => $type,
         ));
+
     }
 
     /**
@@ -94,15 +61,15 @@ class UserController extends Controller {
             $listRoles = Roles::model()->listRoles();
             if (isset($listRoles[$_POST['User']['roles_id']]))
                 echo $listRoles[$_POST['User']['roles_id']]['is_allow_login'];
-            elseif ($_POST['User']['roles_id']==-1)
+            elseif ($_POST['User']['roles_id'] == -1)
                 echo '-1';
             else
                 echo '0';
         }
     }
-    public function actionRemovephoto($id){
+
+    public function actionRemovephoto($id) {
         User::model()->updateByPk($id, array('avatar_img' => NULL));
-        
     }
 
     public function actionCreate() {
@@ -162,8 +129,6 @@ class UserController extends Controller {
             'type' => $type,
         ));
     }
-
-  
 
     /**
      * Updates a particular model.
@@ -230,7 +195,7 @@ class UserController extends Controller {
                 //clear session user
                 unset(Yii::app()->session['listUser']);
                 unset(Yii::app()->session['listUserPhone']);
-                
+
                 $this->redirect(array('view', 'id' => $model->id, 'type' => $type));
             }
         }
@@ -243,10 +208,11 @@ class UserController extends Controller {
             'type' => $type,
         ));
     }
-    
+
     public function actionUpdateProfile() {
-        $_GET['id'] = user()->id; $id = user()->id;
-        
+        $_GET['id'] = user()->id;
+        $id = user()->id;
+
         $listRoles = Roles::model()->listRoles();
         $model = $this->loadModel($id);
         $type = 'user';
@@ -306,7 +272,7 @@ class UserController extends Controller {
                 //clear session user
                 unset(Yii::app()->session['listUser']);
                 unset(Yii::app()->session['listUserPhone']);
-                
+
                 $this->redirect(array('view', 'id' => $model->id, 'type' => $type));
             }
         }
@@ -319,6 +285,7 @@ class UserController extends Controller {
             'type' => $type,
         ));
     }
+
     /**
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -727,20 +694,20 @@ class UserController extends Controller {
     }
 
     public function actionSearchJson() {
-        $user = User::model()->findAll(array('condition' => 'name like "%' . $_POST['queryString'] . '%" OR phone like "%' . $_POST['queryString'] . '%"', 'limit'=>7));
+        $user = User::model()->findAll(array('condition' => 'name like "%' . $_POST['queryString'] . '%" OR phone like "%' . $_POST['queryString'] . '%"', 'limit' => 7));
         $results = array();
-        foreach ($user as $no => $o){
-            $results[$no]['url'] = url('user/'. $o->id);
+        foreach ($user as $no => $o) {
+            $results[$no]['url'] = url('user/' . $o->id);
             $results[$no]['img'] = $o->imgUrl['small'];
             $results[$no]['title'] = $o->name;
-            $results[$no]['description'] =  $o->Roles->name. '<br/>' . landa()->hp($o->phone) . '<br/>' . $o->address ;
+            $results[$no]['description'] = $o->Roles->name . '<br/>' . landa()->hp($o->phone) . '<br/>' . $o->address;
         }
         echo json_encode($results);
     }
-    
-   public function actionAuditUser() {
+
+    public function actionAuditUser() {
         $this->layout = 'main';
-        
+
         $this->render('auditUser', array(
 //            'oUserLogs' => $oUserLogs,
 //            'listUser' => $listUser,

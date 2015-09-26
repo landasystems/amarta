@@ -414,7 +414,7 @@ class WorkorderController extends Controller {
     }
 
     public function actionProcess() {
-        $this->layout = 'mainWide';
+        cs()->registerScript('wide', '$(".landaMin").trigger("click");');
 
         cs()->registerScript('', '$(".pop").popover();');
         app()->landa->registerAssetScript('jquery.freezetablecolumns.1.1.js', CClientScript::POS_BEGIN);
@@ -423,7 +423,7 @@ class WorkorderController extends Controller {
     }
 
     public function actionProcessStatus() {
-        $this->layout = 'mainWide';
+        cs()->registerScript('wide', '$(".landaMin").trigger("click");');
 
 
         Yii::app()->clientScript->reset();
@@ -844,7 +844,7 @@ class WorkorderController extends Controller {
     }
 
     public function actionTakingNote() {
-        $this->layout = 'mainWide';
+        cs()->registerScript('wide', '$(".landaMin").trigger("click");');
         $partial = array();
         $model = Workorder::model()->findAll(array());
         $this->cssJs();
@@ -852,7 +852,7 @@ class WorkorderController extends Controller {
     }
 
     public function actionHaha() {
-        $this->layout = 'mainWide';
+        cs()->registerScript('wide', '$(".landaMin").trigger("click");');
         $this->cssJs();
         app()->landa->registerAssetScript('jquery.freezetablecolumns.1.1.js', CClientScript::POS_BEGIN);
         cs()->registerScript('', '$(".pop").popover();');

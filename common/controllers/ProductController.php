@@ -18,22 +18,10 @@ class ProductController extends Controller {
 
     public function accessRules() {
         return array(
-//            array('allow', // c
-//                'actions' => array('create'),
-//                'expression' => 'app()->controller->isValidAccess("Product","c")'
-//            ),
             array('allow', // r
                 'actions' => array('index', 'view', 'update', 'delete', 'create'),
                 'expression' => 'app()->controller->isValidAccess("Product","r")'
             )
-//            ,array('allow', // u
-//                'actions' => array('update'),
-//                'expression' => 'app()->controller->isValidAccess("Product","u")'
-//            ),
-//            array('allow', // d
-//                'actions' => array('delete'),
-//                'expression' => 'app()->controller->isValidAccess("Product","d")'
-//            )
         );
     }
 
@@ -49,9 +37,18 @@ class ProductController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        cs()->registerScript('read', '
+            $("form input, form textarea, form select").each(function(){
+                $(this).prop("disabled", true);
+            });');
+        $_GET['v'] = true;
+        $listProduct = Product::model()->listProduct();
+        
         $this->cssJs();
-        $this->render('view', array(
+        $this->render('update', array(
             'model' => $this->loadModel($id),
+            'product_foto' => ProductPhoto::model()->findAll(array('condition' => 'product_id=' . $id)),
+            'listProduct' => $listProduct,
         ));
     }
 
@@ -144,13 +141,7 @@ class ProductController extends Controller {
         if (isset($_POST['Product'])) {
             $model->attributes = $_POST['Product'];
             $model->alias = landa()->urlParsing($model->name);
-            if ($_POST['Product']['type'] == "assembly" && !empty($_POST['assembly']))
-                $model->assembly_product_id = json_encode($_POST['assembly']);
-            else
-                $model->assembly_product_id = "";
-
             if ($model->save()) {
-                unset(YII::app()->session['listProduct']);
 
                 // save photo, when button create was pressed
                 if (!empty($_POST['file'])) {
@@ -170,8 +161,6 @@ class ProductController extends Controller {
                     $this->actionDefaultPhoto($model->id);
                 }
 
-                //unset list product to reload listproduct again
-                unset(Yii::app()->session['listProduct']);
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
@@ -193,9 +182,6 @@ class ProductController extends Controller {
         $model = $this->loadModel($id);
         $listProduct = Product::model()->listProduct();
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if (isset($_POST['Product'])) {
             $model->attributes = $_POST['Product'];
             $model->alias = landa()->urlParsing($model->name);
@@ -210,14 +196,6 @@ class ProductController extends Controller {
                     landa()->createImg('product/', $photo, $modelPhoto->id, false);
                 }
             }
-            if ($_POST['Product']['type'] == "assembly" && !empty($_POST['assembly']))
-                $model->assembly_product_id = json_encode($_POST['assembly']);
-            else
-                $model->assembly_product_id = "";
-
-
-            //unset list product to reload listproduct again
-            unset(Yii::app()->session['listProduct']);
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }

@@ -45,7 +45,7 @@ class WorkorderIntructionDetController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-        $this->layout = 'mainWide';
+        cs()->registerScript('wide', '$(".landaMin").trigger("click");');
         app()->landa->registerAssetScript('jquery.tablednd.js', CClientScript::POS_BEGIN);
         $model = Workorder::model()->findByPk($id);
         $count = WorkorderIntruction::model()->findAll(array('with' => 'Material', 'condition' => 'workorder_id=' . $id));

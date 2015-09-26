@@ -138,7 +138,7 @@ class Product extends CActiveRecord {
     }
 
     public function getTagImg() {
-        return '<img src="' . $this->imgUrl['small'] . '" class="img-polaroid" width="100" height="100"/><br>';
+        return '<img src="' . $this->imgUrl['small'] . '" class="img-polaroid" width="50" height="50"/><br>';
     }
     public function getImgVeriSmall() {
         return '<img src="' . $this->imgUrl['small'] . '" class="img-polaroid" width="50px" height="50px"/><br>';

@@ -17,7 +17,7 @@
         </legend>
 
         <?php echo $form->errorSummary($model, 'Opps!!!', null, array('class' => 'alert alert-error span12')); ?>
-      
+
         <input type="hidden" name="Product[type]" value="inv"/>
 
         <div class="tabbable"> <!-- Only required for left/right tabs -->
@@ -27,10 +27,10 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab1">
-                                <?php echo $form->dropDownListRow($model, 'product_category_id', CHtml::listData(ProductCategory::model()->findAll(array('order' => 'root, lft')), 'id', 'nestedname'), array('class' => 'span3', 'empty' => t('choose', 'global'))); ?>
-                                <?php echo $form->textFieldRow($model, 'code', array('class' => 'span3', 'maxlength' => 45)); ?>
-                                <?php echo $form->textFieldRow($model, 'name', array('class' => 'span3', 'maxlength' => 45)); ?>
-                                <?php echo $form->dropDownListRow($model, 'product_measure_id', CHtml::listData(ProductMeasure::model()->findAll(), 'id', 'name'), array('class' => 'span3', 'empty' => t('choose', 'global'))); ?>
+                    <?php echo $form->radioButtonListRow($model, 'product_category_id', CHtml::listData(ProductCategory::model()->findAll(array('order' => 'root, lft')), 'id', 'nestedname'), array('class' => 'span3', 'empty' => t('choose', 'global'))); ?>
+                    <?php echo $form->textFieldRow($model, 'code', array('class' => 'span3', 'maxlength' => 45)); ?>
+                    <?php echo $form->textFieldRow($model, 'name', array('class' => 'span3', 'maxlength' => 45)); ?>
+                    <?php echo $form->dropDownListRow($model, 'product_measure_id', CHtml::listData(ProductMeasure::model()->findAll(), 'id', 'name'), array('class' => 'span3', 'empty' => t('choose', 'global'))); ?>
                 </div>
                 <div class="tab-pane" id="tab3">
                     <div>
@@ -45,28 +45,8 @@
                             </a>
                             <div class="btn-group photo-det-btn">';
 
-                                $this->widget('bootstrap.widgets.TbButton', array(
-                                    'label' => '<i class="icon-tags"></i>',
-                                    'encodeLabel' => false,
-                                    'htmlOptions' => array(
-                                        'style' => 'margin-left:3px',
-                                        'onclick' => 'js:bootbox.prompt("Name new description for this photo ",
-			function(result){
-                            if (result){
-                                $.ajax({
-                                    url:"' . url('productPhoto/updateDesc/' . $oProduct->id) . '",
-                                    data:"desc="+result,
-                                    type:"POST",
-                                    success:function(result2){
-                                        $("#elm' . $oProduct->id . ' .caption").html(result);
-                                    }
-                                });
-                            }
-                        })',
-                                    ),
-                                ));
                                 echo CHtml::ajaxLink(
-                                        '<i class="brocco-icon-bookmark-2"></i>', url('product/defaultPhoto', array('id' => $oProduct->product_id, 'product_photo_id' => $oProduct->id)), array(
+                                        '<i class="icon-tags"></i>', url('product/defaultPhoto', array('id' => $oProduct->product_id, 'product_photo_id' => $oProduct->id)), array(
                                     'type' => 'POST',
                                     'success' => 'function( data )
                                                     {
@@ -139,20 +119,15 @@
 
         <div class="form-actions">
             <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'buttonType' => 'submit',
-                'type' => 'primary',
-                'icon' => 'ok white',
-                'label' => 'Simpan',
-            ));
+            if (!isset($_GET['v'])) {
+                $this->widget('bootstrap.widgets.TbButton', array(
+                    'buttonType' => 'submit',
+                    'type' => 'primary',
+                    'icon' => 'ok white',
+                    'label' => 'Simpan',
+                ));
+            }
             ?>
-            //<?php
-//            $this->widget('bootstrap.widgets.TbButton', array(
-//                'buttonType' => 'reset',
-//                'icon' => 'remove',
-//                'label' => 'Reset',
-//            ));
-//            ?>
         </div>
     </fieldset>
 

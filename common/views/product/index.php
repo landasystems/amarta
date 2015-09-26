@@ -50,22 +50,12 @@ $this->endWidget();
 
 <?php
 $buton = "{view}{delete}{update}";
-//if (landa()->checkAccess('Product', 'r')) {
-//    $buton .= '{view}';
-//}
-//if (landa()->checkAccess('Product', 'd')) {
-//    $buton .= '{delete}';
-//}
-//if (landa()->checkAccess('Product', 'u')) {
-//    $buton .= '{update}';
-//}
-
 ?>
 
 <div id="yw0">
-    <ul id="yw1" class="nav nav-tabs">
-        <li class=""><a data-toggle="tab" href="#yw0_tab_1">RAW Materials</a></li>
-        <li class="active"><a data-toggle="tab" href="#yw0_tab_2">Supporting Materials</a></li>
+    <ul id="tabproduk" class="nav nav-tabs">
+        <li class=""><a data-toggle="tab" href="#yw0_tab_1" >RAW Materials</a></li>
+        <li class=""><a data-toggle="tab" href="#yw0_tab_2">Supporting Materials</a></li>
         <li class=""><a data-toggle="tab" href="#yw0_tab_3">Finished Goods</a></li>
     </ul>
     <div class="tab-content">
@@ -85,12 +75,6 @@ $buton = "{view}{delete}{update}";
                         'htmlOptions' => array('style' => 'text-align: center;width:110px;'),
                         'headerHtmlOptions' => array('style' => 'text-align: center;'),
                     ),
-//        array('header' => 'Type',
-//            'name' => 'type',
-//            'type' => 'raw',
-//            'value' => '($data->type==\'inv\') ? "<span class=\"label label-info\">Inventory</span>" : (($data->type==\'srv\')? "<span class=\"label label-info\">Services</span>" : "<span class=\"label label-info\">Assembly</span>")',
-//            'headerHtmlOptions' => array('style' => 'text-align: center;width:75px'),
-//        ),
                     array(
                         'header' => 'Public',
                         'name' => 'type',
@@ -104,13 +88,6 @@ $buton = "{view}{delete}{update}";
                         'value' => '"$data->tagProduct"',
                         'htmlOptions' => array('style' => 'text-align: center;')
                     ),
-//        array(
-//            'header'=>'Size',
-//            'name' => 'weight',
-//            'type' => 'raw',
-//            'value' => '"$data->tagDImension"',
-//            'htmlOptions' => array('style' => 'text-align: center;')
-//        ),
                     array(
                         'class' => 'bootstrap.widgets.TbButtonColumn',
                         'template' => $buton,
@@ -140,7 +117,7 @@ $buton = "{view}{delete}{update}";
             ));
             ?>
         </div>
-        <div id="yw0_tab_2" class="tab-pane fade active in">
+        <div id="yw0_tab_2" class="tab-pane fade">
             <?php
             $this->widget('bootstrap.widgets.TbGridView', array(
                 'id' => 'supporting-materials',
@@ -284,3 +261,9 @@ $buton = "{view}{delete}{update}";
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#tabproduk a:last').tab('show');
+    })
+</script>
