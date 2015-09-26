@@ -11,29 +11,14 @@
     ));
     ?>
     <fieldset>
-        <legend>
-            <p class="note">Fields dengan <span class="required">*</span> harus di isi.</p>
-        </legend>
 
         <?php echo $form->errorSummary($model, 'Opps!!!', null, array('class' => 'alert alert-error span12')); ?>
 
         <?php echo $form->textFieldRow($model, 'name', array('class' => 'span5', 'maxlength' => 255)); ?>
-        <?php
-        echo $form->toggleButtonRow($model, 'is_allow_login', array(
-            'onChange' => '
-                            if($("#Roles_is_allow_login").prop("checked")){
-                            $(".elek").show();
-                            }else{
-                            $(".elek").hide();
-                            }'
-        ));
-        $class = ($model->is_allow_login == 1) ? 'block' : 'none';
-        ?>
 
-        <div class="well elek" style="display:<?php echo $class ?>;">
+        <div class="well elek">
             <ul class="nav nav-tabs" id="myTab">
                 <li class="active"><a href="#module" data-toggle="tab">Module</a></li>
-                <li><a href="#extended" data-toggle="tab">Extended</a></li>
             </ul>
 
             <div class="tab-content">
@@ -42,118 +27,21 @@
                         <thead> 
                             <tr>
                                 <th></th>
-                                <th>Read</th>
-                                <th>Create</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <th>Access</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $arrMenu = Auth::model()->modules();
-                            $mAuth = Auth::model()->findAll(array('index' => 'id', 'select' => 'id,crud'));
-
                             if ($model->isNewRecord == false) {
                                 $mRolesAuth = RolesAuth::model()->findAll(array('condition' => 'roles_id=' . $model->id, 'select' => 'id,auth_id,crud', 'index' => 'auth_id'));
                             } else {
                                 $mRolesAuth = array();
                             }
-                            $this->renderPartial('_menuSub', array('arrMenu' => $arrMenu, 'mRolesAuth' => $mRolesAuth, 'mAuth' => $mAuth, 'model' => $model, 'space' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'));
+                            $this->renderPartial('_menuSub', array('arrMenu' => $arrMenu, 'mRolesAuth' => $mRolesAuth, 'model' => $model, 'space' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'));
                             ?>
                         </tbody>
                     </table>
-                </div>
-                <div class="tab-pane" id="extended">
-                    <table class="table">
-                        <thead> 
-                            <tr>
-                                <th>Permission</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <?php
-                        if (in_array('accounting', param('menu'))) {
-                            ?>
-                            <tr>
-                                <td width="40%">Approval Admin</td>
-                                <td width="10"><b>:</b></td>
-                                <td>
-                                    <?php
-                                    if (isset($mRolesAuth['AccApprovalAdmin'])) {
-                                        $arrRolesAuth = json_decode($mRolesAuth['AccApprovalAdmin']->crud, true);
-                                        $rValue = (isset($arrRolesAuth['r']) && $arrRolesAuth['r'] == 1) ? 1 : 0;
-                                    } else {
-                                        $rValue = 0;
-                                    }
-                                    echo '<input type="hidden" name="auth_id[]" value="AccApprovalAdmin"/>';
-                                    echo CHtml::CheckBox('AccApprovalAdmin[r]', $rValue)
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="40%">Approval (Pimpinan)</td>
-                                <td width="10"><b>:</b></td>
-                                <td>
-                                    <?php
-                                    if (isset($mRolesAuth['AccApproval'])) {
-                                        $arrRolesAuth = json_decode($mRolesAuth['AccApproval']->crud, true);
-                                        $rValue = (isset($arrRolesAuth['r']) && $arrRolesAuth['r'] == 1) ? 1 : 0;
-                                    } else {
-                                        $rValue = 0;
-                                    }
-                                    echo '<input type="hidden" name="auth_id[]" value="AccApproval"/>';
-                                    echo CHtml::CheckBox('AccApproval[r]', $rValue)
-                                    ?>
-                                </td>
-                            </tr>
-
-                            <?php
-                        }
-                        ?>
-                    </table>
-<!--                    <table class="table">
-                        <tr>
-                            <th colspan="3">Advanced Options</th>
-                        </tr>
-                        <tr>
-                            <td width="40%">Hak Akses Akun</td>
-                            <td width="10%"><b>:</b></td>
-                            <td>
-                                <?php
-//                                $sWhere = '';
-//                                if (isset($model->id)) {
-//                                    $roles = RolesAuth::model()->find(array('condition' => 'roles_id=' . $model->id . ' AND auth_id="accesskb"'));
-//                                    if (isset($roles->auth_id)) {
-//                                        $idData = $roles->crud;
-//                                        $sWhere = json_decode($idData);
-//                                    } else {
-//                                        $sWhere = '';
-//                                    }
-//                                }
-//                                $data = AccCoa::model()->findAll(array(
-//                                                'condition' => '(type_sub_ledger ="ks") OR (type_sub_ledger="bk")'
-//                                            ));
-//                                $this->widget('bootstrap.widgets.TbSelect2', array(
-//                                    'asDropDownList' => TRUE,
-//                                    'data' => CHtml::listData(AccCoa::model()->findAll(array(
-//                                                'condition' => '(type_sub_ledger ="ks") OR (type_sub_ledger="bk")'
-//                                            )), 'id', 'nestedname'),
-//                                    'name' => 'accesskb[]',
-//                                    'value' => ($model->isNewRecord == true)? $data : $sWhere,
-//                                    'options' => array(
-//                                        'placeholder' => 'Data belum diisi',
-//                                        'width' => '60%',
-//                                        'tokenSeparators' => array(',', ' ')
-//                                    ),
-//                                    'htmlOptions' => array(
-//                                        'multiple' => 'multiple',
-//                                    )
-//                                ));
-                                ?>
-                            </td>
-                        </tr>
-                    </table>-->
                 </div>
             </div>
         </div>
@@ -165,14 +53,8 @@
                 'buttonType' => 'submit',
                 'type' => 'primary',
                 'icon' => 'ok white',
-                'label' => 'Simpan',
-            ));
-            ?>
-            <?php
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'buttonType' => 'reset',
-                'icon' => 'remove',
-                'label' => 'Reset',
+                'visible' => !isset($_GET['v']),
+                'label' => 'Save',
             ));
             ?>
         </div>

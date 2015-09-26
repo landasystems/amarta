@@ -38,7 +38,7 @@ class User extends CActiveRecord {
             'username' => 'Username',
             'email' => 'Email',
             'password' => 'Password',
-            'code' => 'Kode',
+            'code' => 'Kode Karyawan',
             'name' => 'Nama',
             'province_id' => 'Propinsi',
             'address' => 'Alamat',
@@ -59,11 +59,13 @@ class User extends CActiveRecord {
         $criteria->compare('code', $this->code, true);
         $criteria->compare('t.name', $this->name, true);
         $criteria->compare('phone', $this->phone, true);
-        $criteria->compare('roles_id', $this->roles_id, true);
         if ($type == 'user') {
             $criteria->compare('Roles.is_allow_login', 1);
-        } else {
+        } elseif ($type == 'customer') {
+            $criteria->compare('roles_id', 1);
+        }else{
             $criteria->compare('Roles.is_allow_login', 0);
+            $criteria->compare('roles_id',"<>", 1);
         }
 
         return new CActiveDataProvider($this, array(

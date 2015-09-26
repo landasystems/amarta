@@ -17,6 +17,44 @@
 
         <?php echo $form->errorSummary($model, 'Opps!!!', null, array('class' => 'alert alert-error span12')); ?>
         <div class="clearfix"></div>
+        <div class="box">
+            <div class="title">
+                <h4>
+                    <?php
+                    if ($model->id == User()->id) { //if same id, cannot change role it self
+                        $listRoles = Roles::model()->user();
+                        if (User()->roles_id == -1) {
+                            echo 'Super User';
+                        } elseif (isset($listRoles[User()->roles_id])) {
+                            echo $listRoles[User()->roles_id]['name'];
+                        }
+                    } else {
+                        if (isset($_GET['type'])) {
+                            if ($_GET['type'] == 'employment') {
+                                echo 'Jabatan Karyawan : ' ;
+                                echo CHtml::dropDownList('User[roles_id]', $model->roles_id, array(3=>'Penjahit',13=>'Setrika',15=>'Penjahit Luar'), array(
+                                    'empty' => 'Please Choose',
+                                ));
+                            } elseif ($_GET['type'] == 'customer') {
+                                echo 'Customer' ;
+                                echo '<input type="hidden" name="User[roles_id]" value="1"/> Customer';
+                            } else {
+                                $array = Roles::model()->user();
+                                if (!empty($array)) {
+                                    echo 'Grup Hak Akses : ' ;
+                                    echo CHtml::dropDownList('User[roles_id]', $model->roles_id, CHtml::listData($array, 'id', 'name'), array(
+                                        'empty' => 'Please Choose',
+                                    ));
+                                } else {
+                                    echo'Data is empty please insert data group ' . $type . '.';
+                                }
+                            }
+                        }
+                    }
+                    ?> 
+                </h4>
+            </div>
+        </div>
 
         <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#personal">Personal</a></li>
@@ -27,19 +65,7 @@
 
                 <table>
                     <tr>
-                        <td width="300">
-                            <?php 
-                                if (isset($_GET['type'])){
-                                    if ($_GET['type']=='employment'){
-                                        $isi = 3;
-                                    }elseif ($_GET['type']=='customer'){
-                                        $isi = 1;
-                                    }
-                                }else{
-                                    $isi = -1;
-                                }
-                                echo '<input type="hidden" name="User[roles_id]" value="'.$isi.'"/>';
-                            ?>
+                        <td>
                             <?php
 //                          $imgs = '';
                             $cc = '';
@@ -56,7 +82,7 @@
                                                     {
                                                            $("#my_image").attr("src","' . $imgs . '");
                                                            $("#yt0").fadeOut();
-                                                    }'), array('class' => 'btn btn-large btn-block btn-primary', 'style' => 'width: 360px;font-size: 15px;')
+                                                    }'), array('class' => 'btn btn-block btn-primary')
                                         )
                                         . '</div>';
                             }
@@ -79,7 +105,7 @@
                             <?php echo $form->textFieldRow($model, 'code', array('class' => 'span5', 'maxlength' => 25)); ?>
 
                             <?php echo $form->textFieldRow($model, 'name', array('class' => 'span5', 'maxlength' => 255)); ?> 
-
+                            <?php echo $form->textAreaRow($model, 'address', array('class' => 'span5', 'maxlength' => 255)); ?>
                             <?php echo $form->toggleButtonRow($model, 'enabled'); ?>
                             <?php
                             echo $form->textFieldRow(
@@ -96,7 +122,6 @@
 
 
 
-                            <?php echo $form->textAreaRow($model, 'address', array('class' => 'span5', 'maxlength' => 255)); ?>
 
                         </td>
 
