@@ -89,22 +89,22 @@ class Auth extends CActiveRecord {
                     array('visible' => landa()->checkAccess('Roles', 'r'), 'auth_id' => 'Roles', 'label' => 'Access', 'url' => array('/roles'), 'crud' => array("r" => 1)),
                     array('visible' => landa()->checkAccess('User', 'r'), 'auth_id' => 'User', 'label' => 'User', 'url' => url('/user'), 'crud' => array("r" => 1)),
                 )),
-            array('visible' => landa()->checkAccess('Product', 'r'), 'label' => 'Barang', 'url' => array('/product'), 'auth_id' => 'Product'),
-            array('label' => 'Customer', 'url' => array('/user/customer'), 'auth_id' => 'Customer'),
-            array('visible' => landa()->checkAccess('Employment', 'r'), 'label' => 'Pegawai', 'url' => array('/user/employment'), 'auth_id' => 'Employment'),
-            array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Produksi', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
-                    array('visible' => landa()->checkAccess('SellOrder', 'r'), 'label' => 'Surat Pesanan', 'url' => array('/sellOrder'), 'auth_id' => 'SellOrder'),
-                    array('visible' => landa()->checkAccess('WorkOrder', 'r'), 'label' => 'SPK', 'url' => array('/workorder'), 'auth_id' => 'WorkOrder'),
-                    array('visible' => landa()->checkAccess('WorkOrderIntruction', 'r'), 'label' => 'Rencana Marker', 'url' => array('/workorderIntruction'), 'auth_id' => 'WorkOrderIntruction'),
-                    array('visible' => landa()->checkAccess('WorkOrderIntructionDet', 'r'), 'label' => 'SPP & NOPOT', 'url' => array('/workorderIntructionDet'), 'auth_id' => 'WorkOrderIntructionDet'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Nota Jahit', 'url' => array('/workorderStatus/index'), 'auth_id' => 'ProsesStatus'),
+            array('visible' => landa()->checkAccess('Product', 'r'), 'auth_id' => 'Product', 'label' => 'Barang', 'url' => array('/product')),
+            array('visible' => landa()->checkAccess('Customer', 'r'), 'auth_id' => 'Customer','label' => 'Customer', 'url' => array('/user/customer')),
+            array('visible' => landa()->checkAccess('Employment', 'r'), 'auth_id' => 'Employment', 'label' => 'Pegawai', 'url' => array('/user/employment')),
+            array('visible' => landa()->checkAccess('ProsesStatus', 'r') || landa()->checkAccess('WorkOrder', 'r') || landa()->checkAccess('WorkOrderIntruction', 'r') || landa()->checkAccess('SellOrder', 'r') || landa()->checkAccess('WorkOrderIntructionDet', 'r'), 'label' => 'Produksi', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
+                    array('visible' => landa()->checkAccess('SellOrder', 'r'), 'auth_id' => 'SellOrder', 'label' => 'Surat Pesanan', 'url' => array('/sellOrder')),
+                    array('visible' => landa()->checkAccess('WorkOrder', 'r'), 'auth_id' => 'WorkOrder', 'label' => 'SPK', 'url' => array('/workorder')),
+                    array('visible' => landa()->checkAccess('WorkOrderIntruction', 'r'), 'auth_id' => 'WorkOrderIntruction', 'label' => 'Rencana Marker', 'url' => array('/workorderIntruction')),
+                    array('visible' => landa()->checkAccess('WorkOrderIntructionDet', 'r'), 'auth_id' => 'WorkOrderIntructionDet', 'label' => 'SPP & NOPOT', 'url' => array('/workorderIntructionDet')),
+                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'auth_id' => 'ProsesStatus', 'label' => 'Nota Jahit', 'url' => array('/workorderStatus/index')),
                 )),
             array('visible' => landa()->checkAccess('Salary', 'r'), 'label' => 'Gaji', 'url' => array('/salaryOut/create'), 'auth_id' => 'Salary'),
-            array('label' => 'Laporan', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Proses Produksi', 'url' => array('/workorder/takingNote'), 'auth_id' => 'ProsesStatus'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Proses Per-Nopot', 'url' => array('/report/processPerSplit'), 'auth_id' => 'ProsesStatus'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Proses Status', 'url' => array('/workorder/process'), 'auth_id' => 'ProsesStatus'),
-                    array('visible' => landa()->checkAccess('ProsesStatus', 'r'), 'label' => 'Nomor Potong', 'url' => array('/report/nopot'), 'auth_id' => 'ProsesStatus'),
+            array('visible' => landa()->checkAccess('nopot', 'r') || landa()->checkAccess('WoProcess', 'r') || landa()->checkAccess('processPerSplit','r') || landa()->checkAccess('takingNote', 'r'),'label' => 'Laporan', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
+                    array('visible' => landa()->checkAccess('takingNote', 'r'), 'auth_id' => 'takingNote', 'label' => 'Proses Produksi', 'url' => array('/workorder/takingNote')),
+                    array('visible' => landa()->checkAccess('processPerSplit', 'r'), 'auth_id' => 'processPerSplit', 'label' => 'Proses Per-Nopot', 'url' => array('/report/processPerSplit')),
+                    array('visible' => landa()->checkAccess('WoProcess', 'r'), 'auth_id' => 'WoProcess', 'label' => 'Proses Status', 'url' => array('/workorder/process')),
+                    array('visible' => landa()->checkAccess('nopot', 'r'), 'auth_id' => 'nopot', 'label' => 'Nomor Potong', 'url' => array('/report/nopot')),
                 )),
         );
     }

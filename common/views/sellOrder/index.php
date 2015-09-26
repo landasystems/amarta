@@ -50,16 +50,16 @@ $this->endWidget();
 
 
 <?php
-$buton="";
-if(landa()->checkAccess('SellOrder', 'r')){
-   $buton .= '{view}'; 
-}
-if(landa()->checkAccess('SellOrder', 'd')){
-   $buton .= '{delete}'; 
-}
-if(landa()->checkAccess('SellOrder', 'u')){
-   $buton .= '{update}'; 
-}
+$buton="{view}{delete}{update}";
+//if(landa()->checkAccess('SellOrder', 'r')){
+//   $buton .= '{view}'; 
+//}
+//if(landa()->checkAccess('SellOrder', 'd')){
+//   $buton .= '{delete}'; 
+//}
+//if(landa()->checkAccess('SellOrder', 'u')){
+//   $buton .= '{update}'; 
+//}
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'sell-order-grid',
     'dataProvider' => $model->search(),

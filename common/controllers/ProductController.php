@@ -18,22 +18,22 @@ class ProductController extends Controller {
 
     public function accessRules() {
         return array(
-            array('allow', // c
-                'actions' => array('create'),
-                'expression' => 'app()->controller->isValidAccess("Product","c")'
-            ),
+//            array('allow', // c
+//                'actions' => array('create'),
+//                'expression' => 'app()->controller->isValidAccess("Product","c")'
+//            ),
             array('allow', // r
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'update', 'delete', 'create'),
                 'expression' => 'app()->controller->isValidAccess("Product","r")'
-            ),
-            array('allow', // u
-                'actions' => array('update'),
-                'expression' => 'app()->controller->isValidAccess("Product","u")'
-            ),
-            array('allow', // d
-                'actions' => array('delete'),
-                'expression' => 'app()->controller->isValidAccess("Product","d")'
             )
+//            ,array('allow', // u
+//                'actions' => array('update'),
+//                'expression' => 'app()->controller->isValidAccess("Product","u")'
+//            ),
+//            array('allow', // d
+//                'actions' => array('delete'),
+//                'expression' => 'app()->controller->isValidAccess("Product","d")'
+//            )
         );
     }
 

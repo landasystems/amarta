@@ -47,16 +47,16 @@ $this->endWidget();
 
 
 <?php 
-$buton="";
-if(landa()->checkAccess('ProductMeasure', 'r')){
-   $buton .= '{view}'; 
-}
-if(landa()->checkAccess('ProductMeasure', 'd')){
-   $buton .= '{delete}'; 
-}
-if(landa()->checkAccess('ProductMeasure', 'u')){
-   $buton .= '{update}'; 
-}
+$buton="{view}{delete}{update}";
+//if(landa()->checkAccess('ProductMeasure', 'r')){
+//   $buton .= '{view}'; 
+//}
+//if(landa()->checkAccess('ProductMeasure', 'd')){
+//   $buton .= '{delete}'; 
+//}
+//if(landa()->checkAccess('ProductMeasure', 'u')){
+//   $buton .= '{update}'; 
+//}
 $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'product-measure-grid',
 	'dataProvider'=>$model->search(),

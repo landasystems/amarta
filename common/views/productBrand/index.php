@@ -28,11 +28,11 @@ $this->beginWidget('zii.widgets.CPortlet', array(
 $this->widget('bootstrap.widgets.TbMenu', array(
 	'type'=>'pills',
 	'items'=>array(
-		array('visible' => landa()->checkAccess('ProductBrand', 'c'),'label'=>'Tambah', 'icon'=>'icon-plus', 'url'=>Yii::app()->controller->createUrl('create'), 'linkOptions'=>array()),
+		array('label'=>'Tambah', 'icon'=>'icon-plus', 'url'=>Yii::app()->controller->createUrl('create'), 'linkOptions'=>array()),
                 array('label'=>'Daftar', 'icon'=>'icon-th-list', 'url'=>Yii::app()->controller->createUrl('index'),'active'=>true, 'linkOptions'=>array()),
 		array('label'=>'Pencarian', 'icon'=>'icon-search', 'url'=>'#', 'linkOptions'=>array('class'=>'search-button')),
-		array('label'=>'Export ke PDF', 'icon'=>'icon-download', 'url'=>Yii::app()->controller->createUrl('GeneratePdf'), 'linkOptions'=>array('target'=>'_blank'), 'visible'=>true),
-		array('label'=>'Export ke Excel', 'icon'=>'icon-download', 'url'=>Yii::app()->controller->createUrl('GenerateExcel'), 'linkOptions'=>array('target'=>'_blank'), 'visible'=>true),
+//		array('label'=>'Export ke PDF', 'icon'=>'icon-download', 'url'=>Yii::app()->controller->createUrl('GeneratePdf'), 'linkOptions'=>array('target'=>'_blank'), 'visible'=>true),
+//		array('label'=>'Export ke Excel', 'icon'=>'icon-download', 'url'=>Yii::app()->controller->createUrl('GenerateExcel'), 'linkOptions'=>array('target'=>'_blank'), 'visible'=>true),
 	),
 ));
 $this->endWidget();
@@ -48,16 +48,16 @@ $this->endWidget();
 
 
 <?php 
-$buton="";
-if(landa()->checkAccess('ProductBrand', 'r')){
-   $buton .= '{view}'; 
-}
-if(landa()->checkAccess('ProductBrand', 'd')){
-   $buton .= '{delete}'; 
-}
-if(landa()->checkAccess('ProductBrand', 'u')){
-   $buton .= '{update}'; 
-}
+$buton="{view}{delete}{update}";
+//if(landa()->checkAccess('ProductBrand', 'r')){
+//   $buton .= '{view}'; 
+//}
+//if(landa()->checkAccess('ProductBrand', 'd')){
+//   $buton .= '{delete}'; 
+//}
+//if(landa()->checkAccess('ProductBrand', 'u')){
+//   $buton .= '{update}'; 
+//}
 $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'product-brand-grid',
 	'dataProvider'=>$model->search(),
