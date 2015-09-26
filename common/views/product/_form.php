@@ -146,7 +146,7 @@
                 'label' => 'Simpan',
             ));
             ?>
-            //<?php
+            <?php
 //            $this->widget('bootstrap.widgets.TbButton', array(
 //                'buttonType' => 'reset',
 //                'icon' => 'remove',
