@@ -38,7 +38,7 @@ class User extends CActiveRecord {
             'username' => 'Username',
             'email' => 'Email',
             'password' => 'Password',
-            'code' => 'Kode Karyawan',
+            'code' => 'Kode',
             'name' => 'Nama',
             'province_id' => 'Propinsi',
             'address' => 'Alamat',

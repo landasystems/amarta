@@ -28,7 +28,7 @@ $this->widget('bootstrap.widgets.TbMenu', array(
     'type' => 'pills',
     'items' => array(
         array('label' => 'Tambah', 'icon' => 'icon-plus', 'url' => Yii::app()->controller->createUrl('create', array('type' => $type)), 'linkOptions' => array()),
-        array('label' => 'List', 'icon' => 'icon-th-list', 'url' => Yii::app()->controller->createUrl($type), 'active' => true, 'linkOptions' => array()),
+        array('label' => 'List Data', 'icon' => 'icon-th-list', 'url' => Yii::app()->controller->createUrl($type), 'active' => true, 'linkOptions' => array()),
         array('label' => 'Pencarian', 'icon' => 'icon-search', 'url' => '#', 'linkOptions' => array('class' => 'search-button')),
     ),
 ));
@@ -58,6 +58,9 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'type' => 'raw',
             'value' => '"$data->tagImg"',
             'htmlOptions' => array('style' => 'text-align: center; width:40px;text-align:center;')
+        ),
+        array(
+            'name' => 'code',
         ),
         array(
             'name' => 'username',

@@ -196,7 +196,7 @@
                             if (isset($_GET['v'])) {
                                 $hps = '#';
                             } else {
-                                $hps = '<a class="btn btnRemove" href="#"><i class="cut-icon-minus-2"></i></a>';
+                                $hps = '<a class="btn btnRemove" href="#"><i class="icon-minus"></i></a>';
                             }
                             $proses = isset($value->Process->name) ? $value->Process->name : "-";
                             $nopot = isset($value->NOPOT->code) ? $value->NOPOT->code : "-";
@@ -523,7 +523,7 @@
             data += '<td><input type="text" class="angka" name="loss_qty[]" value="0" id="loss_qty" onkeyup="total()"></td>';
             data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" id="loss_charge' + unik + '" class="angka" name="loss_charge[]" value="0" onkeyup="total()"></div></td>';
             data += '<td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="total[]" value="" id="total' + unik + '" readonly></div></td>';
-            data += '<td><a class="btnRemove btn" href="#"><i class="cut-icon-minus-2"></i></a>';
+            data += '<td><a class="btnRemove btn" href="#"><i class="icon-minus"></i></a>';
             data += '<input type="hidden" name="id[]" class="work_id" value="">';
             data += '<input type="hidden" name="process_id[]" class="process_id" value="' + workprocess_id + '">';
             data += '<input type="hidden" name="spk_id[]" class="spk_id" value="' + spk_id + '">';
