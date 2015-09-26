@@ -45,10 +45,10 @@ class SiteConfig extends CActiveRecord {
         return array(
             array('', 'numerical', 'integerOnly' => true),
             array('client_name, client_logo,', 'length', 'max' => 255),
-            array('format_spp, format_salary, format_buy,format_buy_order,format_sell,format_sell_order,format_sell_retur,format_workorder,format_workorder_split, format_workorder_process', 'length', 'max' => 45),
+            array('format_spp, format_salary, format_buy,format_buy_order,format_sell,format_sell_order,format_workorder,format_workorder_split, format_workorder_process', 'length', 'max' => 45),
             array('id, client_name', 'safe', 'on' => 'search'),
             array('client_logo', 'unsafe'),
-            array('report_sell_order,report_sell,report_sell_retur,report_buy_order,report_buy,report_buy_retur,report_in,report_out,report_jurnal,date_system,', 'safe'),
+            array('date_system,', 'safe'),
         );
     }
 
@@ -96,33 +96,11 @@ class SiteConfig extends CActiveRecord {
 
     public function formatting($type, $x = true, $prefix = '', $param = '', $date = null) {
         $siteConfig = SiteConfig::model()->findByPk(param('id'));
-        if ($type == 'buy') {
-            $textFormat = $siteConfig['format_buy'];
-            $lastID = Buy::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'buyorder') {
-            $textFormat = $siteConfig['format_buy_order'];
-            $lastID = BuyOrder::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'buyretur') {
-            $textFormat = $siteConfig['format_buy_retur'];
-            $lastID = BuyRetur::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'sell') {
-            $textFormat = $siteConfig['format_sell'];
-            $lastID = Sell::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'sellorder') {
+        
+        
+        if ($type == 'sellorder') {
             $textFormat = $siteConfig['format_sell_order'];
             $lastID = SellOrder::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'sellretur') {
-            $textFormat = $siteConfig['format_sell_retur'];
-            $lastID = SellRetur::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'in') {
-            $textFormat = $siteConfig['format_in'];
-            $lastID = In::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'out') {
-            $textFormat = $siteConfig['format_out'];
-            $lastID = Out::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'opname') {
-            $textFormat = $siteConfig['format_opname'];
-            $lastID = Opname::model()->find(array('order' => 'id DESC'));
         } elseif ($type == 'workorder') {
             $textFormat = $siteConfig['format_workorder'];
             $lastID = Workorder::model()->find(array('order' => 'id DESC'));
@@ -139,60 +117,6 @@ class SiteConfig extends CActiveRecord {
         } elseif ($type == 'workorder_process') {
             $textFormat = $siteConfig['format_workorder_process'];
             $lastID = WorkorderProcess::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'cashin') {
-            $textFormat = $siteConfig['format_cash_in'];
-            $lastID = AccCashIn::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'cashout') {
-            $textFormat = $siteConfig['format_cash_out'];
-            $lastID = AccCashOut::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'jurnal') {
-            $textFormat = $siteConfig['format_jurnal'];
-            $lastID = AccJurnal::model()->find(array('order' => 'id DESC'));
-        } elseif ($type == 'cashinks_acc') {
-            $textFormat = $siteConfig['format_cash_inks_acc'];
-            $format = json_decode($siteConfig->autonumber);
-
-            if (!empty($format->cashinks)) {
-                $lastID = $format->cashinks;
-            } else {
-                $lastID = 1;
-            }
-        } elseif ($type == 'cashinbk_acc') {
-            $textFormat = $siteConfig['format_cash_inbk_acc'];
-            $format = json_decode($siteConfig->autonumber);
-
-            if (!empty($format->cashinbk)) {
-                $lastID = $format->cashinbk;
-            } else {
-                $lastID = 1;
-            }
-        } elseif ($type == 'cashoutks_acc') {
-            $textFormat = $siteConfig['format_cash_outks_acc'];
-            $format = json_decode($siteConfig->autonumber);
-
-            if (!empty($format->cashoutks)) {
-                $lastID = $format->cashoutks;
-            } else {
-                $lastID = 1;
-            }
-        } elseif ($type == 'cashoutbk_acc') {
-            $textFormat = $siteConfig['format_cash_outbk_acc'];
-            $format = json_decode($siteConfig->autonumber);
-
-            if (!empty($format->cashoutbk)) {
-                $lastID = $format->cashoutbk;
-            } else {
-                $lastID = 1;
-            }
-        } elseif ($type == 'jurnal_acc') {
-            $textFormat = $siteConfig['format_jurnal_acc'];
-            $format = json_decode($siteConfig->autonumber);
-
-            if (!empty($format->jurnal)) {
-                $lastID = $format->jurnal;
-            } else {
-                $lastID = 1;
-            }
         }
 
         if ($type != 'spp' && $type != 'nopot' && $type != "cashinks_acc" && $type != "cashinbk_acc" && $type != "cashoutks_acc" && $type != "cashoutbk_acc" && $type != "jurnal_acc")

@@ -80,24 +80,6 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                                 echo '
                                     <div class="row-fluid">
                                         <div class="span3">
-                                            Provinsi
-                                        </div>
-                                        <div class="span1">:</div>
-                                        <div class="span8" style="text-align:left">
-
-                                        </div>
-                                    </div> 
-                                    <div class="row-fluid">
-                                        <div class="span3">
-                                            Kota
-                                        </div>
-                                        <div class="span1">:</div>
-                                        <div class="span8" style="text-align:left">
-
-                                        </div>
-                                    </div>
-                                    <div class="row-fluid">
-                                        <div class="span3">
                                             Alamat
                                         </div>
                                         <div class="span1">:</div>

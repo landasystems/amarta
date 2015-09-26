@@ -12,7 +12,6 @@
             </div>
             
             <div class="span4" style="padding-left: 90px;">
-                <?php echo $form->dropDownListRow($model, 'roles_id', CHtml::listData(User::model()->roles(), 'id', 'name'), array('class' => 'span4','empty' => t('choose', 'global'),)); ?>
                 <?php echo $form->textFieldRow($model,'email',array('class'=>'span4','maxlength'=>100)); ?>
                 <?php
                     echo $form->textFieldRow(

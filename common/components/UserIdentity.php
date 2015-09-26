@@ -58,12 +58,9 @@ class UserIdentity extends CUserIdentity {
             $this->setState('name', $record->name);
             $this->setState('phone', $record->phone);
             $this->setState('email', $record->email);
-            $this->setState('city', $record->city_id);
             $this->setState('address', $record->address);
             $this->setState('roles_id', $record->roles_id);
-            $this->setState('departement_id',(isset($record->departement_id)) ? $record->departement_id : '');
             $this->setState('roles_name', $sRolesName);
-            $this->setState('saldo', (isset($record->saldo)) ? $record->saldo : 0);
             $this->setState('avatar_img', landa()->urlImg('avatar/', $record->avatar_img, $this->_id));
 
             //save the auth session
@@ -75,11 +72,6 @@ class UserIdentity extends CUserIdentity {
                 $mRolesAuth = RolesAuth::model()->findAll(array('condition' => 'roles_id=' . $record->roles_id, 'select' => 'id,crud,auth_id', 'index' => 'auth_id'));
                 $this->setState('roles', $mRolesAuth);
             }
-
-            //set app session
-            $siteConfig = SiteConfig::model()->findByPk(1);
-            if (isset($siteConfig->date_system))
-                app()->session['date_system'] = $siteConfig->date_system;
 
             $this->errorCode = self::ERROR_NONE;
         }

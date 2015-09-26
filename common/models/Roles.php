@@ -50,18 +50,11 @@ class Roles extends CActiveRecord {
         );
     }
 
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
-     */
+    public function user($is_allow_login = 0) {
+        $roles = $this->findAll(array('index' => 'id', 'condition' => 'is_allow_login=1'));
+        return $roles;
+    }
+    
     public function search($type = 'user') {
         // @todo Please modify the following code to remove attributes that should not be searched.
 
@@ -72,52 +65,15 @@ class Roles extends CActiveRecord {
         $criteria->compare('is_allow_login', $this->is_allow_login);
 
         if ($type == 'customer') {
-
-            $criteria->alias = "u";
-            $siteConfig = SiteConfig::model()->listSiteConfig();
-            $sCriteria = json_decode($siteConfig->roles_customer, true);
-            $criteria->addInCondition('id', $sCriteria);
+            $criteria->compare('roles_id', '1', true);
         } elseif ($type == 'user') {
-//           $criteria->compare('id', $this->id);
             $criteria->compare('is_allow_login', '1', true);
-        } elseif ($type == 'contact') {
-            $criteria->alias = "u";
-            $siteConfig = SiteConfig::model()->listSiteConfig();
-            $sCriteria = json_decode($siteConfig->roles_contact, true);
-            $criteria->addInCondition('id', $sCriteria);
-        } elseif ($type == 'supplier') {
-            $criteria->alias = "u";
-            $siteConfig = SiteConfig::model()->listSiteConfig();
-            $sCriteria = json_decode($siteConfig->roles_supplier, true);
-            $criteria->addInCondition('id', $sCriteria);
         } elseif ($type == 'employment') {
             $criteria->alias = "u";
             $siteConfig = SiteConfig::model()->listSiteConfig();
             $sCriteria = json_decode($siteConfig->roles_employment, true);
             $criteria->addInCondition('id', $sCriteria);
-        } elseif ($type == 'guest') {
-            $criteria->alias = "u";
-            $siteConfig = SiteConfig::model()->listSiteConfig();
-            $sCriteria = json_decode($siteConfig->roles_guest, true);
-            $criteria->addInCondition('id', $sCriteria);
-        } elseif ($type == 'teacher') {
-            $criteria->alias = "u";
-            $siteConfig = SiteConfig::model()->listSiteConfig();
-            $sCriteria = json_decode($siteConfig->roles_teacher, true);
-            $criteria->addInCondition('id', $sCriteria);
-        } elseif ($type == 'student') {
-            $criteria->alias = "u";
-            $siteConfig = SiteConfig::model()->listSiteConfig();
-            $sCriteria = json_decode($siteConfig->roles_student, true);
-            $criteria->addInCondition('id', $sCriteria);
-        } elseif ($type == 'client') {
-            $criteria->alias = "u";
-            $siteConfig = SiteConfig::model()->listSiteConfig();
-            $sCriteria = json_decode($siteConfig->roles_client, true);
-            $criteria->addInCondition('id', $sCriteria);
-        }else{
-            $criteria->compare('is_allow_login', '1', true);
-        }
+        } 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
@@ -171,70 +127,10 @@ class Roles extends CActiveRecord {
             }else{
                 $sResult='';
             }
-        } elseif ($type == 'guest') {
-            $sCriteria = json_decode($siteConfig->roles_guest, true);
-            if (!empty($sCriteria)) {
-                $list = '';
-                foreach ($sCriteria as $o) {
-                    $list .= '"' . $o . '",';
-                }
-                $list = substr($list, 0, strlen($list) - 1);
-                $sResult = Roles::model()->findAll(array('condition' => 'id in(' . $list . ')'));
-            } else {
-                $sResult = '';
-            }
         } elseif ($type == 'user') {
             $sResult = Roles::model()->findAll(array('condition' => 'is_allow_login=1'));
         } elseif ($type == 'employment') {
             $sCriteria = json_decode($siteConfig->roles_employment, true);
-            if (!empty($sCriteria)) {
-                $list = '';
-                foreach ($sCriteria as $o) {
-                    $list .= '"' . $o . '",';
-                }
-                $list = substr($list, 0, strlen($list) - 1);
-                $sResult = Roles::model()->findAll(array('condition' => 'id in(' . $list . ')'));
-            } else {
-                $sResult = '';
-            }
-        } elseif ($type == 'client') {
-            $sCriteria = json_decode($siteConfig->roles_client, true);
-            if (!empty($sCriteria)) {
-                $list = '';
-                foreach ($sCriteria as $o) {
-                    $list .= '"' . $o . '",';
-                }
-                $list = substr($list, 0, strlen($list) - 1);
-                $sResult = Roles::model()->findAll(array('condition' => 'id in(' . $list . ')'));
-            } else {
-                $sResult = '';
-            }
-        } elseif ($type == 'contact') {
-            $sCriteria = json_decode($siteConfig->roles_contact, true);
-            if (!empty($sCriteria)) {
-                $list = '';
-                foreach ($sCriteria as $o) {
-                    $list .= '"' . $o . '",';
-                }
-                $list = substr($list, 0, strlen($list) - 1);
-                $sResult = Roles::model()->findAll(array('condition' => 'id in(' . $list . ')'));
-            } else {
-                $sResult = '';
-            }
-        } elseif ($type == 'student') {
-            $sCriteria = json_decode($siteConfig->roles_student, true);
-            if (!empty($sCriteria)) {
-                $list = '';
-                foreach ($sCriteria as $o) {
-                    $list .= '"' . $o . '",';
-                }
-                $list = substr($list, 0, strlen($list) - 1);
-                $sResult = Roles::model()->findAll(array('condition' => 'id in(' . $list . ')'));
-            } else {
-                $sResult = '';
-            }
-        }elseif ($type == 'teacher') {
-            $sCriteria = json_decode($siteConfig->roles_teacher, true);
             if (!empty($sCriteria)) {
                 $list = '';
                 foreach ($sCriteria as $o) {

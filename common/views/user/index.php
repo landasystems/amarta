@@ -28,9 +28,8 @@ $this->widget('bootstrap.widgets.TbMenu', array(
     'type' => 'pills',
     'items' => array(
         array('label' => 'Tambah', 'icon' => 'icon-plus', 'url' => Yii::app()->controller->createUrl('create', array('type' => $type)), 'linkOptions' => array()),
-        array('label' => 'Daftar', 'icon' => 'icon-th-list', 'url' => Yii::app()->controller->createUrl($type), 'active' => true, 'linkOptions' => array()),
+        array('label' => 'List', 'icon' => 'icon-th-list', 'url' => Yii::app()->controller->createUrl($type), 'active' => true, 'linkOptions' => array()),
         array('label' => 'Pencarian', 'icon' => 'icon-search', 'url' => '#', 'linkOptions' => array('class' => 'search-button')),
-        array('label' => 'Export Excel', 'icon' => 'icomoon-icon-file-excel', 'url' => Yii::app()->controller->createUrl('user/generateExcel'), 'linkOptions' => array()),
     ),
 ));
 $this->endWidget();
@@ -60,13 +59,20 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'value' => '"$data->tagImg"',
             'htmlOptions' => array('style' => 'text-align: center; width:40px;text-align:center;')
         ),
-        'username',
-        'email',
+        array(
+            'name' => 'username',
+            'visible' => ($type=='user')
+        ),
+        array(
+            'name' => 'email',
+            'visible' => ($type=='user')
+        ),
         'name',
         array(
             'name' => 'Group User',
             'type' => 'raw',
             'value' => '(isset($data->Roles->name)) ? $data->Roles->name : ""',
+            'visible' => ($type=='user' || $type=='employment' )
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',

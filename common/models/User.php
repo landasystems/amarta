@@ -171,24 +171,6 @@ class User extends CActiveRecord {
                 </div>
                 <div class="row-fluid">
                     <div class="span3">
-                        <b>Provinsi</b>
-                    </div>
-                    <div class="span1">:</div>
-                    <div class="span8" style="text-align:left">
-                        ' . $province . '
-                    </div>
-                </div>
-                <div class="row-fluid">
-                    <div class="span3">
-                        <b>Kota/Kab</b>
-                    </div>
-                    <div class="span1">:</div>
-                    <div class="span8" style="text-align:left">
-                        ' . $city . '
-                    </div>
-                </div>
-                     <div class="row-fluid">
-                    <div class="span3">
                         <b>Telepon</b>
                     </div>
                     <div class="span1">:</div>
