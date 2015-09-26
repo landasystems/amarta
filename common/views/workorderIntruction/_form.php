@@ -177,11 +177,11 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                 'icon' => 'ok white',
                 'label' => $model->isNewRecord ? 'Simpan' : 'Simpan',
             ));
-            $this->widget('bootstrap.widgets.TbButton', array(
-                'buttonType' => 'reset',
-                'icon' => 'remove',
-                'label' => 'Reset',
-            ));
+//            $this->widget('bootstrap.widgets.TbButton', array(
+//                'buttonType' => 'reset',
+//                'icon' => 'remove',
+//                'label' => 'Reset',
+//            ));
             ?>
         </div>
     <?php } ?>

@@ -192,11 +192,11 @@ $this->widget('bootstrap.widgets.TbButton', array(
 ));
 ?>
                 <?php
-                $this->widget('bootstrap.widgets.TbButton', array(
-                    'buttonType' => 'reset',
-                    'icon' => 'remove',
-                    'label' => 'Reset',
-                ));
+//                $this->widget('bootstrap.widgets.TbButton', array(
+//                    'buttonType' => 'reset',
+//                    'icon' => 'remove',
+//                    'label' => 'Reset',
+//                ));
                 ?>
             </div>
 
