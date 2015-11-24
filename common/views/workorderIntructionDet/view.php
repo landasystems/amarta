@@ -75,7 +75,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                         $total_data = array();
                         $o = 0;
                         foreach ($detail as $value) {
-                            echo '<th class="span1" style="text-align: center">' . $value->Size->name . '<br/> [ ' . $value->qty . ' ]' . '</th>';
+                            echo '<th class="span1" style="text-align: center">' . $value->Size->name . '<br/> [' . $value->qty . ']' . '</th>';
                             $qty += $value->qty;
                             $total_data[$o] = 0;
                             $o++;
@@ -264,7 +264,7 @@ if (isset($_POST['export'])) {
                     $total_data = array();
                     $o = 0;
                     foreach ($detail as $value) {
-                        echo '<th class="span1" style="text-align: center">' . $value->Size->name . '<br/> [ ' . $value->qty . ' ]' . '</th>';
+                        echo '<th class="span1" style="text-align: center">' . $value->Size->name . '<br/> [' . $value->qty . ']' . '</th>';
                         $qty += $value->qty;
                         $total_data[$o] = 0;
                         $o++;

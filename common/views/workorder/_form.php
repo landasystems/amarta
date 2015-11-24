@@ -54,15 +54,6 @@
                         ),
                     ));
                     ?>
-                    <div class="invoice-info" style="padding: 0px !important">
-                        <span class="number"><strong class="red">
-                                <?php
-                                echo $model->code;
-                                ?>
-                            </strong></span><br>
-                        <span class="data gray" style="font-weight: normal !important;"><?php echo date('d F Y') ?></span>
-
-                    </div>
                 </h4>
 
             </div>            
@@ -93,7 +84,34 @@
     <table>
         <tr>
             <td style="vertical-align: top !important" class="span6">
-
+                <div class="row-fluid" style="margin-bottom:5px">
+                    <div class="span3">
+                        Kode SPK
+                    </div>
+                    <div class="span1">:</div>
+                    <div class="span8" style="text-align:left">
+                        <?php
+                        echo Chtml::textField(
+                                'code', $model->code, array('class' => 'span2', 'maxlength' => 4)
+                        );
+                        ?>
+                        <br/>Kosongkan untuk generate otomatis
+                    </div>
+                </div>
+                
+                <div class="row-fluid" style="margin-bottom:5px">
+                    <div class="span3">
+                        Nomor. SP
+                    </div>
+                    <div class="span1">:</div>
+                    <div class="span3" style="text-align:left">
+                        <?php
+                        echo Chtml::textField(
+                                'nota', $nota, array('class' => 'nota span4', 'readonly' => 'readonly', 'rows' => 5)
+                        );
+                        ?>                               
+                    </div>
+                </div>
                 <div class="row-fluid" style="margin-bottom:5px">
                     <div class="span3">
                         Customer
@@ -107,19 +125,6 @@
                         ?>
                     </div>
                 </div> 
-                <div class="row-fluid" style="margin-bottom:5px">
-                    <div class="span3">
-                        Nomor. SP
-                    </div>
-                    <div class="span1">:</div>
-                    <div class="span8" style="text-align:left">
-                        <?php
-                        echo Chtml::textField(
-                                'nota', $nota, array('class' => 'nota span10', 'readonly' => 'readonly', 'rows' => 5)
-                        );
-                        ?>                               
-                    </div>
-                </div>
                 <div class="row-fluid" style="margin-bottom:5px">
                     <div class="span3">
                         Term
@@ -186,7 +191,7 @@
     <ul class="nav nav-tabs" id="myTab">
         <li class="active"><a id="workIntruction" href="#process">Proses Kerja</a></li>   
         <li ><a href="#size">Detail Ukuran</a></li>           
-        <li ><a href="#partial">Material & Partial</a></li>           
+        <li ><a href="#partial">Material</a></li>           
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="process">
@@ -265,7 +270,7 @@
         if (amount == tot_split) {
             $(".pesan").html("");
         } else if (tot_split >= amount) {
-            $(".pesan").html("<span class=\"label label-warning\">INFO : Melebihi dari jml pesanan ?. </span> ");
+            $(".pesan").html("");
         } else {
             $(".pesan").html("<span class=\"label label-important\">INFO : Ukuran belum memenuhi jml pesanan </span>");
         }

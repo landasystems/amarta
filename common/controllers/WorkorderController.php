@@ -105,7 +105,6 @@ class WorkorderController extends Controller {
             $row .= '<tr class="data_partial"><td style="text-align:center;vertical-align: top">';
             $row .= '<input type="hidden" class="partial-type" name="partial_type[]" value="' . $mType->name . '" />';
             $row .= '<input type="hidden" name="partial_product_id[]" value="' . $material . '" />';
-//            $row .= '<input type="hidden" name="partial_name[]" value="' . $partial . '" />';
             $row .= '<button class="btn btn-medium removeRow removePartial"><i class="icon-remove-circle"></i></button>';
             $row .= '</td><td>';
             $row .= ucwords($mType->name);
@@ -278,7 +277,11 @@ class WorkorderController extends Controller {
             $model->sell_order_id = $sellOrderDet->SellOrder->id;
             $model->product_id = $_POST['product_id_sell_order'];
             $model->ordering = (isset($lastcode->ordering)) ? $lastcode->ordering + 1 : 1;
-            $model->code = substr('0000' . $model->ordering, -4);
+            if (empty($_POST['code'])) {
+                $model->code = substr('0000' . $model->ordering, -4);
+            } else {
+                $model->code = $_POST['code'];
+            }
             $model->total_time_process = (!empty($_POST['total_time'])) ? $_POST['total_time'] : '';
             $model->qty_total = $_POST['tot_split'];
             if (isset($_POST['partial_name'])) {
@@ -318,7 +321,6 @@ class WorkorderController extends Controller {
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
-        $model->code = SiteConfig::model()->formatting('workorder');
         $this->render('create', array(
             'model' => $model,
         ));
@@ -334,6 +336,11 @@ class WorkorderController extends Controller {
         $this->cssJs();
 
         if (!empty($_POST['product_id_sell_order'])) {
+            if (empty($_POST['code'])) {
+                $model->code = substr('0000' . $model->ordering, -4);
+            } else {
+                $model->code = $_POST['code'];
+            }
             $model->total_time_process = (!empty($_POST['total_time'])) ? $_POST['total_time'] : '';
             $model->qty_total = $_POST['tot_split'];
             $model->material_parts = '';

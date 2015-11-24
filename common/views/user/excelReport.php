@@ -1,6 +1,6 @@
 <table>
     <tr>
-        <th colspan="5">DAFTAR USER PT. <?php
+        <th colspan="5">List Data USER PT. <?php
             Yii::app()->name;
             echo param('clientName');
             ?></th>

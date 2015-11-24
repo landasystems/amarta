@@ -2,10 +2,10 @@
     <thead>
         <tr>
             <th  style='text-align:center;vertical-align: middle' width="20px">#</th>
-            <th style='text-align:center;vertical-align: middle'class="span1">Type</th>                        
-            <th style='text-align:center;vertical-align: middle'class="span1">Ukuran</th>                        
-            <th style='text-align:center;vertical-align: middle'class="span3">Keterangan</th>                        
-            <th style='text-align:center;vertical-align: middle' width="10%">Jumlah</th>                        
+            <th style='text-align:center;vertical-align: middle' width="100px">Type</th>                        
+            <th style='text-align:center;vertical-align: middle' width="100px">Ukuran</th>                        
+            <th style='text-align:center;vertical-align: middle'>Keterangan</th>                        
+            <th style='text-align:center;vertical-align: middle' width="50px">Jumlah</th>                        
         </tr>
     </thead>
     <tbody>

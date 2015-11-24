@@ -94,7 +94,7 @@
                     $row .= '</td><td>';
                     $row .= ucwords($material->name);
                     $row .= '</td><td style="text-align:left">';
-                    $row .= '<textarea class="span3" style="width:95%" rows="5" name="partial_name[]">' . $value->partial . '" </textarea>';
+                    $row .= '<textarea class="span3" style="width:95%" rows="5" name="partial_name[]">' . $value->partial . '</textarea>';
                     $row .= '</td></tr>';
                 }
             }

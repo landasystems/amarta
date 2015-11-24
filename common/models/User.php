@@ -77,7 +77,8 @@ class User extends CActiveRecord {
     }
 
     public function listPegawai() {
-        $pegawai = $this->model()->findAll(array('condition' => 'roles_id=3 OR roles_id=7 OR roles_id=13'));
+        $pegawai = $this->model()->findAll(array('condition' => 'roles_id=3'));
+//        $pegawai = $this->model()->findAll(array('condition' => 'roles_id=3 OR roles_id=7 OR roles_id=13'));
         return $pegawai;
     }
 

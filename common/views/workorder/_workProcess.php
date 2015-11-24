@@ -2,10 +2,10 @@
     <thead>
         <tr>
             <th  style='text-align:center;vertical-align: middle' width="20px">#</th>
-            <th  style='text-align:center;vertical-align: middle' class="span2">Nama Proses</th>                        
-            <th  style='text-align:center;vertical-align: middle' class="span3">Keterangan</th>                        
-            <th  style='text-align:center;vertical-align: middle' class="span1">Waktu</th>                        
-            <th  style='text-align:center;vertical-align: middle' class="span1">Harga</th>                        
+            <th  style='text-align:center;vertical-align: middle'>Nama Proses</th>                        
+            <th  style='text-align:center;vertical-align: middle'>Keterangan</th>                        
+            <th  style='text-align:center;vertical-align: middle' width="150px">Waktu</th>                        
+            <th  style='text-align:center;vertical-align: middle' width="120px">Harga</th>                        
             <!--<th  style='text-align:center;vertical-align: middle' class="span1">Grup</th>-->                        
             <th  style='text-align:center;vertical-align: middle' class="span1" width="40px">Urutan</th>                        
         </tr>
@@ -89,7 +89,7 @@
                     $row .= '<a rel="tooltip" title="Process Terpakai" class="btn btn-medium btn-danger" href="#"><i class="icon-check"></i></a>';
                 }
                 $row .= '</td><td>';
-                $row .= '<input type="text" name="process_name[]" value="' . $value->name . '" />';
+                $row .= '<input type="text" style="width:95%" name="process_name[]" value="' . $value->name . '" />';
                 $row .= '</td><td>';
                 $row .= '<input type="text" style="width:95%" name="process_desc[]" value="' . $value->description . '" />';
                 $row .= '</td><td style="text-align:right">';
