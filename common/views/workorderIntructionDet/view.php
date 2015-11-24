@@ -107,7 +107,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                 $sNp = '-';
                             }
                             if (empty($value->created_spp)) {
-                                $spp = '<a href="' . url('workorderIntructionDet/create', array('id' => $value->id,'product_id' => $value->RM->product_id)) . '" class="btn btn-small up"><i class="icomoon-icon-enter"></i></a>';
+                                $spp = '<a href="' . url('workorderIntructionDet/create', array('id' => $value->id,'product_id' => $value->RM->product_id)) . '" class="btn btn-small up"><i class="icon-check"></i></a>';
                                 $print = "";
                             } else {
                                 $spp = $value->code;

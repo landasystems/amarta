@@ -25,7 +25,7 @@ class SalaryOutController extends Controller {
 //                'actions' => array('index', 'create'),
 //                'expression' => 'app()->controller->isValidAccess(1,"c")'
 //            ),
-           
+
             array('allow', // r
                 'actions' => array('index', 'view', 'update', 'delete', 'create'),
                 'expression' => 'app()->controller->isValidAccess("Salary","r")'
@@ -57,8 +57,9 @@ class SalaryOutController extends Controller {
             $dates = $_GET['dates'];
         } else {
             $dates = '';
-        }
-        $exDate = explode('- ', $dates);
+        }        
+        $exDate = explode('-', $dates);
+        logs($exDate);
         $criteria = new CDbCriteria();
         $criteria->with = array('StartFromUser');
         $criteria->addCondition('end_user_id !=0');
@@ -66,15 +67,12 @@ class SalaryOutController extends Controller {
         if (!empty($user_id) && $user_id != 'null') {
             $criteria->addInCondition('start_from_user_id', $user_id);
         }
-        if (!empty($dates)) {
-//            $criteria->addCondition('date(time_end) <="' . $max_date . '"');
-//            $criteria->condition = 'date(time_end) >="' . date('Y-m-d', strtotime($exDate[0])) . '" AND date(time_end) <="' . date('Y-m-d', strtotime($exDate[1])) . '"';
-            $criteria->addCondition('(date(time_end) >="' . date('Y-m-d', strtotime($exDate[0])) . '" AND date(time_end) <="' . date('Y-m-d', strtotime($exDate[1])) . '")');
-        }
+        $criteria->addCondition('(date(time_end) >="' . date('Y-m-d', strtotime($exDate[0])) . '" AND date(time_end) <="' . date('Y-m-d', strtotime($exDate[1])) . '")');
         $criteria->order = 'StartFromUser.name, time_end';
         $process = WorkorderProcess::model()->findAll($criteria);
         if (!empty($_GET['type'])) {
             Yii::app()->request->sendFile('gaji pegawai - ' . date('dmY') . '.xls', $this->renderPartial('excelReport', array(
+                        'date_salary' => $dates,
                         'process' => $process,
                         'type' => $_GET['type']
                             ), true)

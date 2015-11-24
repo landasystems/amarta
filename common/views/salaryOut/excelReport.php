@@ -5,9 +5,9 @@ $totalsalary = 0;
 ?>
 <center>Penggajian Karyawan CV Amarta Wisesa</center>
 <!--<br>-->
-<center>Periode <?php echo (isset($model->date_salary)) ? date('d M Y', strtotime($model->date_salary)) : '' ?></center> 
+<center>Periode <?=$date_salary?></center> 
 <!--<br>--> 
-<center>Dibayarkan Tanggal <?php echo (isset($model->created)) ? date('d M Y', strtotime($model->created)) : '' ?></center>
+<center>Disiapkan Tanggal <?=date('d M Y, H:i') ?></center>
 <!--<br>-->
 <hr>
 

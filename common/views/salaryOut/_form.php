@@ -58,10 +58,11 @@
                             echo $form->dateRangeRow(
                                     $model, 'created', array(
                                 'prepend' => '<i class="icon-calendar"></i>',
-                                'options' => array('callback' => 'js:function(start, end){console.log(start.toString("MMMM d, yyyy") + " - " + end.toString("MMMM d, yyyy"));}'),
-                                'value' => (isset($_POST['SalaryOut']['created'])) ? $_POST['SalaryOut']['created'] : ''
-                                    )
-                            );
+                                'options' => array(
+                                    'format' => 'dd MMM yyyy',
+                                ),
+                                'value' => (isset($_POST['SalaryOut']['created'])) ? $_POST['SalaryOut']['created'] : date('d M Y') . '-' . date('d M Y')
+                            ));
                             ?>
                             <div class="controls">
                                 <?php
@@ -110,6 +111,6 @@
     $("#export").on("click", function () {
         var user_id = $("#Salary_user_id").val();
         var dates = $("#SalaryOut_created").val();
-        window.open("<?php echo url("salaryOut/detail")?>?user_id="+user_id+"&dates="+dates+"&type=export");
+        window.open("<?php echo url("salaryOut/detail") ?>?user_id=" + user_id + "&dates=" + dates + "&type=export");
     });
 </script>
