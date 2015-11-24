@@ -31,8 +31,6 @@ $this->widget('bootstrap.widgets.TbMenu', array(
         array('label' => 'Tambah', 'icon' => 'icon-plus', 'url' => Yii::app()->controller->createUrl('create'), 'linkOptions' => array()),
         array('label' => 'List Data', 'icon' => 'icon-th-list', 'url' => Yii::app()->controller->createUrl('index'), 'active' => true, 'linkOptions' => array()),
         array('label' => 'Pencarian', 'icon' => 'icon-search', 'url' => '#', 'linkOptions' => array('class' => 'search-button')),
-//        array('label' => 'Export ke PDF', 'icon' => 'icon-download', 'url' => Yii::app()->controller->createUrl('GeneratePdf'), 'linkOptions' => array('target' => '_blank'), 'visible' => true),
-//        array('label' => 'Export ke Excel', 'icon' => 'icon-download', 'url' => Yii::app()->controller->createUrl('GenerateExcel'), 'linkOptions' => array('target' => '_blank'), 'visible' => true),
     ),
 ));
 $this->endWidget();
@@ -51,15 +49,6 @@ $this->endWidget();
 
 <?php
 $buton="{view}{delete}{update}";
-//if(landa()->checkAccess('SellOrder', 'r')){
-//   $buton .= '{view}'; 
-//}
-//if(landa()->checkAccess('SellOrder', 'd')){
-//   $buton .= '{delete}'; 
-//}
-//if(landa()->checkAccess('SellOrder', 'u')){
-//   $buton .= '{update}'; 
-//}
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'sell-order-grid',
     'dataProvider' => $model->search(),
@@ -80,30 +69,21 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'name' => 'term',
-            'value' => 'date("d-m-Y",strtotime($data->term))',
+            'value' => '($data->term=="1970-01-01") ? "" : date("d-m-Y",strtotime($data->term))',
+            'htmlOptions' => array('style' => 'text-align: center'),
         ),
         array('header' => 'Status',
             'name' => 'status',
             'type' => 'raw',
             'value' => '($data->status==\'process\') ? "<span class=\"label label-warning\">$data->status</span>" : "<span class=\"label label-info\">$data->status</span>"',
+            'htmlOptions' => array('style' => 'text-align: center'),
         ),        
         array(
             'name' => 'created',
             'header' => 'Tgl. Input',
             'value' => 'date("d-m-Y, H:i",strtotime($data->created))',
+            'htmlOptions' => array('style' => 'text-align: center'),
         ),
-        /*
-          'description',
-          'subtotal',
-          'discount',
-          'discount_type',
-          'ppn',
-          'other',
-          'term',
-          'dp',
-          'credit',
-          'payment',
-         */
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => '{view} {update} {delete}',

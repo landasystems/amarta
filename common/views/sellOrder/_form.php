@@ -21,27 +21,21 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
     ));
     ?>
     <div class="box gradient invoice">
-
-        <div class="title clearfix">
-
-            <h4 class="left">
-                <span></span>
-            </h4>
-            <!--            <div class="print">
-                            <a href="#" class="tip" oldtitle="Print invoice" title=""><span class="icon24 entypo-icon-printer"></span></a>
-                        </div>-->
-            <div class="invoice-info">
-                <span class="number"><strong class="red"><?php echo $model->code; ?></strong></span>
-                <div class="clearfix"></div>
-            </div>
-
-        </div>
         <div class="content ">
-
             <table>
                 <tr>
                     <td style="vertical-align: top !important" class="span6">
-
+                        <div class="row-fluid">
+                            <div class="span3">
+                                Kode Pesanan
+                            </div>
+                            <div class="span1">:</div>
+                            <div class="span8" style="text-align:left">
+                                <input type="text" name="SellOrder[code]" class="angka" value="<?php echo $model->code?>"/>
+                                <br/>Kosongkan untuk generate otomatis nomor SP
+                            </div>
+                        </div>
+                        <hr/>
                         <div class="row-fluid">
                             <div class="span3">
                                 Customer
@@ -108,13 +102,6 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                                 $model, 'description', array('class' => 'span3', 'rows' => 5)
                         );
                         ?>
-                        <div style="display:none">
-                            <?php
-//                            echo $form->dropDownListRow($model, 'departement_id', CHtml::listData(Departement::model()->findAll(), 'id', 'name'), array(
-//                                'class' => 'span3',
-//                            ));
-                            ?>
-                        </div>
                         <?php
                         echo $form->datepickerRow(
                                 $model, 'term', array(
@@ -136,12 +123,8 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                 <thead>
                     <tr>
                         <th width="20">#</th>
-                        <th>Kode Barang</th>
-                        <th>Item</th>
-                        <th class="span2">Stock</th>
-                        <th class="span2">Amount</th>
-                        <th>Price</th>
-                        <th class="span3">Total</th>
+                        <th>Barang</th>
+                        <th width="100">Jml</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -189,7 +172,7 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                             );
                             ?>
                         </td>
-                        <td colspan="2" class="span3" style="text-align:center">
+                        <td style="text-align:center">
                             <?php
                             $data = array(0 => t('choose', 'global')) + CHtml::listData(Product::model()->findAll(array('condition' => 'product_category_id=30')), 'id', 'codename');
 
@@ -205,53 +188,19 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                                 'htmlOptions' => array(
                                     'id' => 'product_id'
                                 ),
-                                'events' => array('change' => 'js: function() {
-                                                     $.ajax({
-                                                        url : "' . url('product/json') . '",
-                                                        type : "POST",
-                                                        data :  { product_id:  $(this).val(), departement_id: $("#SellOrder_departement_id").val()},
-                                                        success : function(data){
-                                                            obj = JSON.parse(data);
-                                                            $("#price_buy").val(obj.price_sell);
-                                                            $("#stock").html(obj.stock);
-                                                            $("#myStock").val(obj.stock);
-                                                            $(".measure").html(obj.ProductMeasureName);
-                                                            calculate();
-                                                        }
-                                                     });
-                                            }'),
                             ));
                             ?>
                         </td>
-                        <td><input type="hidden" value="" id="myStock" name="stock" /><span id="stock"></span><span class="measure"></span></td>
                         <td style="text-align:right"><?php
                             echo CHtml::textField('amount', '', array('id' => 'amount',
                                 'maxlength' => 6,
-                                'class'=> 'angka',
+                                'class' => 'angka',
                                 'style' => 'width:80px',
-//                                'oninput'=>'js:calculate()'
                             ))
                             ?><span class="measure"></span>
                         </td>
-                        <td>
-                            <div class="input-prepend">
-                                <span class="add-on">Rp.</span>
-                                <?php
-                                echo CHtml::textField('price_buy', '', array('id' => 'price_buy',
-                                    'maxlength' => 9,
-                                    'class' => 'angka',
-                                    'style' => 'width:100px',
-//                                    'oninput'=>'js:calculate()'
-                                ))
-                                ?>
-                            </div>
-                        </td>
-                        <td><span id="total"></span></td>
                     </tr>
                     <tr id="addRow">
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -259,66 +208,18 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                     <?php
                     if ($model->isNewRecord == FALSE) {
                         foreach ($mSellOrderDet as $o) {
-                            $measure = (!empty($o->product_measure_id)) ? $o->Product->ProductMeasure->name : "";
                             echo '<tr>                               
                                     <td>
                                         <input type="hidden" name="SellOrderDet[product_id][]" value="' . $o->product_id . '"/>
                                         <input type="hidden" name="SellOrderDet[total][]" class="detTotal" value="' . $o->price * $o->qty . '"/>
                                         <span class="btn"><i class="delRow icon-remove-circle" style="cursor:all-scroll;"></i></btn>
                                     </td>
-                                    <td width="10%" style="width:10% !required">' . $o->Product->code . '</td>
-                                    <td colspan="2">' . $o->Product->name . '</td>                        
-                                    <td width="10%" style="text-align:center"><input type="text" class="angka amounts" name="SellOrderDet[qty][]" value="' . $o->qty . '"/> ' . $measure . '</td>
-                                    <td width="10%" style="text-align:center"><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka prices" name="SellOrderDet[price][]" value="' . $o->price . '"/></div></td>
-                                    <td style="text-align:right;width:15%">' . landa()->rp($o->qty * $o->price) . '</td>
+                                    <td>' . $o->Product->code . ' - ' . $o->Product->name . '</td>                        
+                                    <td width="10%" style="text-align:center"><input type="text" class="angka amounts" name="SellOrderDet[qty][]" value="' . $o->qty . '"/></td>
                                 </tr>';
                         }
                     }
                     ?>
-                    <tr style="display: none">
-                        <td colspan="6" style="text-align: right;padding-right: 15px"><b>Sub Total : </b></td>
-                        <td style="text-align:right">
-                            <?php echo $form->hiddenField($model, 'subtotal'); ?>
-                            <span id="subtotal"><?php echo ($model->subtotal != "") ? landa()->rp($model->subtotal) : ""; ?></span>
-                        </td>
-                    </tr>
-                    <tr style="display: none">
-                        <td colspan="6" style="text-align: right;padding-right: 15px"><b>Biaya lain - lain : </b></td>
-                        <td  style="text-align:right"> 
-                            <?php
-                            echo $form->textFieldRow(
-                                    $model, 'other', array('prepend' => 'Rp', 'label' => false, 'class' => 'angka')
-                            );
-                            ?>
-                        </td>
-                    </tr>
-                    <tr style="display: none">
-                        <td colspan="6" style="text-align: right;padding-right: 15px;"><b>Diskon</td>
-                        <td style="text-align:right">
-                            <?php
-                            echo $form->textFieldRow(
-                                    $model, 'discount', array('prepend' => 'Rp', 'label' => false, 'class' => 'angka')
-                            );
-                            ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" style="text-align: right;padding-right: 15px"><b>Total : </b></td>
-                        <td style="text-align:right">
-                            <span id="grandTotal"><?php echo landa()->rp($model->subtotal + $model->ppn + $model->other - $model->discount); ?></span>
-                        </td>
-                    </tr>
-
-                    <tr style="display: none">
-                        <td colspan="6" style="text-align: right;padding-right: 15px"><b>Sudah di bayar : </b></td>
-                        <td style="text-align:right">
-                            <?php
-                            echo $form->textFieldRow(
-                                    $model, 'payment', array('prepend' => 'Rp', 'label' => false, 'class' => 'angka')
-                            );
-                            ?>
-                        </td>
-                    </tr>                    
                 </tbody>
             </table>
 
@@ -333,13 +234,6 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
                         'icon' => 'ok white',
                         'label' => 'Simpan',
                     ));
-                    ?>
-                    <?php
-//                    $this->widget('bootstrap.widgets.TbButton', array(
-//                        'buttonType' => 'reset',
-//                        'icon' => 'remove',
-//                        'label' => 'Reset',
-//                    ));
                     ?>
                 </div>
             <?php } ?>
@@ -383,7 +277,6 @@ foreach (Yii::app()->user->getFlashes() as $key => $message) {
         $(".detTotal").each(function () {
             total += parseInt($(this).val());
         });
-//        alert(total);
         $("#grandTotal").html("Rp. " + rp(total));
     }
 

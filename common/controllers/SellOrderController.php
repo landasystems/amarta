@@ -23,7 +23,7 @@ class SellOrderController extends Controller {
 //                'expression' => 'app()->controller->isValidAccess("SellOrder","c")'
 //            ),
             array('allow', // r
-                'actions' => array('index', 'view','update','delete','create'),
+                'actions' => array('index', 'view', 'update', 'delete', 'create'),
                 'expression' => 'app()->controller->isValidAccess("SellOrder","r")'
             )
 //            ,array('allow', // u
@@ -177,8 +177,8 @@ class SellOrderController extends Controller {
 //            'model' => $model,
 //        ));
 //    }
-    
-    public function actionView($id){
+
+    public function actionView($id) {
         cs()->registerScript('read', '
             $("form input, form textarea, form select").each(function(){
                 $(this).prop("disabled", true);
@@ -186,102 +186,75 @@ class SellOrderController extends Controller {
         $_GET['v'] = true;
         $this->actionUpdate($id);
     }
-    
+
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
+        
         $this->cssJs();
         $model = new SellOrder;
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if (isset($_POST['SellOrder'])) {
-            $lastCode = SellOrder::model()->find(array(
-                'order' => 'code DESC'
-            ));
-
-            $codes = (!empty($lastCode)) ? ((int) $lastCode->code) + 1 : 1;
-//            logs($codes);
             $model->attributes = $_POST['SellOrder'];
-            $model->code = '0' . $codes;
+
+            if (empty($model->code)) { //jika kosong di generate otomatis
+                $lastCode = SellOrder::model()->find(array(
+                    'order' => 'code DESC'
+                ));
+                $codes = (!empty($lastCode)) ? ((int) $lastCode->code) + 1 : 1;
+                $model->code = $codes;
+            }
+
             if (!empty($_POST['SellOrderDet'])) {
                 $model->term = date('Y-m-d', strtotime($model->term));
                 $model->status = 'process';
-                $model->total = (int) $_POST['SellOrder']['subtotal'] - (int) $_POST['SellOrder']['discount'] + (int) $_POST['SellOrder']['other'];
                 if ($model->save()) {
                     for ($i = 0; $i < count($_POST['SellOrderDet']['product_id']); $i++) {
                         $mInDet = new SellOrderDet;
                         $mInDet->sell_order_id = $model->id;
                         $mInDet->product_id = $_POST['SellOrderDet']['product_id'][$i];
                         $mInDet->qty = $_POST['SellOrderDet']['qty'][$i];
-                        $mInDet->price = $_POST['SellOrderDet']['price'][$i];
                         $mInDet->save();
                     }
                     $this->redirect(array('view', 'id' => $model->id));
                 }
-                logs($model->getErrors());
             } else {
                 Yii::app()->user->setFlash('error', '<strong>Error! </strong>No product added.');
             }
         }
-        $model->code = SiteConfig::model()->formatting('sellorder');
         $this->render('create', array(
             'model' => $model,
         ));
     }
 
     public function actionAddRow() {
-
         $model = Product::model()->findByPk($_POST['product_id']);
-        $measure = (isset($model->ProductMeasure->name)) ? $model->ProductMeasure->name : '';
-//        if ($_POST['stock'] - $_POST['amount'] < 1) {
-//            echo 'error';
-//        } else {
         echo '
                 <tr id="addRow">
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>                        
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>
                             <input type="hidden" name="SellOrderDet[product_id][]" id="' . $model->id . '" value="' . $model->id . '"/>
-                            
-                            
-                            <input type="hidden" name="SellOrderDet[total][]" id="detTotalq" class="detTotal" value="' . $_POST['price_buy'] * $_POST['amount'] . '"/>
                             <span class="btn"><i class="delRow icon-remove-circle" style="cursor:all-scroll;"></i></span>
                         </td>
-                        <td width="10%" style="width:10% !required">' . $model->code . '</td>
-                        <td colspan="2">' . $model->name . '</td>                        
-                        <td><span id="detAmount"><input type="text" class="angka" name="SellOrderDet[qty][]" id="detQty" value="' . $_POST['amount'] . '"/></span> ' . $measure . '</td>
-                        <td><div class="input-prepend"><span class="add-on">Rp.</span><input type="text" class="angka" name="SellOrderDet[price][]" id="detPrice" value="' . $_POST['price_buy'] . '"/></div></td>
-                        <td style="text-align:right">' . landa()->rp($_POST['amount'] * $_POST['price_buy']) . '</td>
+                        <td>' . $model->code . '-' . $model->name . '</td>
+                        <td style="text-align:center"><span id="detAmount"><input type="text" class="angka" name="SellOrderDet[qty][]" id="detQty" value="' . $_POST['amount'] . '"/></span></td>
                     </tr>';
-//        }
     }
 
-    /**
-     * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id the ID of the model to be updated
-     */
     public function actionUpdate($id) {
         $this->cssJs();
 
         $model = $this->loadModel($id);
-        $mSellOrderDet = SellOrderDet::model()->findAll(array('condition' => 'sell_order_id=' . $model->id));
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        $mSellOrderDet = SellOrderDet::model()->findAll(array('order'=>'id','condition' => 'sell_order_id=' . $model->id));
 
         if (isset($_POST['SellOrder'])) {
             $model->attributes = $_POST['SellOrder'];
-            $model->total = (int) $_POST['SellOrder']['subtotal'] - (int) $_POST['SellOrder']['discount'] + (int) $_POST['SellOrder']['other'];
             if (!empty($_POST['SellOrderDet'])) {
                 $model->term = date('Y-m-d', strtotime($model->term));
                 if ($model->save()) {
@@ -291,7 +264,6 @@ class SellOrderController extends Controller {
                         $mInDet->sell_order_id = $model->id;
                         $mInDet->product_id = $_POST['SellOrderDet']['product_id'][$i];
                         $mInDet->qty = $_POST['SellOrderDet']['qty'][$i];
-                        $mInDet->price = $_POST['SellOrderDet']['price'][$i];
                         $mInDet->save();
                     }
                     $this->redirect(array('view', 'id' => $model->id));
@@ -377,4 +349,5 @@ class SellOrderController extends Controller {
             Yii::app()->end();
         }
     }
+
 }

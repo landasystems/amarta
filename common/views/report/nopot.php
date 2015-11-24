@@ -26,12 +26,12 @@ $this->breadcrumbs = array(
 <div class="well">
 
     <div class="row-fluid">
-        <div class="span11">
+        <div class="span12">
             <?php // echo $form->dropDownListRow($accCoa, 'id', CHtml::listData(Acc_coa::model()->findAll(), 'id', 'name'), array('class' => 'span5', 'empty' => t('choose', 'global')));  ?>      
             <div class="control-group ">
                 <table>
                     <tr>
-                        <td width="10%">Select SPK</td>
+                        <td width="10%">Pilih SPK</td>
                         <td>:</td>
                         <td style="text-align:left;">
                             <?php
@@ -44,7 +44,7 @@ $this->breadcrumbs = array(
                                 'options' => array(
                                     "placeholder" => t('choose', 'global'),
                                     "allowClear" => true,
-                                    'width' => '50%',
+                                    'width' => '100%',
                                 ),
                                 'htmlOptions' => array(
                                     'id' => 'spk',

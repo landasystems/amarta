@@ -1,13 +1,5 @@
 <?php
-$title = (isset($_GET['v'])) ? 'View Pesanan' : 'Edit Pesanan';
-
-$this->setPageTitle($title.' | ID : '. $model->id);
-$this->breadcrumbs=array(
-	'Sell Orders'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
-
+$this->setPageTitle('Pesanan Nomor : '. $model->code);
 ?>
 
 <?php 

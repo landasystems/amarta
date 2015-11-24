@@ -65,7 +65,7 @@ class User extends CActiveRecord {
             $criteria->compare('roles_id', 1);
         }else{
             $criteria->compare('Roles.is_allow_login', 0);
-            $criteria->compare('roles_id',"<>", 1);
+            $criteria->addCondition("roles_id <> 1");
         }
 
         return new CActiveDataProvider($this, array(

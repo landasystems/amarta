@@ -30,7 +30,7 @@
                 ?>
             </td>
 
-            <td>               
+            <td style="text-align: center;vertical-align: top">               
                 <?php
                 $category = CHtml::listData(ProductCategory::model()->findAll(array('condition' => 'id IN(28,29)')), 'id', 'name');
                 
@@ -49,7 +49,7 @@
                 ));
                 ?>  
             </td>                        
-            <td>
+            <td style="text-align: center;vertical-align: top">
                 <?php
                     $data = array(0 => 'Please choose Material Types first');
                     $this->widget('bootstrap.widgets.TbSelect2', array(

@@ -19,7 +19,7 @@ class UserController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // r
-                'actions' => array('index', 'view','create','update','delete'),
+                'actions' => array('index', 'create','update','delete'),
                 'expression' => 'app()->controller->isValidAccess("User","r") || 
                     app()->controller->isValidAccess("Employment","r") ||
                     app()->controller->isValidAccess("Customer","r")',
@@ -187,15 +187,6 @@ class UserController extends Controller {
             }
 
             if ($model->save()) {
-                //check if any change in roles, revoke then assign new role
-//                if ($tempRoles != $model->roles) {
-//                    $model->revokeRoles($tempRoles, $model->id);
-//                    $model->assignRoles($model->roles, $model->id);
-//                }
-                //clear session user
-                unset(Yii::app()->session['listUser']);
-                unset(Yii::app()->session['listUserPhone']);
-
                 $this->redirect(array('view', 'id' => $model->id, 'type' => $type));
             }
         }

@@ -463,9 +463,9 @@ class ProductController extends Controller {
     }
 
     public function actionJson() {
-        $model = Product::model()->findByPk($_POST['product_id']);
-        echo json_encode(array('stock' => ProductStock::model()->departement($model->stock, $_POST['departement_id']), 'price_sell' => $model->price_sell, 'price_buy' => $model->price_buy, 'ProductMeasureName' => (isset($model->ProductMeasure->name)) ? $model->ProductMeasure->name : ''));
-        ;
+//        $model = Product::model()->findByPk($_POST['product_id']);
+//        echo json_encode(array('stock' => ProductStock::model()->departement($model->stock, $_POST['departement_id']), 'price_sell' => $model->price_sell, 'price_buy' => $model->price_buy, 'ProductMeasureName' => (isset($model->ProductMeasure->name)) ? $model->ProductMeasure->name : ''));
+        
     }
 
     public function actionGetMeasure() {

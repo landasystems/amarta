@@ -36,8 +36,6 @@ $this->widget('bootstrap.widgets.TbMenu', array(
         array('label' => 'Tambah', 'icon' => 'icon-plus', 'url' => Yii::app()->controller->createUrl('create'), 'linkOptions' => array()),
         array('label' => 'List Data', 'icon' => 'icon-th-list', 'url' => Yii::app()->controller->createUrl('index'), 'active' => true, 'linkOptions' => array()),
         array('label' => 'Pencarian', 'icon' => 'icon-search', 'url' => '#', 'linkOptions' => array('class' => 'search-button')),
-//        array('label' => 'Export ke PDF', 'icon' => 'icon-download', 'url' => Yii::app()->controller->createUrl('GeneratePdf'), 'linkOptions' => array('target' => '_blank'), 'visible' => true),
-//        array('label' => 'Export ke Excel', 'icon' => 'icon-download', 'url' => Yii::app()->controller->createUrl('GenerateExcel'), 'linkOptions' => array('target' => '_blank'), 'visible' => true),
     ),
 ));
 $this->endWidget();
@@ -56,15 +54,6 @@ $this->endWidget();
 
 <?php
 $buton="{view}{delete}{update}";
-//if(landa()->checkAccess('WorkOrder', 'r')){
-//   $buton .= '{view}'; 
-//}
-//if(landa()->checkAccess('WorkOrder', 'd')){
-//   $buton .= '{delete}'; 
-//}
-//if(landa()->checkAccess('WorkOrder', 'u')){
-//   $buton .= '{update}'; 
-//}
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'workorder-grid',
     'dataProvider' => $model->search(),
@@ -100,18 +89,20 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'header' => 'Jumlah',
             'type' => 'raw',
             'value' => '$data->qty_total',
-        ),
-        array(
-            'name' => 'total_time_process',
-            'header' => 'Total Waktu',
-            'type' => 'raw',
             'htmlOptions' => array('style' => 'text-align: right'),
-            'value' => '$data->total_time_process." Minutes"',
         ),
+//        array(
+//            'name' => 'total_time_process',
+//            'header' => 'Total Waktu',
+//            'type' => 'raw',
+//            'htmlOptions' => array('style' => 'text-align: right'),
+//            'value' => '$data->total_time_process." Minutes"',
+//        ),
         array(
             'name' => 'created',
             'header' => 'Tgl. Input',
             'value' => 'date("d-m-Y, H:i",strtotime($data->created))',
+            'htmlOptions' => array('style' => 'text-align: center'),
         ),
        
 //        'code',
