@@ -60,12 +60,11 @@ class User extends CActiveRecord {
         $criteria->compare('t.name', $this->name, true);
         $criteria->compare('phone', $this->phone, true);
         if ($type == 'user') {
-            $criteria->compare('Roles.is_allow_login', 1);
+            $criteria->compare('roles_id', -1);
         } elseif ($type == 'customer') {
             $criteria->compare('roles_id', 1);
-        }else{
-            $criteria->compare('Roles.is_allow_login', 0);
-            $criteria->addCondition("roles_id <> 1");
+        }else{ // lainnya penjahit
+            $criteria->compare('roles_id', 3);
         }
 
         return new CActiveDataProvider($this, array(

@@ -83,15 +83,11 @@ class Auth extends CActiveRecord {
     public function modules($arg = NULL) {
         return array(
             array('visible' => landa()->checkAccess('Dashboard', 'r'), 'label' => 'Dashboard', 'url' => array('/dashboard'), 'auth_id' => 'Dashboard'),
-            array('visible' => landa()->checkAccess('SiteConfig', 'r') || landa()->checkAccess('Roles', 'r') || landa()->checkAccess('User', 'r'), 'label' => 'Settings', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
-                    array('visible' => landa()->checkAccess('SiteConfig', 'r'), 'auth_id' => 'SiteConfig', 'label' => 'Site config', 'url' => array('/siteConfig/update/1'), 'crud' => array("r" => 1)),
-                    array('visible' => landa()->checkAccess('Roles', 'r'), 'auth_id' => 'Roles', 'label' => 'Access', 'url' => array('/roles'), 'crud' => array("r" => 1)),
-                    array('visible' => landa()->checkAccess('User', 'r'), 'auth_id' => 'User', 'label' => 'User', 'url' => url('/user'), 'crud' => array("r" => 1)),
-                )),
+            array('visible' => landa()->checkAccess('User', 'r'), 'auth_id' => 'User', 'label' => 'User', 'url' => url('/user'), 'crud' => array("r" => 1)),
             array('visible' => landa()->checkAccess('Product', 'r') || landa()->checkAccess('Customer', 'r') || landa()->checkAccess('Employment', 'r') , 'label' => 'Master', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
                     array('visible' => landa()->checkAccess('Product', 'r'), 'auth_id' => 'Product', 'label' => 'Barang', 'url' => array('/product'), 'crud' => array("r" => 1)),
                     array('visible' => landa()->checkAccess('Customer', 'r'), 'auth_id' => 'Customer', 'label' => 'Customer', 'url' => array('/user/customer'), 'crud' => array("r" => 1)),
-                    array('visible' => landa()->checkAccess('Employment', 'r'), 'auth_id' => 'Employment', 'label' => 'Pegawai', 'url' => array('/user/employment'), 'crud' => array("r" => 1)),
+                    array('visible' => landa()->checkAccess('Employment', 'r'), 'auth_id' => 'Employment', 'label' => 'Penjahit', 'url' => array('/user/employment'), 'crud' => array("r" => 1)),
                 )),
             array('visible' => landa()->checkAccess('ProsesStatus', 'r') || landa()->checkAccess('WorkOrder', 'r') || landa()->checkAccess('WorkOrderIntruction', 'r') || landa()->checkAccess('SellOrder', 'r') || landa()->checkAccess('WorkOrderIntructionDet', 'r'), 'label' => 'Produksi', 'url' => array('#'), 'submenuOptions' => array('class' => 'sub'), 'items' => array(
                     array('visible' => landa()->checkAccess('SellOrder', 'r'), 'auth_id' => 'SellOrder', 'label' => 'Surat Pesanan', 'url' => array('/sellOrder'), 'crud' => array("r" => 1)),

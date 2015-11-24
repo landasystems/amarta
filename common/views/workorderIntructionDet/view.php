@@ -112,10 +112,11 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                             } else {
                                 $spp = $value->code;
                                 if (isset($value->is_nopot)) {
-                                    $print = '<a href="' . url('workorderSplit/print', array('id' => $value->id)) . '" class="btn btn-mini"><i class="entypo-icon-printer" rel="tooltip" title="Cetak"></i></a> '
+                                    $print = '<a href="' . url('workorderSplit/print', array('id' => $value->id)) . '" class="btn btn-mini">'
+                                            . '<i class="icon-print" rel="tooltip" title="Cetak"></i></a> '
                                             . '<a href="#" data-toggle="modal" class="btn btn-mini">'
                                             . '<div class="markEdit" id="' . $value->id . '" pmarker="' . $value->material_used . '">'
-                                            . '<i class="typ-icon-pencil-2" rel="tooltip" title="Edit Marker"></i></div></a> '
+                                            . '<i class="icon-pencil" rel="tooltip" title="Edit Marker"></i></div></a> '
                                             . '<a href="#" data-toggle="modal" class="btn btn-mini">'
                                             . '<div class="delSPP" id="' . $value->id . '">'
                                             . '<i class="icon-trash" rel="tooltip" title="Hapus"></i></div></a>';

@@ -54,12 +54,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'template' => '{summary}{pager}{items}{pager}',
     'columns' => array(
         array(
-            'name' => 'Photo',
-            'type' => 'raw',
-            'value' => '"$data->tagImg"',
-            'htmlOptions' => array('style' => 'text-align: center; width:40px;text-align:center;')
-        ),
-        array(
             'name' => 'code',
         ),
         array(
@@ -71,12 +65,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'visible' => ($type=='user')
         ),
         'name',
-        array(
-            'name' => 'Group User',
-            'type' => 'raw',
-            'value' => '(isset($data->Roles->name)) ? $data->Roles->name : ""',
-            'visible' => ($type=='user' || $type=='employment' )
-        ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => '{view}{update}{delete}',
