@@ -33,7 +33,7 @@
 
                 <h4>
                     <?php
-                    $listSellOrder = SellOrderDet::model()->findAll(array('condition' => 'is_workorder is null'));
+                    $listSellOrder = SellOrderDet::model()->findAll(array('with'=>array('Product','SellOrder','SellOrder.Customer'),'condition' => 'is_workorder is null'));
                     echo "Pilih SP      : " . CHtml::dropDownList('SellOrderDet', '', CHtml::listData($listSellOrder, 'id', 'fullSp'), array(
                         'empty' => t('choose', 'global'),
                         'class' => 'span3',
@@ -282,11 +282,6 @@
         var amount = parseInt($(".amount").val());
         if (amount > totSplit || $(".tot_split").val() == "") {
             alert('Total Produksi di Detail Ukuran harus lebih besar dari Jumlah Pesanan(amount)!!');
-            return false;
-        }
-
-        if ($('.partial-type').length == 0) {
-            alert('Material belum di masukkan');
             return false;
         }
     });

@@ -110,7 +110,7 @@ class WorkorderIntructionDetController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionIndex() {
-        $model = Workorder::model()->findAll(array('condition' => 'is_finished=0'));
+        $model = Workorder::model()->findAll(array('condition' => 'is_finished=0','order'=>'code DESC'));
         $this->render('index', array(
             'model' => $model,
         ));

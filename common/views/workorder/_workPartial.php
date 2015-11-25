@@ -1,10 +1,9 @@
 <table class="table table-striped table-bordered table-condensed" style="width: 100%">
     <thead>
         <tr>
-            <th width="20" style="text-align: center;vertical-align: middle">#</th>
-            <th class="span3">Type</th>                        
-            <th class="span3">Material</th>                        
-            <th class="span3">Partial</th>                        
+            <th width="20" style="text-align: center;vertical-align: middle">#</th>                   
+            <th>Material</th>                        
+            <th>Partial</th>                        
         </tr>
     </thead>
     <tbody>
@@ -19,7 +18,7 @@
                         'product_id_field' => 'js:$("#product_id").val()',
                         'partial_name_field' => 'js:$(".partial_name").val()'
                     ),
-                            'beforeSend'=> 'function(){
+                    'beforeSend' => 'function(){
                                 checkMaterialPartial();
                                 }',
                     'success' => 'function(data){ 
@@ -28,44 +27,24 @@
                                             
                     }'));
                 ?>
-            </td>
-
-            <td style="text-align: center;vertical-align: top">               
-                <?php
-                $category = CHtml::listData(ProductCategory::model()->findAll(array('condition' => 'id IN(28,29)')), 'id', 'name');
-                
-                echo CHtml::dropDownList('partial_types', '', $category, array(
-                    'empty' => t('choose', 'global'),
-                    'class' => 'partial_type span3',
-                    'style' => 'width : 100%',
-                    'ajax' => array(
-                        'type' => 'POST',
-                        'url' => url('workorder/addSelection'),
-                        'success' => 'function(data){  
-                                  $("#product_id").html(data);                                  
-                        
-                         }',
-                    ),
-                ));
-                ?>  
             </td>                        
             <td style="text-align: center;vertical-align: top">
                 <?php
-                    $data = array(0 => 'Please choose Material Types first');
-                    $this->widget('bootstrap.widgets.TbSelect2', array(
-                        'asDropDownList' => TRUE,
-                        'data' => $data,
-                        'name' => 'product_id',
-                        'options' => array(
-                            "placeholder" => t('choose', 'global'),
-                            "allowClear" => true,
-                            'width' => '100%',
-                        ),
-                        'htmlOptions' => array(
-                            'id' => 'product_id',
-                        ),
-                    ));
-                    ?>
+                $category = array(0 => 'Pilih bahan kain (Material)') + CHtml::listData(Product::model()->findAll(array('condition' => 'product_category_id = 28')), 'id', 'name');
+                $this->widget('bootstrap.widgets.TbSelect2', array(
+                    'asDropDownList' => TRUE,
+                    'data' => $category,
+                    'name' => 'product_id',
+                    'options' => array(
+                        "placeholder" => t('choose', 'global'),
+                        "allowClear" => true,
+                        'width' => '100%',
+                    ),
+                    'htmlOptions' => array(
+                        'id' => 'product_id',
+                    ),
+                ));
+                ?>
             </td> 
             <td>
                 <?php
@@ -83,14 +62,12 @@
                 foreach ($partial as $value) {
                     $material = Product::model()->findByPk($value->material_id);
                     $row .= '<tr class="data_partial"><td style="text-align:center;vertical-align: top">';
-                    $row .= '<input type="hidden" class="partial-type" name="partial_type[]" value="' . $value->type . '" />';
+//                    $row .= '<input type="hidden" class="partial-type" name="partial_type[]" value="' . $value->type . '" />';
                     $row .= '<input type="hidden" name="partial_product_id[]" value="' . $value->material_id . '" />';
                     if ($model->is_processed == 0)
                         $row .= '<button class="btn btn-medium removeRow removePartial"><i class="icon-remove-circle"></i></button>';
                     else
                         $row .= '<a rel="tooltip" title="Process Terpakai" class="btn btn-medium btn-danger" href="#"><i class="icon-check"></i></a>';
-                    $row .= '</td><td>';
-                    $row .= ucwords($value->type);
                     $row .= '</td><td>';
                     $row .= ucwords($material->name);
                     $row .= '</td><td style="text-align:left">';

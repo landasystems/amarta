@@ -62,7 +62,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                     <tr>
                         <th style="width: 60px;text-align: center">SPP</th>                        
                         <th style="width: 60px;text-align: center">Tanggal</th>                        
-                        <th style="width: 110px;text-align: center">Material</th>                        
+<!--                        <th style="width: 110px;text-align: center">Material</th>                        -->
                         <th style="text-align: center">Keterangan</th>                        
                         <th style="text-align: center">Nomark</th>                        
                         <th style="width: 100px;text-align: center">Ukuran & Jumlah</th>                        
@@ -139,7 +139,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                         ' . $spp . '<input type="hidden" name="spp_id[]" class="angka" value="' . $value->id . '"><input type="hidden" name="product_id[]" value="'.$value->RM->product_id.'">
                         </td>';
                             $result .= '<td style="text-align:center; width:12%;">' . $date_spp . '</td>';
-                            $result .= '<td>' . $value->RM->Material->tagImg . '</td>';
+//                            $result .= '<td>' . $value->RM->Material->tagImg . '</td>';
                             $result .= '<td>' . $value->description . '</td>';
                             $result .= '<td style="text-align:center;width:5%">' . $value->nomark . '</td>';
                             $result .= '<td style="text-align:center;">' . $tSize . '</td>';
@@ -167,7 +167,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                     ?>
                     <tr id="addSPPRow" style="display: none"></tr>
                     <tr id="total">
-                        <td colspan="9" style="text-align: right">Total : </td>
+                        <td colspan="8" style="text-align: right">Total : </td>
                         <?php
                         $o = 0;
                         foreach ($detail as $value) {
@@ -182,7 +182,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                 </tbody>
                 <tfoot>
                     <tr id="sisa">
-                        <td colspan="9" style="text-align: right">Sisa : </td>
+                        <td colspan="8" style="text-align: right">Sisa : </td>
                         <?php
                         $o = 0;
                         foreach ($detail as $value) {
@@ -338,7 +338,7 @@ if (isset($_POST['export'])) {
             </tbody>
             <tfoot>
                 <tr id="total">
-                    <td colspan="9" style="text-align: right">Total : </td>
+                    <td colspan="8" style="text-align: right">Total : </td>
                     <?php
                     $o = 0;
                     foreach ($detail as $value) {
@@ -349,7 +349,7 @@ if (isset($_POST['export'])) {
                     ?>
                 </tr>
                 <tr id="sisa">
-                    <td colspan="9" style="text-align: right">Sisa : </td>
+                    <td colspan="8" style="text-align: right">Sisa : </td>
                     <?php
                     $o = 0;
                     foreach ($detail as $value) {

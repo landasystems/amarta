@@ -102,7 +102,7 @@ class SellOrderDet extends CActiveRecord {
         $sellCode = (isset($this->SellOrder->code)) ? $this->SellOrder->code : '';
         $custCode = (isset($this->SellOrder->Customer->code)) ? $this->SellOrder->Customer->code : '';
         $product = (isset($this->Product->name)) ? $this->Product->name : '';
-        $getAcess = (isset($this->SellOrder->getAccess)) ? $this->SellOrder->getAccess : '';
+//        $getAcess = (isset($this->SellOrder->getAccess)) ? $this->SellOrder->getAccess : '';
         return $sellCode . ' - ' . $custCode . ' - ' . $product;
     }
 }

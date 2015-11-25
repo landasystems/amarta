@@ -95,19 +95,14 @@ class WorkorderController extends Controller {
     }
 
     public function actionAddPartial() {
-        $type = (!empty($_POST['partial_type_field'])) ? $_POST['partial_type_field'] : '';
         $material = (!empty($_POST['product_id_field'])) ? $_POST['product_id_field'] : '';
         $partial = (!empty($_POST['partial_name_field'])) ? $_POST['partial_name_field'] : '';
         $row = '';
-        if ($material !== "" && $partial != "" && $type !== "") {
-            $mType = ProductCategory::model()->findByPk($type);
+        if ($material !== "" && $partial != "") {
             $mMaterial = Product::model()->findByPk($material);
             $row .= '<tr class="data_partial"><td style="text-align:center;vertical-align: top">';
-            $row .= '<input type="hidden" class="partial-type" name="partial_type[]" value="' . $mType->name . '" />';
             $row .= '<input type="hidden" name="partial_product_id[]" value="' . $material . '" />';
             $row .= '<button class="btn btn-medium removeRow removePartial"><i class="icon-remove-circle"></i></button>';
-            $row .= '</td><td>';
-            $row .= ucwords($mType->name);
             $row .= '</td><td>';
             $row .= ucwords($mMaterial->name);
             $row .= '</td><td style="text-align:left">';
@@ -243,8 +238,7 @@ class WorkorderController extends Controller {
                     $(".split_desc").html("");         
                     $(".split_amount").val("");          
                 }
-                function clearAddPartial() {                          
-                    $(".partial_type").val("");          
+                function clearAddPartial() {                                 
                     $("#product_id").val("");               
                     $(".partial_name").val("");               
                     $("#s2id_product_id .select2-choice").html("<span>Please Choose</span><abbr class=\"select2-search-choice-close\"></abbr><div><b></b></div>");               
@@ -287,7 +281,7 @@ class WorkorderController extends Controller {
             if (isset($_POST['partial_name'])) {
                 $partial = array();
                 for ($i = 0; $i < count($_POST['partial_name']); $i++) {
-                    $partial[$i]['type'] = $_POST['partial_type'][$i];
+//                    $partial[$i]['type'] = $_POST['partial_type'][$i];
                     $partial[$i]['material_id'] = $_POST['partial_product_id'][$i];
                     $partial[$i]['partial'] = $_POST['partial_name'][$i];
                 }
@@ -347,7 +341,7 @@ class WorkorderController extends Controller {
             if (isset($_POST['partial_name'])) {
                 $partial = array();
                 for ($i = 0; $i < count($_POST['partial_name']); $i++) {
-                    $partial[$i]['type'] = $_POST['partial_type'][$i];
+//                    $partial[$i]['type'] = $_POST['partial_type'][$i];
                     $partial[$i]['material_id'] = $_POST['partial_product_id'][$i];
                     $partial[$i]['partial'] = $_POST['partial_name'][$i];
                 }
@@ -842,13 +836,13 @@ class WorkorderController extends Controller {
         }
     }
 
-    public function actionAddSelection() {
-        $partial_type = (isset($_POST['partial_types'])) ? $_POST['partial_types'] : 0;
-        $data = Product::model()->findAll(array('condition' => 'product_category_id=' . $partial_type));
-        foreach ($data as $bb) {
-            echo '<option value="' . $bb->id . '">' . $bb->name . '</option>';
-        }
-    }
+//    public function actionAddSelection() {
+//        $partial_type = (isset($_POST['partial_types'])) ? $_POST['partial_types'] : 0;
+//        $data = Product::model()->findAll(array('condition' => 'product_category_id=' . $partial_type));
+//        foreach ($data as $bb) {
+//            echo '<option value="' . $bb->id . '">' . $bb->name . '</option>';
+//        }
+//    }
 
     public function actionTakingNote() {
         cs()->registerScript('wide', '$(".landaMin").trigger("click");');

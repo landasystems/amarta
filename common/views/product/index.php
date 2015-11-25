@@ -55,7 +55,6 @@ $buton = "{view}{delete}{update}";
 <div id="yw0">
     <ul id="tabproduk" class="nav nav-tabs">
         <li class=""><a data-toggle="tab" href="#yw0_tab_1" >RAW Materials</a></li>
-        <li class=""><a data-toggle="tab" href="#yw0_tab_2">Supporting Materials</a></li>
         <li class=""><a data-toggle="tab" href="#yw0_tab_3">Finished Goods</a></li>
     </ul>
     <div class="tab-content">
@@ -82,83 +81,12 @@ $buton = "{view}{delete}{update}";
                         'value' => '"$data->tagPublic"',
                         'htmlOptions' => array('style' => 'text-align: center;')
                     ),
-                    array(
-                        'name' => 'product_category_id',
-                        'type' => 'raw',
-                        'value' => '"$data->tagProduct"',
-                        'htmlOptions' => array('style' => 'text-align: center;')
-                    ),
-                    array(
-                        'class' => 'bootstrap.widgets.TbButtonColumn',
-                        'template' => $buton,
-                        'buttons' => array(
-                            'view' => array(
-                                'label' => 'Lihat',
-                                'options' => array(
-                                    'class' => 'btn btn-small view'
-                                )
-                            ),
-                            'update' => array(
-                                'label' => 'Edit',
-                                'options' => array(
-                                    'class' => 'btn btn-small update'
-                                )
-                            ),
-                            'delete' => array(
-                                'label' => 'Hapus',
-                                'options' => array(
-                                    'class' => 'btn btn-small delete'
-                                )
-                            )
-                        ),
-                        'htmlOptions' => array('style' => 'width: 125px'),
-                    )
-                ),
-            ));
-            ?>
-        </div>
-        <div id="yw0_tab_2" class="tab-pane fade">
-            <?php
-            $this->widget('bootstrap.widgets.TbGridView', array(
-                'id' => 'supporting-materials',
-                'dataProvider' => $model->search(29),
-                'type' => 'striped bordered condensed',
-                'template' => '{summary}{pager}{items}{pager}',
-                'columns' => array(
-                    array(
-                        'header' => 'Image',
-                        'name' => 'product_photo_id',
-                        'type' => 'raw',
-                        'value' => '"$data->tagImg"',
-                        'htmlOptions' => array('style' => 'text-align: center;width:110px;'),
-                        'headerHtmlOptions' => array('style' => 'text-align: center;'),
-                    ),
-//        array('header' => 'Type',
-//            'name' => 'type',
-//            'type' => 'raw',
-//            'value' => '($data->type==\'inv\') ? "<span class=\"label label-info\">Inventory</span>" : (($data->type==\'srv\')? "<span class=\"label label-info\">Services</span>" : "<span class=\"label label-info\">Assembly</span>")',
-//            'headerHtmlOptions' => array('style' => 'text-align: center;width:75px'),
-//        ),
-                    array(
-                        'header' => 'Public',
-                        'name' => 'type',
-                        'type' => 'raw',
-                        'value' => '"$data->tagPublic"',
-                        'htmlOptions' => array('style' => 'text-align: center;')
-                    ),
-                    array(
-                        'name' => 'product_category_id',
-                        'type' => 'raw',
-                        'value' => '"$data->tagProduct"',
-                        'htmlOptions' => array('style' => 'text-align: center;')
-                    ),
-//        array(
-//            'header'=>'Size',
-//            'name' => 'weight',
-//            'type' => 'raw',
-//            'value' => '"$data->tagDImension"',
-//            'htmlOptions' => array('style' => 'text-align: center;')
-//        ),
+//                    array(
+//                        'name' => 'product_category_id',
+//                        'type' => 'raw',
+//                        'value' => '"$data->tagProduct"',
+//                        'htmlOptions' => array('style' => 'text-align: center;')
+//                    ),
                     array(
                         'class' => 'bootstrap.widgets.TbButtonColumn',
                         'template' => $buton,
@@ -217,12 +145,12 @@ $buton = "{view}{delete}{update}";
                         'value' => '"$data->tagPublic"',
                         'htmlOptions' => array('style' => 'text-align: center;')
                     ),
-                    array(
-                        'name' => 'product_category_id',
-                        'type' => 'raw',
-                        'value' => '"$data->tagProduct"',
-                        'htmlOptions' => array('style' => 'text-align: center;')
-                    ),
+//                    array(
+//                        'name' => 'product_category_id',
+//                        'type' => 'raw',
+//                        'value' => '"$data->tagProduct"',
+//                        'htmlOptions' => array('style' => 'text-align: center;')
+//                    ),
 //        array(
 //            'header'=>'Size',
 //            'name' => 'weight',

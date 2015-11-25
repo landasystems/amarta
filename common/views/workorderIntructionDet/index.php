@@ -1,5 +1,5 @@
 <?php
-$this->setPageTitle('SPP sedang dalam Proses');
+$this->setPageTitle('SPP & NOPOT');
 $this->breadcrumbs = array(
     'SPP',
 );
