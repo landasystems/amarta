@@ -284,6 +284,11 @@
             alert('Total Produksi di Detail Ukuran harus lebih besar dari Jumlah Pesanan(amount)!!');
             return false;
         }
+
+//        if ($('.partial-type').length == 0) {
+//            alert('Material belum di masukkan');
+//            return false;
+//        }
     });
     $("body").on("keyup", ".process_time_value", function () {
 

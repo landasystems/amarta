@@ -105,13 +105,13 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'header' => 'Material',
             'name' => 'product_id',
             'type' => 'raw',
-            'value' => '$data->Material->name',
+            'value' => '(isset($data->Material)) ? $data->Material->name : ""',
         ),
         array(
             'header' => 'Gambar Material',
             'name' => 'product_id',
             'type' => 'raw',
-            'value' => '$data->Material->ImgVeriSmall',
+            'value' => '(isset($data->Material)) ? $data->Material->ImgVeriSmall : ""',
             'htmlOptions' => array('style' => 'text-align: center'),
         ),        
         array(
@@ -122,11 +122,11 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'htmlOptions' => array('style' => 'text-align: right'),
         ),        
         array(
-            'header' => 'Keterangan',
-            'name' => 'description',
-            'type' => 'raw',
-            'value' => '$data->isDelete',
-        ),        
+            'name' => 'created',
+            'header' => 'Tgl. Input',
+            'value' => 'date("d-m-Y, H:i",strtotime($data->created))',
+            'htmlOptions' => array('style' => 'text-align: center'),
+        ),    
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'template' => $buton,

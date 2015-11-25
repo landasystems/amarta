@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * This is the model class for table "{{workorder_intruction}}".
  *
@@ -109,6 +107,9 @@ class WorkorderIntruction extends CActiveRecord {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'created DESC',
+            )
         ));
     }
 
@@ -138,23 +139,24 @@ class WorkorderIntruction extends CActiveRecord {
             $this->created_user_id = Yii::app()->user->id;
         return parent::beforeValidate();
     }
-    
-    public function getNameCustomer(){
-        $name =(isset($this->SPK->SellOrder->Customer->name)) ? $this->SPK->SellOrder->Customer->name : '-';
+
+    public function getNameCustomer() {
+        $name = (isset($this->SPK->SellOrder->Customer->name)) ? $this->SPK->SellOrder->Customer->name : '-';
         return $name;
     }
-    public function getIsDelete(){
+
+    public function getIsDelete() {
 //        $cc='';
-        $isi = WorkorderIntructionDet::model()->findAll(array('condition' => 'workorder_intruction_id='.$this->id.' AND code IS NOT NULL'));
-        if(count($isi) == 0){
+        $isi = WorkorderIntructionDet::model()->findAll(array('condition' => 'workorder_intruction_id=' . $this->id . ' AND code IS NOT NULL'));
+        if (count($isi) == 0) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
+
 //    public function getJenisKain(){
 //        $model = $this->Material->name;
 //        return $model;
 //    }
-
 }
