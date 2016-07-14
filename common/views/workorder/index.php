@@ -26,10 +26,10 @@ $this->beginWidget('zii.widgets.CPortlet', array(
         'class' => ''
     )
 ));
-echo'<div class="alert">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Peringatan!</strong> Apabila Proses Produksi telah berlangsung, maka data tak dapat dihapus.
-</div>';
+//echo'<div class="alert">
+//  <button type="button" class="close" data-dismiss="alert">&times;</button>
+//  <strong>Peringatan!</strong> Apabila Proses Produksi telah berlangsung, maka data tak dapat dihapus.
+//</div>';
 $this->widget('bootstrap.widgets.TbMenu', array(
     'type' => 'pills',
     'items' => array(

@@ -162,5 +162,13 @@ class SellOrder extends CActiveRecord {
         $user = (isset($this->Customer->name)) ? $this->Customer->name : '-';
         return $user;
     }
-
+    
+    public function getIsEmpty(){
+        $isi = Workorder::model()->findAll(array('condition' => 'sell_order_id='.$this->id));
+        if(empty($isi))
+            return true;
+        else
+            return false;
+        
+    }
 }

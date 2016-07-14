@@ -26,10 +26,10 @@ $this->beginWidget('zii.widgets.CPortlet', array(
         'class' => ''
     )
 ));
-echo'<div class="alert">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Peringatan!</strong> Apabila Proses Produksi telah berlangsung, maka data tak dapat dihapus.
-</div>';
+//echo'<div class="alert">
+//  <button type="button" class="close" data-dismiss="alert">&times;</button>
+//  <strong>Peringatan!</strong> Apabila Proses Produksi telah berlangsung, maka data tak dapat dihapus.
+//</div>';
 $this->widget('bootstrap.widgets.TbMenu', array(
     'type' => 'pills',
     'items' => array(
@@ -118,7 +118,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'header' => 'Total Material Used',
             'name' => 'total_material_total_used',
             'type' => 'raw',
-            'value' => '$data->total_material_total_used." Meter"',
+            'value' => '$data->total_material_total_used." M"',
             'htmlOptions' => array('style' => 'text-align: right'),
         ),        
         array(
@@ -145,7 +145,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                 ),
                 'delete' => array(
                     'label' => 'Hapus',
-                    'visible' => '$data->isDelete',
+//                    'visible' => '$data->isDelete',
                     'options' => array(
                         'class' => 'btn btn-small delete'
                     )

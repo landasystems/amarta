@@ -1,9 +1,5 @@
 <?php
-$this->setPageTitle('Pesanan');
-$this->breadcrumbs = array(
-    'Sell Orders',
-    
-);
+$this->setPageTitle('Surat Pesanan');
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -72,12 +68,12 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'value' => '($data->term=="1970-01-01") ? "" : date("d-m-Y",strtotime($data->term))',
             'htmlOptions' => array('style' => 'text-align: center'),
         ),
-        array('header' => 'Status',
-            'name' => 'status',
-            'type' => 'raw',
-            'value' => '($data->status==\'process\') ? "<span class=\"label label-warning\">$data->status</span>" : "<span class=\"label label-info\">$data->status</span>"',
-            'htmlOptions' => array('style' => 'text-align: center'),
-        ),        
+//        array('header' => 'Status',
+//            'name' => 'status',
+//            'type' => 'raw',
+//            'value' => '($data->status==\'process\') ? "<span class=\"label label-warning\">$data->status</span>" : "<span class=\"label label-info\">$data->status</span>"',
+//            'htmlOptions' => array('style' => 'text-align: center'),
+//        ),        
         array(
             'name' => 'created',
             'header' => 'Tgl. Input',
@@ -102,6 +98,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                 ),
                 'delete' => array(
                     'label' => 'Hapus',
+                    'visible' => '$data->isEmpty',
                     'options' => array(
                         'class' => 'btn btn-small delete'
                     )

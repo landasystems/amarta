@@ -18,11 +18,9 @@ return array(
         'xupload' => 'common.extensions.xupload'
     ),
     'modules' => array(
-        'landa',
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'landak',
-            // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => array('127.0.0.1', '::1', 'localhost','192.168.1.41'),
             'generatorPaths' => array(
                 'common.extensions.giiplus'  //Ajax Crud template path
@@ -63,20 +61,20 @@ return array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
-        'log' => array(
-            'class' => 'CLogRouter',
-            'routes' => array(
-                array(
-                    'class' => 'common.extensions.yii-debug-toolbar.YiiDebugToolbarRoute',
-                    'ipFilters' => array('127.0.0.1', '192.168.1.90'),
-                ),
-                array(
-                    'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning',
-//                    'filter' => 'CLogFilter',
-                ),
-            ),
-        ),
+//        'log' => array(
+//            'class' => 'CLogRouter',
+//            'routes' => array(
+//                array(
+//                    'class' => 'common.extensions.yii-debug-toolbar.YiiDebugToolbarRoute',
+//                    'ipFilters' => array('127.0.0.1', '192.168.1.90'),
+//                ),
+//                array(
+//                    'class' => 'CFileLogRoute',
+//                    'levels' => 'error, warning',
+////                    'filter' => 'CLogFilter',
+//                ),
+//            ),
+//        ),
         'bootstrap' => array(
             'class' => 'common.extensions.bootstrap.components.Bootstrap',
             'responsiveCss' => true,
